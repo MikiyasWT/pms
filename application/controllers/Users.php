@@ -1,6 +1,11 @@
 <?php
    class Users extends CI_Controller {
 
+    public function index()
+	{
+		$this->load->view('users/login');
+	}
+
     public function register(){
         $data['title'] = 'Sign up';
 
@@ -25,6 +30,7 @@
 
             $this->session->set_flashdata('user_registered','you are now registered and can log in');
             redirect('users/login');
+            
 
         }
     }
@@ -51,6 +57,10 @@
 
     //login user 
     public function login(){
+
+        $this->load->view('users/login'); 
+
+
         $data['title'] = 'Sign In';
 
         
