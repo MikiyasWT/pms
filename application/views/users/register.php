@@ -94,6 +94,10 @@
                                         </div>
                                     </div>
 
+                                    <div class="mb-3 text-danger">
+                                        <?php echo validation_errors(); ?>
+                                    </div>
+
                                     
                                     <div class="text-center d-grid">
                                         <button class="btn btn-success" type="submit"> Sign Up </button>

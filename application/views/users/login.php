@@ -65,8 +65,17 @@
                                 </div>
                             </div>
                             <div class="mb-3 text-danger">
-                                <?php echo validation_errors(); ?>
+                              <?php echo validation_errors(); ?>
                             </div>
+
+
+            <?php if(isset($error)) :?>
+              <div class="mb-3 text-danger">
+               <?php echo $message ?> 
+             </div> 
+             <?php endif; ?> 
+
+
 
 
                             <div class="text-center d-grid">

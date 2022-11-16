@@ -11,7 +11,7 @@
         $data['title'] = 'Register';
 
         $this->form_validation->set_rules('fullName','Full Name','required');
-        $this->form_validation->set_rules('userName','User Name','required');
+        $this->form_validation->set_rules('userName','User Name','required|callback_check_username_exists');
         $this->form_validation->set_rules('email','Email','required|trim|callback_check_email_exists|valid_email');
         //$this->form_validation->set_rules('role','Role','required');
         //$this->form_validation->set_rules('password','Password','required|min_length[8]|max_length[16]|callback_check_password_expression');
@@ -119,7 +119,13 @@
             else {
                    //set message before redirect
             $this->session->set_flashdata('login_failed','invalid credentials');
-            redirect('users/login');
+            //redirect('users/login',$data);
+            //$data = ["error"=>true,"message"=>"Incorrect email or Password"];
+            
+            $data['error'] = true;
+            $data['message'] = "Incorrect email or Password";
+
+            $this->load->view('users/login' , $data);
             }
 
          
