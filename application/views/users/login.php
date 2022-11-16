@@ -8,17 +8,16 @@
         <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
         <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
         <link rel="shortcut icon" href="<?= base_url();?>assets/images/favicon.ico">
 
-		<!-- Bootstrap css -->
-		<link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<!-- App css -->
-		<link href="<?= base_url();?>assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
-		<!-- icons -->
-		<link href="<?= base_url();?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-		<!-- Head js -->
-		<script src="<?= base_url();?>assets/js/head.js"></script>
+<!-- Bootstrap css -->
+<link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<!-- App css -->
+<link href="<?= base_url();?>assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style"/>
+<!-- icons -->
+<link href="<?= base_url();?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<!-- Head js -->
+<script src="<?= base_url();?>assets/js/head.js"></script>
 
     </head>
 
@@ -36,77 +35,51 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="assets/images/logo-dark.png" alt="" height="42">
+                                                <img src="<?= base_url();?>assets/images/logo-dark.png" alt="" height="22">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="assets/images/logo-dark.png" alt="" height="22">
+                                                <img src="<?= base_url();?>assets/images/logo-light.png" alt="" height="22">
                                             </span>
                                         </a>
                                     </div>
                                     <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                                 </div>
 
-                                <form action="#">
+                                <?php  echo form_open('users/login'); ?>
 
                                     <div class="mb-3">
                                         <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+                                        <input class="form-control" type="email" id="emailaddress" name="email" required="" placeholder="Enter your email">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" id="password" class="form-control" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title = ' Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters ' placeholder="Enter your password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
-                                            <label class="form-check-label" for="checkbox-signin">Remember me</label>
-                                        </div>
-                                    </div>
+                                    
 
                                     <div class="text-center d-grid">
                                         <button class="btn btn-primary" type="submit"> Log In </button>
                                     </div>
 
-                                </form>
+                                <?php  echo form_close(); ?>
 
-                                <div class="text-center">
-                                    <h5 class="mt-3 text-muted">Sign in with</h5>
-                                    <ul class="social-list list-inline mt-3 mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                               
 
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
 
-                        <div class="row mt-3">
-                            <div class="col-12 text-center">
-                                <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">Forgot your password?</a></p>
-                                <p class="text-white-50">Don't have an account? <a href="auth-register.html" class="text-white ms-1"><b>Sign Up</b></a></p>
-                            </div> <!-- end col -->
-                        </div>
+                        
                         <!-- end row -->
 
                     </div> <!-- end col -->
@@ -119,9 +92,10 @@
 
 
         <footer class="footer footer-alt">
-            2015 - <script>document.write(new Date().getFullYear())</script> &copy; ResMax Global Technologies  
+            2015 - <script>document.write(new Date().getFullYear())</script> &copy; ResMax Global Technologies 
         </footer>
- <!-- Vendor js -->
+
+        <!-- Vendor js -->
         <script src="<?= base_url();?>assets/js/vendor.min.js"></script>
 
         <!-- App js-->

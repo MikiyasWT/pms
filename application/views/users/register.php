@@ -36,75 +36,80 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="assets/images/logo-dark.png" alt="" height="22">
+                                             <img src="<?= base_url();?>assets/images/logo-dark.png" alt="" height="42">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="assets/images/logo-light.png" alt="" height="22">
+                                            <img src="<?= base_url();?>assets/images/logo-dark.png" alt="" height="42">
                                             </span>
                                         </a>
                                     </div>
-                                    <p class="text-muted mb-4 mt-3">Don't have an account? Create your account, it takes less than a minute</p>
+                                    <p class="text-muted mb-2 mt-2">Create your account</p>
                                 </div>
 
-                                <form action="#">
+                                <?php echo form_open('users/register'); ?>
 
-                                    <div class="mb-3">
+                                    <div class="mb-2">
                                         <label for="fullname" class="form-label">Full Name</label>
-                                        <input class="form-control" type="text" id="fullname" placeholder="Enter your name" required>
+                                        <input class="form-control" type="text" id="fullName" name="fullName" placeholder="Enter your name" required>
                                     </div>
-                                    <div class="mb-3">
+
+                                    <div class="mb-2">
+                                        <label for="fullname" class="form-label">User Name</label>
+                                        <input class="form-control" type="text" id="userName" name="userName"  placeholder="Enter your user name" required>
+                                    </div>
+
+                                    <div class="mb-2">
                                         <label for="emailaddress" class="form-label">Email address</label>
-                                        <input class="form-control" type="email" id="emailaddress" required placeholder="Enter your email">
+                                        <input class="form-control" type="email" id="email" name="email"  required placeholder="Enter your email">
                                     </div>
-                                    <div class="mb-3">
+
+                                    <!-- <div class="mb-2">
+                                          <select class="form-select" name="role">Role
+                                                    Open this select menu
+                                                    <option  selected="" value="3">Guest</option>
+                                                    <option value="2">User</option>
+                                                    <option value="1">Admin</option>
+                                            </select>
+                                    </div> -->
+                                    
+
+                                    <div class="mb-2">
                                         <label for="password" class="form-label">Password</label>
                                         <div class="input-group input-group-merge">
-                                            <input type="password" id="password" class="form-control" placeholder="Enter your password">
+                                            <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title = ' Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters ' class="form-control" placeholder="Enter your password">
+                                            <div class="input-group-text" data-password="false">
+                                                <span class="password-eye"></span>
+                                            </div>
+                                        </div>
+
+                                        <label for="password" class="form-label mt-2">Confirm Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="confirmPassword" name="password2" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title = ' Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters ' class="form-control" placeholder="Enter your password">
                                             <div class="input-group-text" data-password="false">
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="checkbox-signup">
-                                            <label class="form-check-label" for="checkbox-signup">I accept <a href="javascript: void(0);" class="text-dark">Terms and Conditions</a></label>
-                                        </div>
-                                    </div>
+
+                                    
                                     <div class="text-center d-grid">
                                         <button class="btn btn-success" type="submit"> Sign Up </button>
                                     </div>
 
-                                </form>
+                                <?php echo form_close(); ?>
 
-                                <div class="text-center">
-                                    <h5 class="mt-3 text-muted">Sign up using</h5>
-                                    <ul class="social-list list-inline mt-3 mb-0">
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-primary text-primary"><i class="mdi mdi-facebook"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-danger text-danger"><i class="mdi mdi-google"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-info text-info"><i class="mdi mdi-twitter"></i></a>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a href="javascript: void(0);" class="social-list-item border-secondary text-secondary"><i class="mdi mdi-github"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
+                               
 
                             </div> <!-- end card-body -->
                         </div>
                         <!-- end card -->
 
-                        <div class="row mt-3">
+                        <div class="row mt-1">
                             <div class="col-12 text-center">
-                                <p class="text-white-50">Already have account?  <a href="auth-login.html" class="text-white ms-1"><b>Sign In</b></a></p>
+                                <p class="text-white-50">Already have account?  <a href="" class="text-white ms-1"><b>Sign In</b></a></p>
                             </div> <!-- end col -->
                         </div>
                         <!-- end row -->
