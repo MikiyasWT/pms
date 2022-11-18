@@ -48,7 +48,7 @@
                                 <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                             </div>
 
-                            <?php echo form_open('users/login'); ?>
+                            <?php echo form_open('auth/login'); ?>
 
                             <div class="mb-3">
                                 <label for="emailaddress" class="form-label">Email address</label>

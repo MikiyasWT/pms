@@ -1,9 +1,12 @@
 <?php
-   class Users extends CI_Controller {
+   class Auth extends CI_Controller {
 
+
+  
+    
     public function index()
 	{
-		$this->load->view('users/login');
+		$this->login();
 	}
 
     public function register(){
@@ -30,7 +33,7 @@
             //set message before redirect
 
             $this->session->set_flashdata('user_registered','you are now registered and can log in');
-            redirect('users/login');
+            redirect('auth/login');
             
 
         }
@@ -80,6 +83,12 @@
     //login user 
     public function login(){
 
+        if(($this->session->userdata('logged_in'))) 
+         { 
+           redirect('home');
+       
+         }
+
         $this->load->helper('email'); 
 
 
@@ -99,12 +108,6 @@
 
             if($user_id){
 
-            // $user_data = array(
-            //     'user_id' => $user_id,
-            //     'username' => $user_name,
-            //     'logged_in' => true,
-            // );
-
             $user_data = array(
                 'user_id' => $user_id,
                 'logged_in' => true,
@@ -113,14 +116,14 @@
             $this->session->set_userdata($user_data);
            //set message before redirect
             $this->session->set_flashdata('user_loggedin','you are now loggedin');
-            $this->load->view('users/home');
+            //$this->load->view('users/home');
+            redirect('home');
 
             }
             else {
                    //set message before redirect
             $this->session->set_flashdata('login_failed','invalid credentials');
             //redirect('users/login',$data);
-            //$data = ["error"=>true,"message"=>"Incorrect email or Password"];
             
             $data['error'] = true;
             $data['message'] = "Incorrect email or Password";
@@ -132,16 +135,16 @@
         }
     }
 
+
     public function logout(){
         $this->session->unset_userdata('logged_in');
         $this->session->unset_userdata('user_id');
-        $this->session->unset_userdata('user_name');
+        //$this->session->unset_userdata('username');
         
         $this->session->set_flashdata('user_loggedout','you have logged out');
 
-        redirect('users/login');
+        redirect('auth/login');
     }
-
 
     public function api_key_crypt( $string, $action ) {
 	    $secret_key = '07a565b377ff6ecf93167a3eb1647086';
