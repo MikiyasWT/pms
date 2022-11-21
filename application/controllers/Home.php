@@ -18,7 +18,13 @@ class Home extends CI_Controller{
     {
         
        
-        $this->load->view('users/home');
+           //$this->load->view('users/home');
+
+
+            $this->load->view('shared/topbar');
+            $this->load->view('shared/leftsidebar');
+            $this->load->view('shared/content');
+            $this->load->view('shared/rightsidebar');
     }
 
 

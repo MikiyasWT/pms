@@ -365,7 +365,7 @@
                                 <img src="<?= base_url();?>assets/images/logo-sm.png" alt="" height="22">
                             </span>
                             <span class="logo-lg">
-                                <img src="<?= base_url();?>assets/images/logo-light.png" alt="" height="20">
+                                <img src="<?= base_url();?>assets/images/logo-light.png" alt="" height="44">
                             </span>
                         </a>
                     </div>
