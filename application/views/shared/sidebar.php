@@ -49,7 +49,7 @@
             <li class="menu-title">Navigation</li>
 
             <li>
-                <a href="<?php echo base_url('dashboard');?>" >
+                <a href="<?= base_url('dashboard');?>" >
                     <i class="mdi mdi-view-dashboard-outline"></i>
                     <!-- <span class="badge bg-success rounded-pill float-end">4</span> -->
                     <span> Dashboards </span>
