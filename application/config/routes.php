@@ -54,7 +54,7 @@ $route['auth/login'] = 'auth/login';
 $route['auth/login'] = 'auth';
 $route['auth/logout'] = 'auth/logout';
 
-$route['home'] = 'home';
+$route['dashboard'] = 'dashboard';
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
