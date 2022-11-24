@@ -1,71 +1,85 @@
   <!-- ========== Left Sidebar Start ========== -->
   <div class="left-side-menu">
 
-<div class="h-100" data-simplebar>
+      <div class="h-100" data-simplebar>
 
-    <!-- User box -->
-    <div class="user-box text-center">
-         <img src="<?php echo base_url();?>assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
-            class="rounded-circle avatar-md"> 
-        <div class="dropdown">
-            <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
-                data-bs-toggle="dropdown">Geneva Kennedy</a>
-            <div class="dropdown-menu user-pro-dropdown">
+          <!-- User box -->
+          <div class="user-box text-center">
+              <img src="<?php echo base_url(); ?>assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
+              <div class="dropdown">
+                  <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown">Geneva Kennedy</a>
+                  <div class="dropdown-menu user-pro-dropdown">
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="fe-user me-1"></i>
-                    <span>My Account</span>
-                </a>
+                      <!-- item-->
+                      <a href="javascript:void(0);" class="dropdown-item notify-item">
+                          <i class="fe-user me-1"></i>
+                          <span>My Account</span>
+                      </a>
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="fe-settings me-1"></i>
-                    <span>Settings</span>
-                </a>
+                      <!-- item-->
+                      <a href="javascript:void(0);" class="dropdown-item notify-item">
+                          <i class="fe-settings me-1"></i>
+                          <span>Settings</span>
+                      </a>
 
-                <!-- item-->
-                <!-- <a href="javascript:void(0);" class="dropdown-item notify-item">
+                      <!-- item-->
+                      <!-- <a href="javascript:void(0);" class="dropdown-item notify-item">
                     <i class="fe-lock me-1"></i>
                     <span>Lock Screen</span>
                 </a> -->
 
-                <!-- item-->
-                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                    <i class="fe-log-out me-1"></i>
-                    <span>Logout</span>
-                </a>
+                      <!-- item-->
+                      <a href="javascript:void(0);" class="dropdown-item notify-item">
+                          <i class="fe-log-out me-1"></i>
+                          <span>Logout</span>
+                      </a>
 
-            </div>
-        </div>
-        <p class="text-muted">Admin Head</p>
-    </div>
+                  </div>
+              </div>
+              <p class="text-muted">Admin Head</p>
+          </div>
 
-    <!--- Sidemenu -->
-    <div id="sidebar-menu">
+          <!--- Sidemenu -->
+          <div id="sidebar-menu">
 
-        <ul id="side-menu">
+              <ul id="side-menu">
 
-            <li class="menu-title">Navigation</li>
+                  <li class="menu-title">Navigation</li>
 
-            <li>
-                <a href="<?= base_url('dashboard');?>" >
-                    <i class="mdi mdi-view-dashboard-outline"></i>
-                    <!-- <span class="badge bg-success rounded-pill float-end">4</span> -->
-                    <span> Dashboards </span>
-                </a>
-                
-            </li>
-       
-        </ul>
+                  <li>
+                      <a href="<?= base_url('dashboard'); ?>">
+                          <i class="mdi mdi-view-dashboard-outline"></i>
+                          <!-- <span class="badge bg-success rounded-pill float-end">4</span> -->
+                          <span> Dashboards </span>
+                      </a>
 
-    </div>
-    <!-- End Sidebar -->
+                  </li>
+                  <li>
+                      <a href="#sidebarAuth" data-bs-toggle="collapse">
+                          <i class="mdi mdi-account-circle-outline"></i>
+                          <span> Users Management </span>
+                          <span class="menu-arrow"></span>
+                      </a>
+                      <div class="collapse" id="sidebarAuth">
+                          <ul class="nav-second-level">
+                              <li>
+                                  <a href="auth-login.html">Users</a>
+                              </li>
+                              <li>
+                                  <a href="<?= base_url('dashboard/roles'); ?>">Roles</a>
+                              </li>
+                          </ul>
+                      </div>
+                  </li>
+              </ul>
 
-    <div class="clearfix"></div>
+          </div>
+          <!-- End Sidebar -->
 
-</div>
-<!-- Sidebar -left -->
+          <div class="clearfix"></div>
 
-</div>
-<!-- Left Sidebar End -->
+      </div>
+      <!-- Sidebar -left -->
+
+  </div>
+  <!-- Left Sidebar End -->
