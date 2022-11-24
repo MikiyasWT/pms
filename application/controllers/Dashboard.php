@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Dashboard extends CI_Controller
 {
@@ -8,7 +8,7 @@ class Dashboard extends CI_Controller
   {
     parent::__construct(); // you have missed this line.
     $this->load->library('session');
-
+    $this->load->model('UserManagment_model');
     if (!($this->session->userdata('logged_in'))) {
       redirect('auth/login');
     }
@@ -18,17 +18,9 @@ class Dashboard extends CI_Controller
   {
     $this->load->view('dashboard');
   }
-
-
-  // function __construct()
-  // {
-  //     $this->load->library('session');
-  //    //$this->session->userdata('user_data') == null
-
-  //     if(FALSE === $this->session->userdata('logged_in')) 
-  //     { 
-  //         redirect('login');
-
-  //     }
-  // }
+  public function roles()
+  {
+    $data['roles'] = $this->UserManagment_model->get_roles();
+    $this->load->view('roles',$data);
+  }
 }
