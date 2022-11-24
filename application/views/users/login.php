@@ -33,7 +33,7 @@
 
                             <div class="text-center w-75 m-auto">
                                 <div class="auth-logo">
-                                    <a href="index.html" class="logo logo-dark text-center">
+                                    <a href="#" class="logo logo-dark text-center">
                                         <span class="logo-lg">
                                             <img src="<?= base_url(); ?>assets/images/logo-dark.png" alt="" width="100%" height="auto">
                                         </span>
@@ -48,7 +48,7 @@
                                 <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin panel.</p>
                             </div>
 
-                            <?php echo form_open('users/login'); ?>
+                            <?php echo form_open('auth/login'); ?>
 
                             <div class="mb-3">
                                 <label for="emailaddress" class="form-label">Email address</label>
@@ -65,8 +65,17 @@
                                 </div>
                             </div>
                             <div class="mb-3 text-danger">
-                                <?php echo validation_errors(); ?>
+                              <?php echo validation_errors(); ?>
                             </div>
+
+
+            <?php if(isset($error)) :?>
+              <div class="mb-3 text-danger">
+               <?php echo $message ?> 
+             </div> 
+             <?php endif; ?> 
+
+
 
 
                             <div class="text-center d-grid">

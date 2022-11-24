@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2022 at 10:25 AM
+-- Generation Time: Nov 19, 2022 at 11:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -62,7 +62,9 @@ INSERT INTO `users` (`id`, `full_name`, `user_name`, `role`, `email`, `password`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user_name_index` (`user_name`);
+  ADD UNIQUE KEY `user_name` (`user_name`),
+  ADD UNIQUE KEY `user_name_2` (`user_name`),
+  ADD KEY `role` (`role`);
 
 --
 -- AUTO_INCREMENT for dumped tables

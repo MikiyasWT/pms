@@ -36,7 +36,7 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                             <img src="<?= base_url();?>assets/images/logo-dark.png" alt="" height="42">
+                                             <img src="<?= base_url();?>assets/images/logo-dark.png" alt="" width="100%" height="auto">
                                             </span>
                                         </a>
                     
@@ -49,7 +49,7 @@
                                     <p class="text-muted mb-2 mt-2">Create your account</p>
                                 </div>
 
-                                <?php echo form_open('users/register'); ?>
+                                <?php echo form_open('auth/register'); ?>
 
                                     <div class="mb-2">
                                         <label for="fullname" class="form-label">Full Name</label>
@@ -92,6 +92,10 @@
                                                 <span class="password-eye"></span>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="mb-3 text-danger">
+                                        <?php echo validation_errors(); ?>
                                     </div>
 
                                     

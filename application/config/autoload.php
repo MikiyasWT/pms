@@ -51,15 +51,15 @@ $autoload['packages'] = array();
 |
 | Prototype:
 |
-|	$autoload['libraries'] = array('database', 'email', 'session');
+$autoload['libraries'] = array('database', 'email', 'session');
 |
 | You can also supply an alternative library name to be assigned
 | in the controller:
-|
+|$autoload['libraries'] = array('form_validation','session','pagination','database');
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array('form_validation','session','pagination','database');
 
+$autoload['libraries'] = array('database', 'email', 'session','form_validation','pagination');
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
