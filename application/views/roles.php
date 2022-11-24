@@ -18,8 +18,14 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <div class="card-body">
                         <h4 class="header-title">Roles</h4>
+                        <div class="container md-8">
+                            <?php $data['error'] = $this->session->flashdata('error');
+                            $data['message'] = $this->session->flashdata('message');
+                            (empty($data['error']))?((empty($data['message'])) ?  :  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
+                        </div>
                         <p class="sub-header justify-content-end">
-                        <button  type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button> </p>
+                            <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
+                        </p>
                         <div class="table-responsive">
                             <table class="table mb-2">
                                 <thead class="table-dark">
@@ -57,7 +63,7 @@ $this->load->view('shared/sidebar'); ?>
 
 
 </div>
-<?php $this->load->view('components/role_modal.php');?>
+<?php $this->load->view('components/role_modal.php'); ?>
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->

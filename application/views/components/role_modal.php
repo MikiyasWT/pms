@@ -10,21 +10,22 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <label for="field-1" class="form-label">Role Name</label>
+                            <h4 for="field-1" class="form-label">Role Name</h4>
                             <!-- <input type="text" class="form-control" name="role_type" id="field-1" placeholder="John"> -->
                         </div>
                     </div>
-                    <div class="col-md">
+                    <div class="col-md-8">
                         <div class="mb-3">
                             <!-- <label for="field-1" class="form-label">Role Name</label> -->
-                            <input type="text" class="form-control" name="role_type" id="field-1" placeholder="Admin">
+                            <input type="text" class="form-control"  name="role_type" id="field-1" placeholder="Admin">
                         </div>
                     </div>
                 </div>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info waves-effect waves-light">Save changes</button>
+                <button type="submit" class="btn btn-info waves-effect waves-light">Save changes</button>
             </div>
         </div>
         </form>
