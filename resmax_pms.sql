@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2022 at 12:08 PM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.0.23
+-- Generation Time: Nov 28, 2022 at 06:26 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,16 +30,16 @@ SET time_zone = "+00:00";
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
   `role_type` varchar(30) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` varchar(10) NOT NULL DEFAULT 'active'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `roles`
 --
 
-INSERT INTO `roles` (`id`, `role_type`, `created_at`) VALUES
-(1, 'HR Manager', '2022-11-28 09:50:27'),
-(2, 'Admin', '2022-11-28 10:28:42');
+INSERT INTO `roles` (`id`, `role_type`, `created_at`, `status`) VALUES
+(1, 'HR Manager', '2022-11-28 06:26:10', 'active');
 
 -- --------------------------------------------------------
 
@@ -100,7 +100,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users`

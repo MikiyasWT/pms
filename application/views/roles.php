@@ -17,21 +17,25 @@ $this->load->view('shared/sidebar'); ?>
             <div class="col-lg mt-2">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Roles</h4>
-                        <div class="container md-8">
-                            <?php $data['error'] = $this->session->flashdata('error');
-                            $data['message'] = $this->session->flashdata('message');
-                            (empty($data['error']))?((empty($data['message'])) ?  :  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
+                        <div class="row justify-content-between">
+
+                            <h4 class="header-title">Roles</h4>
+                            <div class="col md-10">
+                                <?php $data['error'] = $this->session->flashdata('error');
+                                $data['message'] = $this->session->flashdata('message');
+                                (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
+                            </div>
+                            <div class="col-1 m-2">
+                                <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
+                            </div>
                         </div>
-                        <p class="sub-header justify-content-end">
-                            <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
-                        </p>
                         <div class="table-responsive">
                             <table class="table mb-2">
                                 <thead class="table-dark">
                                     <tr>
                                         <th>#</th>
                                         <th>Role Name</th>
+                                        <th>Status</th>
                                         <th>Created at</th>
                                         <th>Action</th>
                                     </tr>
@@ -42,12 +46,15 @@ $this->load->view('shared/sidebar'); ?>
                                         <tr>
                                             <th scope="row"><?= $role['id']; ?></th>
                                             <td><?= $role['role_type']; ?></td>
+                                            <td><span class="float-center"><span class="badge bg-<?= ($role['status'] == 'active') ? 'success' : 'danger'; ?>"><?= $role['status']; ?></span></span></td>
                                             <td><?= $role['created_at']; ?></td>
-                                            <td><button type="button" class="btn btn-warning rounded-pill waves-effect waves-light">
-                                                    <span class="btn-label"><i class="mdi mdi-alert"></i></span>Warning
-                                                </button> &nbsp; <button type="button" class="btn btn-danger rounded-pill waves-effect waves-light">
-                                                    Danger<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span>
-                                                </button></td>
+                                            <td><button data-id="<?= $role['id']; ?>" type="button" class="btn btn-warning btn-xs waves-effect waves-light">
+                                                    <span class="btn-label"><i class="mdi mdi-alert"></i></span>Edit
+                                                </button> &nbsp;
+                                                <button type="button" data-id="<?= $role['id']; ?>" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">
+                                                    Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span>
+                                                </button>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -63,6 +70,7 @@ $this->load->view('shared/sidebar'); ?>
 
 
 </div>
+<?php $this->load->view('components/delete_modal.php'); ?>
 <?php $this->load->view('components/role_modal.php'); ?>
 <!-- ============================================================== -->
 <!-- End Page content -->
@@ -75,3 +83,41 @@ $this->load->view('shared/sidebar'); ?>
 <?php $this->load->view('shared/rightsidebar'); ?>
 <!-- Right bar overlay-->
 <?php $this->load->view('shared/footer'); ?>
+<script>
+    $(".btn-warning").click(function(e) {
+        e.preventDefault();
+        id = $(this).data('id');
+        // console.log(id)
+        $("#con-close-modal").modal('show');
+        $.ajax({
+            type: "get",
+            url: '<?= base_url("Usermanagment/update_role/"); ?>' + id,
+            dataType: "JSON",
+            success: function(response) {
+                $(".modal-title").text("Update");
+                $(".btn-info").text("Update changes");
+                $("#field-1").val(response.role_type);
+                $('#role_edit').attr('action', "<?= base_url('Usermanagment/update_role/'); ?>" + id)
+            }
+        });
+    });
+    $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
+        var id = $(e.relatedTarget).data('id'); // get the image id
+        $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
+        $("#role_del").click(function(e) {
+            e.preventDefault();
+            id = $(this).attr('data-delete-id');
+            // console.log(id)
+            // $("#danger-alert-modal").modal('show');
+            $.ajax({
+                type: "post",
+                url: '<?= base_url("Usermanagment/del_role/"); ?>' + id,
+                dataType: "JSON",
+                success: function(response) {}
+            });
+            $(document).ajaxStop(function() {
+                window.location.reload();
+            });
+        });
+    });
+</script>

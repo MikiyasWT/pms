@@ -36,7 +36,7 @@ class Usermanagment extends CI_Controller
   }
   public function insert_role()
   {
-    $this->form_validation->set_rules('role_type', 'Role', 'required|trim|alpha');
+    $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
     if ($this->form_validation->run() === FALSE) {
       $this->session->set_flashdata('error', validation_errors());
       redirect('dashboard/roles');
@@ -49,6 +49,57 @@ class Usermanagment extends CI_Controller
         redirect('dashboard/roles');
       } else {
         $this->session->set_flashdata('error', 'Data not inserted');
+        redirect('dashboard/roles');
+      }
+    }
+  }
+  public function update_role($id)
+  {
+    if (!isset($id)) {
+      echo json_encode(['error' => true, 'message' => 'empty id']);
+      return exit;
+    } else {
+      if ($this->input->post('role_update')) {
+        $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
+        if ($this->form_validation->run() === FALSE) {
+          $this->session->set_flashdata('error', validation_errors());
+          redirect('dashboard/roles');
+        } else {
+          $message = $this->UserManagment_model->update_role($this->input->post('role_type'), $id);
+          if ($message) {
+            # code...
+            $this->session->set_flashdata('message', 'Role Updated');
+            echo json_encode($message);
+            redirect('dashboard/roles');
+          } else {
+            # code...
+            $this->session->set_flashdata('error', "Error unable to compelte task, try again later");
+            redirect('dashboard/roles');
+          }
+        }
+      } else {
+
+        # code...
+        $data = $this->UserManagment_model->get_role($id);
+        $this->session->set_flashdata('updating', true);
+        $this->session->set_flashdata('data', $data[0]);
+        echo json_encode($data[0]);
+      }
+    }
+  }
+  public function del_role($id)
+  {
+    if (!isset($id)) {
+      echo json_encode(['error' => true, 'message' => 'empty id']);
+      return exit;
+    } else {
+      $message = $this->UserManagment_model->del_role($id);
+      if ($message) {
+        $this->session->set_flashdata('message', 'Deactivated');
+        echo json_encode($message);
+        redirect('dashboard/roles');
+      } else {
+        $this->session->set_flashdata('error', 'Data not Proccesed');
         redirect('dashboard/roles');
       }
     }

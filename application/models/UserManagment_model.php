@@ -39,12 +39,32 @@ class UserManagment_model extends CI_Model
   {
     return $this->db->get('roles')->result_array();
   }
-  public function insert_role($role){
+  public function get_role($id)
+  {
+    $this->db->where('id', $id);
+    return $this->db->get('roles')->result();
+    // return $this->db->get_where('roles',["id"=>$id]);
+  }
+  public function insert_role($role)
+  {
     $data = array(
       'role_type' => $role,
       'created_at' => date('Y-m-d h:i:s')
     );
-    return $this->db->insert('roles',$data);
+    return $this->db->insert('roles', $data);
+  }
+  public function update_role($role ,$id)
+  {
+    $this->db->set('role_type', $role);
+    $this->db->set('status', 'active');
+    $this->db->where('id', $id);
+    return $this->db->update('roles');
+  }
+  public function del_role($id)
+  {
+    $this->db->set('status', 'deactivated');
+    $this->db->where('id', $id);
+    return $this->db->update('roles');
   }
 }
 
