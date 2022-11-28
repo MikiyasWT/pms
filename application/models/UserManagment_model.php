@@ -56,6 +56,13 @@ class UserManagment_model extends CI_Model
   public function update_role($role ,$id)
   {
     $this->db->set('role_type', $role);
+    $this->db->set('status', 'active');
+    $this->db->where('id', $id);
+    return $this->db->update('roles');
+  }
+  public function del_role($id)
+  {
+    $this->db->set('status', 'deactivated');
     $this->db->where('id', $id);
     return $this->db->update('roles');
   }

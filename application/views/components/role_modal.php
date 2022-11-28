@@ -7,7 +7,7 @@
                     <h4 class="modal-title">Add User Management Role</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body p-4">
+                <div class="modal-body p-2">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">

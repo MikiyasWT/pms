@@ -87,6 +87,23 @@ class Usermanagment extends CI_Controller
       }
     }
   }
+  public function del_role($id)
+  {
+    if (!isset($id)) {
+      echo json_encode(['error' => true, 'message' => 'empty id']);
+      return exit;
+    } else {
+      $message = $this->UserManagment_model->del_role($id);
+      if ($message) {
+        $this->session->set_flashdata('message', 'Deactivated');
+        echo json_encode($message);
+        redirect('dashboard/roles');
+      } else {
+        $this->session->set_flashdata('error', 'Data not Proccesed');
+        redirect('dashboard/roles');
+      }
+    }
+  }
 }
 /* End of file Usermanagment.php */
 /* Location: ./application/controllers/Usermanagment.php */
