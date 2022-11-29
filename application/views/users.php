@@ -18,9 +18,12 @@ $this->load->view('shared/sidebar'); ?>
             <div class="container-fluid mt-1">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="header-title">Users Data Table</h4>
-                        <p class="text-muted font-13 mb-4">
-                        </p>
+                        <div class="row justify-content-between m-2">
+
+                            <h4 class="col-auto header-title">Users Data Table</h4>
+                            <button class="col-lg-1 col-sm-auto btn btn-success mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
+                        </div>
+
                         <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
@@ -52,6 +55,7 @@ $this->load->view('shared/sidebar'); ?>
 </div>
 <?php $this->load->view('components/delete_modal.php'); ?>
 <?php $this->load->view('components/role_modal.php'); ?>
+<?php $this->load->view('components/user_canvas.php');?>
 <!-- ============================================================== -->
 <!-- End Page content -->
 <!-- ============================================================== -->
@@ -64,26 +68,8 @@ $this->load->view('shared/sidebar'); ?>
 <!-- Right bar overlay-->
 <?php $this->load->view('shared/footer'); ?>
 <!-- Script -->
-<script type="text/javascript">
-     $(document).ready(function(){
-        $('#datatable-buttons').DataTable({
-          'processing': true,
-          'serverSide': true,
-          'serverMethod': 'post',
-          'ajax': {
-             'url':'<?=base_url()?>Usermanagment/get_users/'
-          },
-          'columns': [
-             { data: 'Name' },
-             { data: 'Email' },
-             { data: 'Phone' },
-             { data: 'Gender' },
-             { data: 'Date of Birth' },
-             { data: 'Role' },
-             { data: 'Regesterd Date' },
-             { data: 'Status' },
-             { data: 'Action' }
-          ]
-        });
-     });
-     </script>
+<script>
+    $(document).ready(function() {
+        $('#datatable-buttons').DataTable();
+    });
+</script>
