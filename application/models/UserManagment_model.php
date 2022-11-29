@@ -39,6 +39,13 @@ class UserManagment_model extends CI_Model
   {
     return $this->db->get('roles')->result_array();
   }
+  public function get_users($postData=null)
+  {
+    // $this->db->select('*');
+    // $this->db->from('users');
+    // $this->db->join('roles', 'roles.id = users.id');
+    // return $this->db->get()->result();
+  }
   public function get_role($id)
   {
     $this->db->where('id', $id);
@@ -53,16 +60,16 @@ class UserManagment_model extends CI_Model
     );
     return $this->db->insert('roles', $data);
   }
-  public function update_role($role ,$id)
+  public function update_role($role, $id)
   {
     $this->db->set('role_type', $role);
-    $this->db->set('status', 'active');
+    $this->db->set('role_status', 'active');
     $this->db->where('id', $id);
     return $this->db->update('roles');
   }
   public function del_role($id)
   {
-    $this->db->set('status', 'deactivated');
+    $this->db->set('role_status', 'deactivated');
     $this->db->where('id', $id);
     return $this->db->update('roles');
   }

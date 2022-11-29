@@ -104,6 +104,14 @@ class Usermanagment extends CI_Controller
       }
     }
   }
+  public function get_users()
+  {
+    // POST data
+    $postData = $this->input->post();
+    // Get data
+    $data = $this->UserManagment_model->get_users($postData);
+    echo json_encode($data);
+  }
 }
 /* End of file Usermanagment.php */
 /* Location: ./application/controllers/Usermanagment.php */

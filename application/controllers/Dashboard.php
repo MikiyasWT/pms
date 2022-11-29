@@ -23,4 +23,11 @@ class Dashboard extends CI_Controller
     $data['roles'] = $this->UserManagment_model->get_roles();
     $this->load->view('roles',$data);
   }
+  public function users()
+  {
+    // $data['users'] = $this->UserManagment_model->get_users();
+    // echo json_encode($data['users']);
+    // $this->load->view('users',$data);
+    $this->load->view('users');
+  }
 }

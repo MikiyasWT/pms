@@ -20,6 +20,7 @@
                                 <!-- <label for="field-1" class="form-label">Role Name</label> -->
                                 <input type="text" class="form-control"  name="role_type" id="field-1" placeholder="Admin">
                             </div>
+                            <p hidden>If you update the current status will automatically changed to active</p>
                         </div>
                     </div>
 

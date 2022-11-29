@@ -1,37 +1,36 @@
 <?php $this->load->view('shared/header');
-$this->load->view('shared/sidebar');?>
-          
-            <!-- ============================================================== -->
-            <!-- Start Page Content here -->
-            <!-- ============================================================== -->
+$this->load->view('shared/sidebar'); ?>
 
-            <div class="content-page">
-                <div class="content">
+<!-- ============================================================== -->
+<!-- Start Page Content here -->
+<!-- ============================================================== -->
 
-                    <!-- Start Content-->
-                    <div class="container-fluid">
-                        
-                        <!-- start page title -->
-                       <?php $this->load->view('shared/breadcrumb'); ?>
-                        <!-- end page title --> 
-                        
+<div class="content-page">
+    <div class="content">
 
-                    </div> <!-- container -->
+        <!-- Start Content-->
+        <div class="container-fluid">
 
-                </div> <!-- content -->
-
-               
-            </div>
-
-            <!-- ============================================================== -->
-            <!-- End Page content -->
-            <!-- ============================================================== -->
+            <!-- start page title -->
+            <?php $this->load->view('shared/breadcrumb'); ?>
+            <!-- end page title -->
 
 
-        </div>
-        <!-- END wrapper -->
+        </div> <!-- container -->
 
-       <?php $this->load->view('shared/rightsidebar');?>
-        <!-- Right bar overlay-->
-        <?php $this->load->view('shared/footer');?>
-       
+    </div> <!-- content -->
+
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<?php $this->load->view('shared/rightsidebar'); ?>
+<!-- Right bar overlay-->
+<?php $this->load->view('shared/footer'); ?>
