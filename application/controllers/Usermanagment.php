@@ -207,6 +207,7 @@ class Usermanagment extends CI_Controller
         if ($this->form_validation->run() === FALSE) {
           $this->session->set_flashdata('error', validation_errors());
           echo json_encode(['error' => true, 'message' => validation_errors()]);
+          redirect('dashboard/users');
         } else {
           $name = $this->input->post('name');
           $phone = $this->input->post('phone');
@@ -239,10 +240,10 @@ class Usermanagment extends CI_Controller
         }
       } else {
         # code...
-        $data = $this->UserManagment_model->get_user($id)[0];
+        $data = $this->UserManagment_model->get_user($id);
         $this->session->set_flashdata('updating', true);
         $this->session->set_flashdata('data', $data);
-        echo json_encode($data);
+        echo json_encode($data[0]);
       }
     }
   }

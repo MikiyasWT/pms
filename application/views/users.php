@@ -100,6 +100,9 @@ $this->load->view('components/delete_modal.php', $data); ?>
                 $('lable').hide();
                 $(".user_sts").removeAttr("hidden");
                 console.log(response)
+            },
+            error:function(error){
+                console.log(error)
             }
         });
     }
@@ -173,7 +176,7 @@ $this->load->view('components/delete_modal.php', $data); ?>
 
     setInterval(function() {
         usertable.ajax.reload();
-    }, 3000);
+    }, 10000);
     $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
         var id = $(e.relatedTarget).data('id'); // get the id
         $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
