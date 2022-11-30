@@ -7,11 +7,12 @@
     <div class="offcanvas-body">
         <div class="card">
             <div class="card-body">
-                <form action="<?= base_url('Usermanagment/insert_user')?>" method="post">
+                <form action="<?= base_url('Usermanagment/insert_user') ?>" method="post" id="user_edit">
                     <div class="row">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingPassword" placeholder="Adam Sandler" name="name" required>
                             <label for="floatingPassword">Full Name</label>
+                            <input type="hidden" name="user_update" value="true">
                         </div>
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
@@ -29,7 +30,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="col-md mb-3">
+                            <div class="col-3 mb-3">
                                 <div class="form-check">
                                     <input type="radio" id="customRadio1" name="gender" value="male" class="form-check-input">
                                     <label class="form-check-label" for="customRadio1">Male</label>
@@ -46,6 +47,13 @@
                             </select>
                             <label for="floatingSelect">Roles</label>
                         </div>
+                        <div hidden class="col form-floating mb-3 user_sts">
+                            <select class="form-select" id="user_sts" aria-label="Floating label select example" name="user_status">
+                                <option selected="" value="active">Active</option>
+                                <option value="deactive">Deactive</option>
+                            </select>
+                            <label for="user_sts">user status</label>
+                        </div>
                     </div>
                     <div class="row justify-content-end">
                         <div class="col">
@@ -54,7 +62,7 @@
                             </button>
                         </div>
                         <div class="col-3 justify-self-end">
-                            <button type="reset" class="btn btn-secondary waves-effect">Cancel</button>
+                            <button type="reset" class="btn btn-secondary waves-effect">Reset</button>
                         </div>
                     </div>
                 </form>

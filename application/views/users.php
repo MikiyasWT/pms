@@ -21,7 +21,7 @@ $this->load->view('shared/sidebar'); ?>
                     <div class="card-body">
                         <div class="row justify-content-between m-2">
                             <h4 class="col-4 header-title">Users Data Table</h4>
-                            <button class="col-lg-1 col-sm-auto btn btn-success mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
+                            <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
                         </div>
                         <div class="container-fluid">
                             <?php $data['error'] = $this->session->flashdata('error');
@@ -32,7 +32,7 @@ $this->load->view('shared/sidebar'); ?>
                         <table id="demo-foo-addrow" class="table table-striped dt-responsive nowrap w-100">
                             <thead>
                                 <tr>
-                                    <!-- <th>ID</th> -->
+                                    <th>No</th>
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
@@ -74,15 +74,44 @@ $this->load->view('components/delete_modal.php', $data); ?>
 <!-- Right bar overlay-->
 <?php $this->load->view('shared/footer'); ?>
 <script>
+    myOffcanvas = document.getElementById('offcanvasRight')
+    bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
+
+    function offcanvas_edit(id) {
+        console.log(id)
+        // console.log('id')
+        // $("#offcanvasRight").modal('show');
+        bsOffcanvas.show()
+        $.ajax({
+            type: "get",
+            url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
+            dataType: "JSON",
+            success: function(response) {
+                $("#offcanvasRightLabel").text("Update User");
+                $(".btn-success").text("Update changes");
+                $('#user_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
+                $("#floatingPassword").val(response.full_name);
+                $("#floatingInput").val(response.email);
+                $("#floatingTextarea2").val(response.phone_num);
+                $("#dob").val(response.dob);
+                (response.gender == 'male') ? $('#customRadio1').prop('checked', true): $('#customRadio2').prop('checked', true)
+                $("#floatingSelect").val(response.role).change();
+                $("#user_sts").val(response.user_status).change();
+                $('lable').hide();
+                $(".user_sts").removeAttr("hidden");
+                console.log(response)
+            }
+        });
+    }
     usertable = $('#demo-foo-addrow').DataTable({
         ajax: {
             url: '<?= base_url('Usermanagment/get_users') ?>',
             dataSrc: ''
         },
-        columns: [
-            // {
-            //     "data": "id"
-            // },
+        columns: [{
+                "data": null,
+                render: (data, type, row, meta) => meta.row + 1
+            },
             {
                 "data": "full_name"
             },
@@ -121,34 +150,13 @@ $this->load->view('components/delete_modal.php', $data); ?>
                 data: null,
                 render: function(data, type, row) {
                     disabled = '';
-                    if (row.user_status = 'active') {
-                        disabled = ''
-                    } else {
-                        disabled = 'disabled';
-                    }
-                    return '<button type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert"></i></span>Edit</button> &nbsp;<button type="button" ' + disabled + ' data-id="' + row.id + '" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span></button>'
+                    if (row.user_status !== 'active') disabled = 'disabled';
+                    return '<button onclick="offcanvas_edit(' + row.id + ')" type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</button> &nbsp;<button type="button" ' + disabled + ' data-id="' + row.id + '" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span></button>'
                 }
             }
         ]
     });
-    $('.btn-warning').click(function(e) {
-        e.preventDefault();
-        id = $(this).data('id');
-        console.log('id')
-        $("#danger-alert-modal").modal('show');
-        $.ajax({
-            type: "get",
-            url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
-            dataType: "JSON",
-            success: function(response) {
-                $(".modal-title").text("Update");
-                $(".btn-info").text("Update changes");
-                $('#role_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
-                $("#field-1").val(response.role_type);
-                $("p").removeAttr("hidden");
-            }
-        });
-    });
+
     $.ajax({
         type: "get",
         url: "<?= base_url('Usermanagment/get_roles') ?>",
@@ -162,10 +170,10 @@ $this->load->view('components/delete_modal.php', $data); ?>
         }
     });
 
-   
-    //     setInterval( function () {
-    //     usertable.ajax.reload();
-    // }, 3000 );
+
+    setInterval(function() {
+        usertable.ajax.reload();
+    }, 3000);
     $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
         var id = $(e.relatedTarget).data('id'); // get the id
         $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
@@ -179,15 +187,16 @@ $this->load->view('components/delete_modal.php', $data); ?>
                 url: '<?= base_url("Usermanagment/del_user/"); ?>' + id,
                 dataType: "JSON",
                 success: function(response) {
-                    usertable.clear();
+                    <?php $this->session->set_flashdata('message', 'Deactivated'); ?>
+                    usertable.destroy(true)
                     usertable.ajax.reload();
-                    $('#sa-success').trigger('click');
+                    // window.location.reload();
+                    $(document).ajaxStop(function() {
+                        // window.location.reload();
+
+                    });
                 }
             });
-            // $(document).ajaxStop(function() {
-            //     // window.location.reload();
-
-            // });
         });
     });
 </script>

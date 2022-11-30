@@ -63,8 +63,8 @@
 <script src="<?php echo base_url(); ?>assets/js/pages/form-masks.init.js"></script>
 <!-- App js-->
 <script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/pages/sweet-alerts.init.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>assets/js/pages/sweet-alerts.init.js"></script> -->
 </body>
 
 </html>

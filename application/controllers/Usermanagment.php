@@ -172,6 +172,25 @@ class Usermanagment extends CI_Controller
       }
     }
   }
+  public function active_user($id)
+  {
+    if (!isset($id)) {
+      $this->session->set_flashdata('error', "Error unable to compelte task, no user found");
+      redirect('dashboard/users');
+    } else {
+      $message = $this->UserManagment_model->active_user($id);
+      if ($message) {
+        # code...
+        $this->session->set_flashdata('message', 'User Activated');
+        echo json_encode($message);
+        redirect('dashboard/users');
+      } else {
+        # code...
+        $this->session->set_flashdata('error', "Error unable to compelte task, try again later");
+        redirect('dashboard/users');
+      }
+    }
+  }
   public function update_user($id)
   {
     if (!isset($id)) {
@@ -195,6 +214,7 @@ class Usermanagment extends CI_Controller
           $dob = $this->input->post('dob');
           $email = $this->input->post('email');
           $role = $this->input->post('role_type');
+          $user_status = $this->input->post('user_status');
           // $register_date = date('Y-m-d h:i:s');
           $data = array(
             "full_name" => $name,
@@ -202,13 +222,14 @@ class Usermanagment extends CI_Controller
             "phone_num" => $phone,
             "dob" => $dob,
             "email" => $email,
-            "role_type" => $role
+            "role" => $role,
+            "user_status" => $user_status
           );
           $message = $this->UserManagment_model->update_user($data, $id);
           if ($message) {
             # code...
             $this->session->set_flashdata('message', 'User Updated');
-            echo json_encode($message);
+            // echo json_encode($message);
             redirect('dashboard/users');
           } else {
             # code...
@@ -218,10 +239,10 @@ class Usermanagment extends CI_Controller
         }
       } else {
         # code...
-        $data = $this->UserManagment_model->get_user($id);
+        $data = $this->UserManagment_model->get_user($id)[0];
         $this->session->set_flashdata('updating', true);
         $this->session->set_flashdata('data', $data);
-        echo json_encode($data[0]);
+        echo json_encode($data);
       }
     }
   }

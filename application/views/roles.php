@@ -18,8 +18,8 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <div class="card-body">
                         <div class="row justify-content-between m-2">
-                            <h2 class="col-1 header-title">Roles</h2>
-                            <div class="col">
+                            <h2 class="col-auto  header-title">Roles</h2>
+                            <div class="col-auto">
                                 <?php $data['error'] = $this->session->flashdata('error');
                                 $data['message'] = $this->session->flashdata('message');
                                 (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
@@ -50,7 +50,7 @@ $this->load->view('shared/sidebar'); ?>
                                             <td><button data-id="<?= $role['id']; ?>" type="button" class="btn btn-warning btn-xs waves-effect waves-light">
                                                     <span class="btn-label"><i class="mdi mdi-alert"></i></span>Edit
                                                 </button> &nbsp;
-                                                <button type="button" <?= ($role['role_status'] == 'active') ? '' : 'disabled'; ?>  data-id="<?= $role['id']; ?>" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">
+                                                <button type="button" <?= ($role['role_status'] == 'active') ? '' : 'disabled'; ?> data-id="<?= $role['id']; ?>" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">
                                                     Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span>
                                                 </button>
                                             </td>
@@ -69,7 +69,8 @@ $this->load->view('shared/sidebar'); ?>
 
 
 </div>
-<?php $data['title']='Role'; $this->load->view('components/delete_modal.php',$data); ?>
+<?php $data['title'] = 'Role';
+$this->load->view('components/delete_modal.php', $data); ?>
 <?php $this->load->view('components/role_modal.php'); ?>
 <!-- ============================================================== -->
 <!-- End Page content -->
@@ -86,7 +87,7 @@ $this->load->view('shared/sidebar'); ?>
     $(".btn-warning").click(function(e) {
         e.preventDefault();
         id = $(this).data('id');
-        // console.log(id)
+        console.log(id)
         $("#con-close-modal").modal('show');
         $.ajax({
             type: "get",
