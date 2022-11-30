@@ -63,7 +63,7 @@
                       <div class="collapse" id="sidebarAuth">
                           <ul class="nav-second-level">
                               <li>
-                                  <a href="auth-login.html">Users</a>
+                                  <a href="<?= base_url('dashboard/users'); ?>">Users</a>
                               </li>
                               <li>
                                   <a href="<?= base_url('dashboard/roles'); ?>">Roles</a>

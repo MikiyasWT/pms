@@ -17,15 +17,14 @@ $this->load->view('shared/sidebar'); ?>
             <div class="col-lg mt-2">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row justify-content-between">
-
-                            <h4 class="header-title">Roles</h4>
-                            <div class="col md-10">
+                        <div class="row justify-content-between m-2">
+                            <h2 class="col-auto  header-title">Roles</h2>
+                            <div class="col-auto">
                                 <?php $data['error'] = $this->session->flashdata('error');
                                 $data['message'] = $this->session->flashdata('message');
                                 (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
                             </div>
-                            <div class="col-1 m-2">
+                            <div class="col-1">
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
                             </div>
                         </div>
@@ -46,12 +45,12 @@ $this->load->view('shared/sidebar'); ?>
                                         <tr>
                                             <th scope="row"><?= $role['id']; ?></th>
                                             <td><?= $role['role_type']; ?></td>
-                                            <td><span class="float-center"><span class="badge bg-<?= ($role['status'] == 'active') ? 'success' : 'danger'; ?>"><?= $role['status']; ?></span></span></td>
+                                            <td><span class="float-center"><span class="badge bg-<?= ($role['role_status'] == 'active') ? 'success' : 'danger'; ?>"><?= $role['role_status']; ?></span></span></td>
                                             <td><?= $role['created_at']; ?></td>
                                             <td><button data-id="<?= $role['id']; ?>" type="button" class="btn btn-warning btn-xs waves-effect waves-light">
                                                     <span class="btn-label"><i class="mdi mdi-alert"></i></span>Edit
                                                 </button> &nbsp;
-                                                <button type="button" data-id="<?= $role['id']; ?>" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">
+                                                <button type="button" <?= ($role['role_status'] == 'active') ? '' : 'disabled'; ?> data-id="<?= $role['id']; ?>" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">
                                                     Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span>
                                                 </button>
                                             </td>
@@ -70,7 +69,8 @@ $this->load->view('shared/sidebar'); ?>
 
 
 </div>
-<?php $this->load->view('components/delete_modal.php'); ?>
+<?php $data['title'] = 'Role';
+$this->load->view('components/delete_modal.php', $data); ?>
 <?php $this->load->view('components/role_modal.php'); ?>
 <!-- ============================================================== -->
 <!-- End Page content -->
@@ -87,7 +87,7 @@ $this->load->view('shared/sidebar'); ?>
     $(".btn-warning").click(function(e) {
         e.preventDefault();
         id = $(this).data('id');
-        // console.log(id)
+        console.log(id)
         $("#con-close-modal").modal('show');
         $.ajax({
             type: "get",
@@ -96,13 +96,14 @@ $this->load->view('shared/sidebar'); ?>
             success: function(response) {
                 $(".modal-title").text("Update");
                 $(".btn-info").text("Update changes");
-                $("#field-1").val(response.role_type);
                 $('#role_edit').attr('action', "<?= base_url('Usermanagment/update_role/'); ?>" + id)
+                $("#field-1").val(response.role_type);
+                $("p").removeAttr("hidden");
             }
         });
     });
     $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
-        var id = $(e.relatedTarget).data('id'); // get the image id
+        var id = $(e.relatedTarget).data('id'); // get the id
         $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
         $("#role_del").click(function(e) {
             e.preventDefault();
