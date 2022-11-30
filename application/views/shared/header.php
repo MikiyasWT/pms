@@ -17,10 +17,11 @@
     <link href="<?= base_url();?>assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <link href="<?= base_url();?>assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <!-- third party css end -->
-
+    <link href="<?= base_url();?>assets/libs/ladda/ladda.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url();?>assets/libs/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css">
     <!-- plugin css -->
     <link href="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
-
+    <link href="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
     <!-- Bootstrap css -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->

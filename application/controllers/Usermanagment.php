@@ -52,6 +52,10 @@ class Usermanagment extends CI_Controller
       }
     }
   }
+  public function get_roles()
+  {
+    echo json_encode($this->UserManagment_model->get_roles());
+  }
   public function update_role($id)
   {
     if (!isset($id)) {
@@ -112,7 +116,7 @@ class Usermanagment extends CI_Controller
       $message = $this->UserManagment_model->del_user($id);
       if ($message) {
         $this->session->set_flashdata('message', 'Deactivated');
-        echo json_encode($message);
+        // echo json_encode($message);
         redirect('dashboard/users');
       } else {
         $this->session->set_flashdata('error', 'Data not Proccesed');
@@ -122,24 +126,25 @@ class Usermanagment extends CI_Controller
   }
   public function get_users()
   {
-    // POST data
-    $postData = $this->input->post();
+    // // POST data
+    // $postData = $this->input->post();
     // Get data
-    $data = $this->UserManagment_model->get_users($postData);
-    echo json_encode($data);
+    // $data['data'] = $this->UserManagment_model->get_users();
+    echo json_encode($this->UserManagment_model->get_users());
   }
   public function insert_user()
   {
     $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
     $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim');
     $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
     $this->form_validation->set_rules('dob', 'Date of Birth', 'required|trim');
-    $this->form_validation->set_rules('email', 'Email', 'required|trim');
     $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
     // $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
     if ($this->form_validation->run() === FALSE) {
       $this->session->set_flashdata('error', validation_errors());
       echo json_encode(['error' => true, 'message' => validation_errors()]);
+      redirect('dashboard/users');
     } else {
       $name = $this->input->post('name');
       $phone = $this->input->post('phone');
@@ -154,7 +159,7 @@ class Usermanagment extends CI_Controller
         "phone_num" => $phone,
         "dob" => $dob,
         "email" => $email,
-        "role_type" => $role,
+        "role" => $role,
         "register_date" => $register_date,
         "password" => $this->api_key_crypt('Resmax@123', 'e')
       );

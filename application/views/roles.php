@@ -69,7 +69,7 @@ $this->load->view('shared/sidebar'); ?>
 
 
 </div>
-<?php $this->load->view('components/delete_modal.php'); ?>
+<?php $data['title']='Role'; $this->load->view('components/delete_modal.php',$data); ?>
 <?php $this->load->view('components/role_modal.php'); ?>
 <!-- ============================================================== -->
 <!-- End Page content -->

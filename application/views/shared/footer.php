@@ -47,19 +47,24 @@
 <script src="<?= base_url();?>assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
 <script src="<?= base_url();?>assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="<?= base_url();?>assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
-<script src="<?= base_url();?>assets/libs/pdfmake/build/pdfmake.min.js"></script>
-<script src="<?= base_url();?>assets/libs/pdfmake/build/vfs_fonts.js"></script>
+<!-- <script src="<?= base_url();?>assets/libs/pdfmake/build/pdfmake.min.js"></script> -->
+<!-- <script src="<?= base_url();?>assets/libs/pdfmake/build/vfs_fonts.js"></script> -->
 <!-- third party js ends -->
-
+<script src="<?= base_url();?>assets/libs/ladda/spin.min.js"></script>
+<script src="<?= base_url();?>assets/libs/ladda/ladda.min.js"></script>
 <!-- Datatables init -->
 <script src="<?= base_url();?>assets/js/pages/datatables.init.js"></script>
 
 <!-- Dashboard 2 init -->
+<!-- <script src="<?php echo base_url(); ?>assets/libs/parsleyjs/parsley.min.js"></script> -->
 <script src="<?php echo base_url(); ?>assets/js/pages/dashboard-2.init.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/libs/jquery-mask-plugin/jquery.mask.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/libs/autonumeric/autoNumeric.min.js"></script> -->
+<script src="<?php echo base_url(); ?>assets/js/pages/form-masks.init.js"></script>
 <!-- App js-->
 <script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/pages/sweet-alerts.init.js"></script>
 </body>
 
 </html>

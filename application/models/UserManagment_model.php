@@ -41,10 +41,13 @@ class UserManagment_model extends CI_Model
   }
   public function get_users($postData = null)
   {
-    // $this->db->select('*');
-    // $this->db->from('users');
-    // $this->db->join('roles', 'roles.id = users.id');
-    // return $this->db->get()->result();
+    $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
+    $this->db->from('users');
+    $this->db->join('roles', 'roles.id = users.id','left');
+    $this->db->order_by('users.id', 'DESC');
+    // echo $this->db->get_compiled_select();
+    // exit;
+    return $this->db->get()->result();
   }
   public function get_user($id)
   {
@@ -56,7 +59,7 @@ class UserManagment_model extends CI_Model
   }
   public function get_role($id)
   {
-    $this->db->where('users.id', $id);
+    $this->db->where('id', $id);
     return $this->db->get('roles')->result();
     // return $this->db->get_where('roles',["id"=>$id]);
   }
@@ -70,7 +73,7 @@ class UserManagment_model extends CI_Model
   }
   public function insert_user($data)
   {
-    return $this->db->insert('users'.$data);
+    return $this->db->insert('users',$data);
   }
   public function update_role($role, $id)
   {
@@ -87,7 +90,7 @@ class UserManagment_model extends CI_Model
   }
   public function del_user($id)
   {
-    $this->db->set('user_status', 'deactivated');
+    $this->db->set('user_status', 'deactive');
     $this->db->where('id', $id);
     return $this->db->update('users');
   }
