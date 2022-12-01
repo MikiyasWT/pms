@@ -33,6 +33,15 @@ class Usermanagment extends CI_Controller
   {
     // 
   }
+  function check_email_exists($email)
+  {
+    $this->form_validation->set_message('check_email_exists', 'Email is already being used by someone, choose a different one');
+    if ($this->user_model->check_email_exists($email)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   public function insert_role()
   {
     $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
@@ -136,7 +145,7 @@ class Usermanagment extends CI_Controller
   {
     $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
     $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim');
-    $this->form_validation->set_rules('email', 'Email', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|callback_check_email_exists|valid_email');
     $this->form_validation->set_rules('gender', 'Gender', 'required|trim');
     $this->form_validation->set_rules('dob', 'Date of Birth', 'required|trim');
     $this->form_validation->set_rules('role_type', 'Role', 'required|trim');

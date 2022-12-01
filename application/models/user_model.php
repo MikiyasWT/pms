@@ -45,13 +45,19 @@ class User_model extends CI_Model
 
     public function login($email, $dec_password)
     {
+        $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
+        $this->db->from('users');
+        $this->db->join('roles', 'roles.id = users.role');
         $this->db->where('email', $email);
         $this->db->where('password', $dec_password);
 
-        $result = $this->db->get('users');
+        $result = $this->db->get();
 
         if ($result->num_rows() == 1) {
-            return $result->row(0)->id;
+            // $result->row(0)->password ='';
+            // var_dump($result->row(0));
+            // exit;
+            return $result->row(0);
         } else {
             return false;
         }
