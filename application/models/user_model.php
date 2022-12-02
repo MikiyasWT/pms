@@ -45,7 +45,7 @@ class User_model extends CI_Model
 
     public function login($email, $dec_password)
     {
-        $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
+        $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status,role_status');
         $this->db->from('users');
         $this->db->join('roles', 'roles.id = users.role');
         $this->db->where('email', $email);
