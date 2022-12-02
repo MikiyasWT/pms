@@ -85,28 +85,28 @@ class Auth extends CI_Controller
             $email = $this->input->post('email');
             $dec_password = $this->api_key_crypt($this->input->post('password'), 'e');
             $user_id = $this->user_model->login($email, $dec_password);
-            if (($user_id->user_status !== 'active') || ($user_id->role_status !== 'active')) {
-                //set message before redirect
-                $this->session->set_flashdata('login_failed', 'account is Deactivated');
-                //redirect('users/login',$data);
-                $data['error'] = true;
-                $data['message'] = "Your account is Deactivated";
-                $this->load->view('users/login', $data);
-                // echo 'here '. $user_id->user_status;
-                return false;
-            }
-            if ($user_id->id) {
-                $user_data = array(
-                    'user_id' => $user_id->id,
-                    'logged_in' => true,
-                    'user' => $user_id
-                );
-
-                $this->session->set_userdata($user_data);
-                //set message before redirect
-                $this->session->set_flashdata('user_loggedin', 'you are now loggedin');
-                //$this->load->view('users/home');
-                redirect('dashboard');
+            if ($user_id) {
+                if (($user_id->user_status !== 'active') || ($user_id->role_status !== 'active')) {
+                    //set message before redirect
+                    $this->session->set_flashdata('login_failed', 'account is Deactivated');
+                    //redirect('users/login',$data);
+                    $data['error'] = true;
+                    $data['message'] = "Your account is Deactivated";
+                    $this->load->view('users/login', $data);
+                    // echo 'here '. $user_id->user_status;
+                    return false;
+                } else {
+                    $user_data = array(
+                        'user_id' => $user_id->id,
+                        'logged_in' => true,
+                        'user' => $user_id
+                    );
+                    $this->session->set_userdata($user_data);
+                    //set message before redirect
+                    $this->session->set_flashdata('user_loggedin', 'you are now loggedin');
+                    //$this->load->view('users/home');
+                    redirect('dashboard');
+                }
             } else {
                 //set message before redirect
                 $this->session->set_flashdata('login_failed', 'invalid credentials');
