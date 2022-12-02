@@ -41,13 +41,50 @@ class UserManagment_model extends CI_Model
   }
   public function get_users($postData = null)
   {
+    ## Read value
+    $draw = $postData['draw'];
+    $start = $postData['start'];
+    $rowperpage = $postData['length']; // Rows display per page
+    $columnIndex = $postData['order'][0]['column']; // Column index
+    $columnName = $postData['columns'][$columnIndex]['data']; // Column name
+    $columnSortOrder = $postData['order'][0]['dir']; // asc or desc
+    $searchValue = $postData['search']['value']; // Search value
+    ## Search 
+    $searchQuery = "";
+    if ($searchValue != '') {
+      $searchQuery = " (full_name like '%" . $searchValue . "%' or email like '%" . $searchValue . "%' or phone_num like'%" . $searchValue . "%' ) ";
+    }
+    ## Total number of records without filtering
+    $this->db->select('count(*) as allcount');
+    $records = $this->db->get('users')->result();
+    $totalRecords = $records[0]->allcount;
+    ## Total number of record with filtering
+    $this->db->select('count(*) as allcount');
+    if ($searchQuery != '')
+      $this->db->where($searchQuery);
+    $records = $this->db->get('users')->result();
+    $totalRecordwithFilter = $records[0]->allcount;
+
     $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
     $this->db->from('users');
     $this->db->join('roles', 'roles.id = users.role');
-    $this->db->order_by('users.id', 'DESC');
+    if ($searchQuery != '')
+      $this->db->where($searchQuery);
+    $this->db->order_by($columnName, $columnSortOrder);
+    $this->db->limit($rowperpage, $start);
+    $records = $this->db->get()->result();
+    ## Response
+    $response = array(
+      "draw" => intval($draw),
+      "iTotalRecords" => $totalRecords,
+      "iTotalDisplayRecords" => $totalRecordwithFilter,
+      "data" => $records
+    );
+    return $response;
+    // $this->db->order_by('users.id', 'DESC');
     // echo $this->db->get_compiled_select();
     // exit;
-    return $this->db->get()->result();
+    // return $this->db->get()->result();
   }
   public function get_user($id)
   {

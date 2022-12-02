@@ -74,9 +74,83 @@ $this->load->view('components/delete_modal.php', $data); ?>
 <!-- Right bar overlay-->
 <?php $this->load->view('shared/footer'); ?>
 <script>
+    $(function() {
+        usertable = $('#demo-foo-addrow').DataTable({
+            processing: true,
+            serverSide: true,
+            serverMethod: 'get',
+            ajax: {
+                url: '<?= base_url('Usermanagment/get_users') ?>',
+                dataSrc: 'data'
+            },
+            columns: [{
+                    "data": null,
+                    render: (data, type, row, meta) => meta.row + 1
+                },
+                {
+                    "data": "full_name"
+                },
+                {
+                    "data": "email"
+                },
+                {
+                    "data": "phone_num"
+                },
+                {
+                    "data": "gender"
+                },
+                {
+                    "data": "dob"
+                },
+                {
+                    "data": "role_type"
+                },
+                {
+                    "data": "register_date"
+                },
+                {
+                    "data": "user_status",
+                    render: function(data, type, row) {
+                        // console.log(data)
+                        color = '';
+                        if (data == 'active') {
+                            color = 'success'
+                        } else {
+                            color = 'danger';
+                        }
+                        return '<span class="float-center"><span class="badge bg-' + color + '">' + data + '</span></span>'
+                    }
+                },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        disabled = '';
+                        if (row.user_status !== 'active') disabled = 'disabled';
+                        return '<button onclick="offcanvas_edit(' + row.id + ')" type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</button> &nbsp;<button type="button" ' + disabled + ' data-id="' + row.id + '" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span></button>'
+                    }
+                }
+            ]
+        });
+        setInterval(function() {
+            usertable.ajax.reload(null,false);
+        }, 10000);
+        $.ajax({
+            type: "get",
+            url: "<?= base_url('Usermanagment/get_roles') ?>",
+            dataType: "json",
+            success: function(response) {
+                console.log(response[0].role_type)
+                var $dropdown = $("#floatingSelect");
+                $.each(response, function() {
+                    $dropdown.append($("<option />").val(this.id).text(this.role_type));
+                });
+            }
+        });
+    });
+    //when edit button clicked
     myOffcanvas = document.getElementById('offcanvasRight')
     bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
-
+    //retriving user for ready to be edited
     function offcanvas_edit(id) {
         console.log(id)
         // console.log('id')
@@ -100,80 +174,12 @@ $this->load->view('components/delete_modal.php', $data); ?>
                 $('lable').hide();
                 $(".user_sts").removeAttr("hidden");
                 console.log(response)
+            },
+            error: function(error) {
+                console.log(error)
             }
         });
     }
-    usertable = $('#demo-foo-addrow').DataTable({
-        ajax: {
-            url: '<?= base_url('Usermanagment/get_users') ?>',
-            dataSrc: ''
-        },
-        columns: [{
-                "data": null,
-                render: (data, type, row, meta) => meta.row + 1
-            },
-            {
-                "data": "full_name"
-            },
-            {
-                "data": "email"
-            },
-            {
-                "data": "phone_num"
-            },
-            {
-                "data": "gender"
-            },
-            {
-                "data": "dob"
-            },
-            {
-                "data": "role_type"
-            },
-            {
-                "data": "register_date"
-            },
-            {
-                "data": "user_status",
-                render: function(data, type, row) {
-                    // console.log(data)
-                    color = '';
-                    if (data == 'active') {
-                        color = 'success'
-                    } else {
-                        color = 'danger';
-                    }
-                    return '<span class="float-center"><span class="badge bg-' + color + '">' + data + '</span></span>'
-                }
-            },
-            {
-                data: null,
-                render: function(data, type, row) {
-                    disabled = '';
-                    if (row.user_status !== 'active') disabled = 'disabled';
-                    return '<button onclick="offcanvas_edit(' + row.id + ')" type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</button> &nbsp;<button type="button" ' + disabled + ' data-id="' + row.id + '" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span></button>'
-                }
-            }
-        ]
-    });
-
-    $.ajax({
-        type: "get",
-        url: "<?= base_url('Usermanagment/get_roles') ?>",
-        dataType: "json",
-        success: function(response) {
-            console.log(response[0].role_type)
-            var $dropdown = $("#floatingSelect");
-            $.each(response, function() {
-                $dropdown.append($("<option />").val(this.id).text(this.role_type));
-            });
-        }
-    });
-
-
-    setInterval(function() {
-        usertable.ajax.reload();
-    }, 3000);
     $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
         var id = $(e.relatedTarget).data('id'); // get the id
         $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
