@@ -139,7 +139,10 @@ class Usermanagment extends CI_Controller
     // $postData = $this->input->post();
     // Get data
     // $data['data'] = $this->UserManagment_model->get_users();
-    echo json_encode($this->UserManagment_model->get_users());
+    // $postData = $_GET;
+    // var_dump($postData);
+    // exit;
+    echo json_encode($this->UserManagment_model->get_users($_GET));
   }
   public function insert_user()
   {
