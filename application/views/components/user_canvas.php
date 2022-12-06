@@ -24,7 +24,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label class="form-label">Date Picker</label>
+                                <label class="form-label">Date of Birth</label>
                                 <input type="date" class="form-control" name="dob" id="dob" data-provide="datepicker">
                             </div>
                         </div>
