@@ -23,11 +23,11 @@
                             <label for="floatingTextarea2">Phone Number</label>
                         </div>
                         <div class="col-lg-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Date Picker</label>
-                                                    <input type="date" class="form-control" data-provide="datepicker">
-                                                </div>
-                                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Date Picker</label>
+                                <input type="date" class="form-control" name="dob" id="dob" data-provide="datepicker">
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col">
@@ -42,8 +42,8 @@
                                 </div>
                             </div>
                         </div>
-                    </div>  
-                    
+                    </div>
+
                     <div class="row">
                         <div class="col form-floating mb-3">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="role_type">
