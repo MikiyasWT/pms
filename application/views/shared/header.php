@@ -25,7 +25,7 @@
     <!-- Bootstrap css -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    <link href="<?php echo base_url(); ?>assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="<?php echo base_url(); ?>assets/css/app.css" rel="stylesheet" type="text/css" id="app-style" />
     <!-- icons -->
     <link href="<?php echo base_url(); ?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- Head js -->
@@ -42,7 +42,7 @@
 
 
         <!-- Topbar Start -->
-        <div class="navbar-custom">
+        <div  class="navbar-custom">
             <div class="container-fluid">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
                     <!-- Search start -->
