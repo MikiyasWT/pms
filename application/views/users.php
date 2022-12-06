@@ -20,7 +20,7 @@ $this->load->view('shared/sidebar'); ?>
 
                     <div class="card-body">
                         <div class="row justify-content-between m-2">
-                            <h4 class="col-4 header-title">Users Data Table</h4>
+                            <h4 class="col-4 header-title">Users</h4>
                             <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
                         </div>
                         <div class="container-fluid">
@@ -76,7 +76,7 @@ $this->load->view('components/delete_modal.php', $data); ?>
 <script>
     $(function() {
         usertable = $('#demo-foo-addrow').DataTable({
-            processing: true,
+            processing: false,
             serverSide: true,
             serverMethod: 'get',
             ajax: {
@@ -129,10 +129,19 @@ $this->load->view('components/delete_modal.php', $data); ?>
                         return '<button onclick="offcanvas_edit(' + row.id + ')" type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</button> &nbsp;<button type="button" ' + disabled + ' data-id="' + row.id + '" class="btn-xs waves-effect waves-light btn btn-danger" data-bs-toggle="modal" data-bs-target="#danger-alert-modal">Delete<span class="btn-label-right"><i class="mdi mdi-close-circle-outline"></i></span></button>'
                     }
                 }
-            ]
+            ],
+            columnDefs: [{
+                    responsivePriority: 2,
+                    targets: 8
+                },
+                {
+                    responsivePriority: 1,
+                    targets: 1
+                },
+            ],
         });
         setInterval(function() {
-            usertable.ajax.reload(null,false);
+            usertable.ajax.reload(null, false);
         }, 10000);
         $.ajax({
             type: "get",

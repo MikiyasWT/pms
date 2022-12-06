@@ -30,7 +30,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="col-3 mb-3">
+                            <div class="form-floating mb-3">
                                 <div class="form-check">
                                     <input type="radio" id="customRadio1" name="gender" value="male" class="form-check-input">
                                     <label class="form-check-label" for="customRadio1">Male</label>
