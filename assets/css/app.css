@@ -1838,6 +1838,7 @@ body {
 .left-side-menu {
   width: 240px;
   background: var(--ct-bg-leftbar);
+  background-color: #04060F;
   bottom: 0;
   padding: 20px 0;
   position: fixed;
@@ -2475,7 +2476,7 @@ body[data-leftbar-color=gradient]:not([data-layout-mode=detached]) .logo-box .lo
 }
 
 .navbar-custom {
-  background-color: var(--ct-bg-topbar-dark);
+  background-color: #03353E;
   -webkit-box-shadow: var(--ct-box-shadow);
           box-shadow: var(--ct-box-shadow);
   padding: 0 10px 0 0;
