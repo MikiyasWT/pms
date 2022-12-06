@@ -22,10 +22,11 @@
                             <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="floatingTextarea2" placeholder="0912345678" name="phone">
                             <label for="floatingTextarea2">Phone Number</label>
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="dob" data-toggle="input-mask" data-mask-format="0000/00/00" maxlength="10" name="dob" placeholder="2022-11-09">
-                            <label for="dob">Date of Birth</label>
-                            <span class="font-13 text-muted">e.g "YYYY/MM/DD"</span>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Date Picker</label>
+                                <input type="date" class="form-control" name="dob" id="dob" data-provide="datepicker">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -41,6 +42,9 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
                         <div class="col form-floating mb-3">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="role_type">
                                 <option selected=""></option>
@@ -55,6 +59,9 @@
                             <label for="user_sts">user status</label>
                         </div>
                     </div>
+
+
+
                     <div class="row justify-content-end">
                         <div class="col">
                             <button class="ladda-button ladda-button-demo btn btn-success" dir="ltr" data-style="zoom-in"><span class="ladda-label">Submit</span><span class="ladda-spinner"></span>
