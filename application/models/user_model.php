@@ -14,12 +14,12 @@ class User_model extends CI_Model
             'password' => $enc_password
         );
 
-        return $this->db->insert('users', $data);
+        return $this->db->insert('tbl_users', $data);
     }
 
     public function check_username_exists($user_name)
     {
-        $query = $this->db->get_where('users', array(
+        $query = $this->db->get_where('tbl_users', array(
             'user_name' => $user_name
         ));
 
@@ -32,7 +32,7 @@ class User_model extends CI_Model
 
     public function check_email_exists($email)
     {
-        $query = $this->db->get_where('users', array(
+        $query = $this->db->get_where('tbl_users', array(
             'email' => $email
         ));
 
@@ -45,9 +45,9 @@ class User_model extends CI_Model
 
     public function login($email, $dec_password)
     {
-        $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status,role_status');
-        $this->db->from('users');
-        $this->db->join('roles', 'roles.id = users.role');
+        $this->db->select('tbl_users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status,role_status');
+        $this->db->from('tbl_users');
+        $this->db->join('tbl_roles', 'tbl_roles.id = tbl_users.role');
         $this->db->where('email', $email);
         $this->db->where('password', $dec_password);
 

@@ -17,10 +17,10 @@ $this->load->view('shared/sidebar'); ?>
 
             <div class="container-fluid mt-1">
                 <div class="card">
-                    <div class="card-header" style="padding:5px !important">
-                        <div class="row">
+                    <div class="card-header p-2">
+                        <div class="row justify-content-between">
                             <div class="col-6">
-                                <h4 style="margin-left:10px;">
+                                <h4>
                                     <i class="mdi mdi-account-multiple"></i> Users
                                 </h4>
                             </div>
@@ -29,15 +29,15 @@ $this->load->view('shared/sidebar'); ?>
                             </div>
                         </div>
                     </div>
-                    <div class="card-body" style="padding:5px">
+                    <div class="card-body p-2">
                         <div class="container-fluid">
                             <?php $data['error'] = $this->session->flashdata('error');
                             $data['message'] = $this->session->flashdata('message');
                             (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
                         </div>
 
-                        <table id="demo-foo-addrow" class="table table-striped dt-responsive nowrap w-100">
-                            <thead>
+                        <table id="demo-foo-addrow" class="table table-dark table-striped dt-responsive nowrap w-100 ">
+                            <thead class="table-dark">
                                 <tr>
                                     <th>No</th>
                                     <th>Name</th>
@@ -85,6 +85,25 @@ $this->load->view('shared/sidebar'); ?>
 <?php $this->load->view('shared/footer'); ?>
 <script>
     $(function() {
+        //when edit button clicked
+        myOffcanvas = document.getElementById('offcanvasRight')
+        bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
+        $('.btn-info').click(function(e) {
+            e.preventDefault();
+            $("#offcanvasRightLabel").text("Insert User");
+            $(".btn-success").text("Insert changes");
+            $('#user_edit').attr('action', "<?= base_url('Usermanagment/insert_user'); ?>")
+            $("#floatingPassword").val(null);
+            $("#floatingInput").val(null);
+            $("#floatingTextarea2").val(null);
+            $("#dob").val(null);
+            $('#customRadio1').prop('checked', false)
+            $('#customRadio2').prop('checked', false)
+            $("#floatingSelect").val('').change();
+            $("#user_sts").val('').change();
+            // $('lable').hide();
+            $(".user_sts").attr("hidden", true);
+        });
         usertable = $('#demo-foo-addrow').DataTable({
             processing: false,
             serverSide: true,
@@ -165,64 +184,64 @@ $this->load->view('shared/sidebar'); ?>
                 });
             }
         });
-    });
-    //when edit button clicked
-    myOffcanvas = document.getElementById('offcanvasRight')
-    bsOffcanvas = new bootstrap.Offcanvas(myOffcanvas)
-    //retriving user for ready to be edited
-    function offcanvas_edit(id) {
-        console.log(id)
-        // console.log('id')
-        // $("#offcanvasRight").modal('show');
-        bsOffcanvas.show()
-        $.ajax({
-            type: "get",
-            url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
-            dataType: "JSON",
-            success: function(response) {
-                $("#offcanvasRightLabel").text("Update User");
-                $(".btn-success").text("Update changes");
-                $('#user_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
-                $("#floatingPassword").val(response.full_name);
-                $("#floatingInput").val(response.email);
-                $("#floatingTextarea2").val(response.phone_num);
-                $("#dob").val(response.dob);
-                (response.gender == 'male') ? $('#customRadio1').prop('checked', true): $('#customRadio2').prop('checked', true)
-                $("#floatingSelect").val(response.role).change();
-                $("#user_sts").val(response.user_status).change();
-                $('lable').hide();
-                $(".user_sts").removeAttr("hidden");
-                console.log(response)
-            },
-            error: function(error) {
-                console.log(error)
-            }
-        });
-    }
-    $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
-        var id = $(e.relatedTarget).data('id'); // get the id
-        $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
-        $("#role_del").click(function(e) {
-            e.preventDefault();
-            id = $(this).attr('data-delete-id');
-            console.log(id)
-            $("#danger-alert-modal").modal('show');
-            $.ajax({
-                type: "post",
-                url: '<?= base_url("Usermanagment/del_user/"); ?>' + id,
-                dataType: "JSON",
-                success: function(response) {
-                    <?php $this->session->set_flashdata('message', 'Deactivated'); ?>
-                    usertable.destroy(true)
-                    usertable.ajax.reload();
-                    // window.location.reload();
-                    $(document).ajaxStop(function() {
-                        // window.location.reload();
 
-                    });
-                }
+
+       
+        $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
+            var id = $(e.relatedTarget).data('id'); // get the id
+            $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
+            $("#role_del").click(function(e) {
+                e.preventDefault();
+                id = $(this).attr('data-delete-id');
+                console.log(id)
+                $("#danger-alert-modal").modal('show');
+                $.ajax({
+                    type: "post",
+                    url: '<?= base_url("Usermanagment/del_user/"); ?>' + id,
+                    dataType: "JSON",
+                    success: function(response) {
+                        <?php $this->session->set_flashdata('message', 'Deactivated'); ?>
+                        usertable.destroy(true)
+                        usertable.ajax.reload();
+                        // window.location.reload();
+                        $(document).ajaxStop(function() {
+                            // window.location.reload();
+
+                        });
+                    }
+                });
             });
         });
     });
+     //retriving user for ready to be edited
+     function offcanvas_edit(id) {
+            console.log(id)
+            // console.log('id')
+            // $("#offcanvasRight").modal('show');
+            bsOffcanvas.show()
+            $.ajax({
+                type: "get",
+                url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
+                dataType: "JSON",
+                success: function(response) {
+                    $("#offcanvasRightLabel").text("Update User");
+                    $(".btn-success").text("Update changes");
+                    $('#user_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
+                    $("#floatingPassword").val(response.full_name);
+                    $("#floatingInput").val(response.email);
+                    $("#floatingTextarea2").val(response.phone_num);
+                    $("#dob").val(response.dob);
+                    (response.gender == 'male') ? $('#customRadio1').prop('checked', true): $('#customRadio2').prop('checked', true)
+                    $("#floatingSelect").val(response.role).change();
+                    $("#user_sts").val(response.user_status).change();
+                    $('lable').hide();
+                    $(".user_sts").removeAttr("hidden");
+                    console.log(response)
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            });
+        }
 </script>
 <!-- Script -->

@@ -37,7 +37,7 @@ class UserManagment_model extends CI_Model
   // ------------------------------------------------------------------------
   public function get_roles()
   {
-    return $this->db->get('roles')->result_array();
+    return $this->db->get('tbl_roles')->result_array();
   }
   public function get_users($postData = null)
   {
@@ -56,18 +56,18 @@ class UserManagment_model extends CI_Model
     }
     ## Total number of records without filtering
     $this->db->select('count(*) as allcount');
-    $records = $this->db->get('users')->result();
+    $records = $this->db->get('tbl_users')->result();
     $totalRecords = $records[0]->allcount;
     ## Total number of record with filtering
     $this->db->select('count(*) as allcount');
     if ($searchQuery != '')
       $this->db->where($searchQuery);
-    $records = $this->db->get('users')->result();
+    $records = $this->db->get('tbl_users')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
-    $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
-    $this->db->from('users');
-    $this->db->join('roles', 'roles.id = users.role');
+    $this->db->select('tbl_users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
+    $this->db->from('tbl_users');
+    $this->db->join('tbl_roles', 'tbl_roles.id = tbl_users.role');
     if ($searchQuery != '')
       $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
@@ -88,17 +88,17 @@ class UserManagment_model extends CI_Model
   }
   public function get_user($id)
   {
-    $this->db->select('users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
-    $this->db->from('users');
-    $this->db->join('roles', 'roles.id = users.role');
-    $this->db->where('users.id', $id);
+    $this->db->select('tbl_users.id, role_type, full_name, phone_num, gender, dob, email, role, register_date, user_status');
+    $this->db->from('tbl_users');
+    $this->db->join('tbl_roles', 'tbl_roles.id = tbl_users.role');
+    $this->db->where('tbl_users.id', $id);
     return $this->db->get()->result();
   }
   public function get_role($id)
   {
     $this->db->where('id', $id);
-    return $this->db->get('roles')->result();
-    // return $this->db->get_where('roles',["id"=>$id]);
+    return $this->db->get('tbl_roles')->result();
+    // return $this->db->get_where('tbl_roles',["id"=>$id]);
   }
   public function insert_role($role)
   {
@@ -106,42 +106,42 @@ class UserManagment_model extends CI_Model
       'role_type' => $role,
       'created_at' => date('Y-m-d h:i:s')
     );
-    return $this->db->insert('roles', $data);
+    return $this->db->insert('tbl_roles', $data);
   }
   public function insert_user($data)
   {
-    return $this->db->insert('users', $data);
+    return $this->db->insert('tbl_users', $data);
   }
   public function active_user($id)
   {
     $this->db->set('user_status', 'active');
     $this->db->where('id', $id);
-    return $this->db->update('users');
+    return $this->db->update('tbl_users');
   }
   public function update_role($role, $id)
   {
     $this->db->set('role_type', $role);
     $this->db->set('role_status', 'active');
     $this->db->where('id', $id);
-    return $this->db->update('roles');
+    return $this->db->update('tbl_roles');
   }
   public function update_user($data, $id)
   {
     $this->db->set($data);
     $this->db->where('id', $id);
-    return $this->db->update('users');
+    return $this->db->update('tbl_users');
   }
   public function del_role($id)
   {
     $this->db->set('role_status', 'deactivated');
     $this->db->where('id', $id);
-    return $this->db->update('roles');
+    return $this->db->update('tbl_roles');
   }
   public function del_user($id)
   {
     $this->db->set('user_status', 'deactive');
     $this->db->where('id', $id);
-    return $this->db->update('users');
+    return $this->db->update('tbl_users');
   }
 }
 

@@ -16,9 +16,9 @@ $this->load->view('shared/sidebar'); ?>
             <!-- end page title -->
             <div class="col-lg mt-2">
                 <div class="card">
-                    <div class="card-body">
-                        <div class="row justify-content-between m-2">
-                            <h2 class="col-auto  header-title">Roles</h2>
+                    <div class="card-header">
+                        <div class="row justify-content-between">
+                            <h2 class="col-auto header-title">Roles</h2>
                             <div class="col-auto">
                                 <?php $data['error'] = $this->session->flashdata('error');
                                 $data['message'] = $this->session->flashdata('message');
@@ -28,6 +28,8 @@ $this->load->view('shared/sidebar'); ?>
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
                             </div>
                         </div>
+                    </div>
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table mb-2">
                                 <thead class="table-dark">
@@ -84,8 +86,21 @@ $this->load->view('components/delete_modal.php', $data); ?>
 <!-- Right bar overlay-->
 <?php $this->load->view('shared/footer'); ?>
 <script>
+    $(function() {
+        var divClone = $("#con-close-modal").clone(true,true);
+        $('.btn-success').click(function(e) {
+            e.preventDefault();
+            $(".modal-title").text("Insert");
+                $(".btn-info").text("Insert changes");
+                $('#role_edit').attr('action', "<?= base_url('Usermanagment/insert_role/'); ?>")
+                $("#field-1").val(null);
+                // $("p").removeAttr("hidden");
+                $("p").attr("hidden", true);
+        });
+   
     $(".btn-warning").click(function(e) {
         e.preventDefault();
+        // $("#con-close-modal").html("Yeah all good mate!");
         id = $(this).data('id');
         console.log(id)
         $("#con-close-modal").modal('show');
@@ -121,4 +136,5 @@ $this->load->view('components/delete_modal.php', $data); ?>
             });
         });
     });
+});
 </script>
