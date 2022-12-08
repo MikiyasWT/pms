@@ -17,12 +17,19 @@ $this->load->view('shared/sidebar'); ?>
 
             <div class="container-fluid mt-1">
                 <div class="card">
-
-                    <div class="card-body">
-                        <div class="row justify-content-between m-2">
-                            <h4 class="col-4 header-title">Users</h4>
-                            <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
+                    <div class="card-header" style="padding:5px !important">
+                        <div class="row">
+                            <div class="col-6">
+                                <h4 style="margin-left:10px;">
+                                    <i class="mdi mdi-account-multiple"></i> Users
+                                </h4>
+                            </div>
+                            <div class="col-6" style="text-align: right">
+                                <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
+                            </div>
                         </div>
+                    </div>
+                    <div class="card-body" style="padding:5px">
                         <div class="container-fluid">
                             <?php $data['error'] = $this->session->flashdata('error');
                             $data['message'] = $this->session->flashdata('message');
@@ -48,23 +55,26 @@ $this->load->view('shared/sidebar'); ?>
                         </table>
 
                     </div> <!-- end card body-->
-                </div> <!-- end card -->
-            </div><!-- end col-->
-
-            <!-- end row-->
-
-        </div> <!-- container -->
-
-    </div> <!-- content -->
+                    <div class="card">
 
 
-</div>
-<?php $data['title'] = 'User';
-$this->load->view('components/delete_modal.php', $data); ?>
-<?php $this->load->view('components/user_canvas.php'); ?>
-<!-- ============================================================== -->
-<!-- End Page content -->
-<!-- ============================================================== -->
+                    </div> <!-- end card -->
+                </div><!-- end col-->
+
+                <!-- end row-->
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+
+    </div>
+    <?php $data['title'] = 'User';
+    $this->load->view('components/delete_modal.php', $data); ?>
+    <?php $this->load->view('components/user_canvas.php'); ?>
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
 
 
 </div>
