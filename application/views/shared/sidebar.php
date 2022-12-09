@@ -50,13 +50,53 @@
                       <a href="<?= base_url('dashboard'); ?>">
                           <i class="mdi mdi-view-dashboard-outline"></i>
                           <!-- <span class="badge bg-success rounded-pill float-end">4</span> -->
-                          <span> Dashboards </span>
+                          <span> Dashboard </span>
                       </a>
 
                   </li>
                   <li>
-                      <a href="#sidebarAuth" data-bs-toggle="collapse">
+                      <a href="#sidebarClient" data-bs-toggle="collapse">
                           <i class="mdi mdi-account-circle-outline"></i>
+                          <span> Clients </span>
+                          <span class="menu-arrow"></span>
+                      </a>
+                      <div class="collapse" id="sidebarClient">
+                          <ul class="nav-second-level">
+                              <li>
+                                  <a href="<?= base_url('dashboard/client_create'); ?>">Create Client</a>
+                              </li>
+                              <li>
+                                  <a href="<?= base_url('dashboard/clients'); ?>">View</a>
+                              </li>
+                              <!-- <li>
+                                  <a href="project-detail.html">Detail</a>
+                              </li> -->
+                          </ul>
+                      </div>
+                  </li>
+                  <li>
+                      <a href="#sidebarProjects" data-bs-toggle="collapse">
+                          <i class="mdi mdi-briefcase-check-outline"></i>
+                          <span> Projects </span>
+                          <span class="menu-arrow"></span>
+                      </a>
+                      <div class="collapse" id="sidebarProjects">
+                          <ul class="nav-second-level">
+                              <!-- <li>
+                                  <a href="project-detail.html">Detail</a>
+                                </li> -->
+                                <li>
+                                    <a href="<?= base_url('dashboard/projects_create'); ?>">Create Project</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/projects'); ?>">View</a>
+                                </li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li>
+                      <a href="#sidebarAuth" data-bs-toggle="collapse">
+                          <i class="material-symbols-outlined">badge</i>
                           <span> Users Management </span>
                           <span class="menu-arrow"></span>
                       </a>
@@ -67,6 +107,9 @@
                               </li>
                               <li>
                                   <a href="<?= base_url('dashboard/roles'); ?>">Roles</a>
+                              </li>
+                              <li>
+                                  <a href="<?= base_url('dashboard/client_types'); ?>">Clients</a>
                               </li>
                           </ul>
                       </div>

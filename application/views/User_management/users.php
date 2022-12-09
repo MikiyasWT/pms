@@ -25,7 +25,7 @@ $this->load->view('shared/sidebar'); ?>
                                 </h4>
                             </div>
                             <div class="col-6" style="text-align: right">
-                                <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Insert</button>
+                                <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="material-symbols-outlined">person_add</i></button>
                             </div>
                         </div>
                     </div>
@@ -55,10 +55,6 @@ $this->load->view('shared/sidebar'); ?>
                         </table>
 
                     </div> <!-- end card body-->
-                    <div class="card">
-
-
-                    </div> <!-- end card -->
                 </div><!-- end col-->
 
                 <!-- end row-->

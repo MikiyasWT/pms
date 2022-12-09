@@ -39,6 +39,10 @@ class UserManagment_model extends CI_Model
   {
     return $this->db->get('tbl_roles')->result_array();
   }
+  public function get_clients()
+  {
+    return $this->db->get('master_client_types')->result_array();
+  }
   public function get_users($postData = null)
   {
     ## Read value
@@ -100,6 +104,13 @@ class UserManagment_model extends CI_Model
     return $this->db->get('tbl_roles')->result();
     // return $this->db->get_where('tbl_roles',["id"=>$id]);
   }
+  public function get_client($id)
+  {
+    $this->db->where('id', $id);
+    return $this->db->get('master_client_types')->result();
+    // return $this->db->get_where('tbl_roles',["id"=>$id]);
+  }
+
   public function insert_role($role)
   {
     $data = array(
@@ -107,6 +118,14 @@ class UserManagment_model extends CI_Model
       'created_at' => date('Y-m-d h:i:s')
     );
     return $this->db->insert('tbl_roles', $data);
+  }
+  public function insert_client_types($role)
+  {
+    $data = array(
+      'client_type' => $role,
+      'created' => date('Y-m-d h:i:s')
+    );
+    return $this->db->insert('master_client_types', $data);
   }
   public function insert_user($data)
   {
@@ -125,6 +144,13 @@ class UserManagment_model extends CI_Model
     $this->db->where('id', $id);
     return $this->db->update('tbl_roles');
   }
+  public function update_client($role, $id)
+  {
+    $this->db->set('client_type', $role);
+    $this->db->set('status', 'active');
+    $this->db->where('id', $id);
+    return $this->db->update('master_client_types');
+  }
   public function update_user($data, $id)
   {
     $this->db->set($data);
@@ -133,9 +159,15 @@ class UserManagment_model extends CI_Model
   }
   public function del_role($id)
   {
-    $this->db->set('role_status', 'deactivated');
+    $this->db->set('role_status', 'deactive');
     $this->db->where('id', $id);
     return $this->db->update('tbl_roles');
+  }
+  public function del_client($id)
+  {
+    $this->db->set('status', 'deactive');
+    $this->db->where('id', $id);
+    return $this->db->update('master_client_types');
   }
   public function del_user($id)
   {

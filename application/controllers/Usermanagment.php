@@ -42,6 +42,25 @@ class Usermanagment extends CI_Controller
       return false;
     }
   }
+  public function insert_client()
+  {
+    $this->form_validation->set_rules('role_type', 'Client', 'required|trim');
+    if ($this->form_validation->run() === FALSE) {
+      $this->session->set_flashdata('error', validation_errors());
+      redirect('dashboard/client_types');
+    } else {
+      $role = $this->input->post('role_type');
+      // $dec_password = $this->api_key_crypt($this->input->post('password'), 'e');
+      // $user_id = $this->user_model->login($email, $dec_password);
+      if ($this->UserManagment_model->insert_client_types($role)) {
+        $this->session->set_flashdata('message', 'Added New');
+        redirect('dashboard/client_types');
+      } else {
+        $this->session->set_flashdata('error', 'Data not inserted');
+        redirect('dashboard/client_types');
+      }
+    }
+  }
   public function insert_role()
   {
     $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
@@ -64,6 +83,10 @@ class Usermanagment extends CI_Controller
   public function get_roles()
   {
     echo json_encode($this->UserManagment_model->get_roles());
+  }
+  public function get_clients()
+  {
+    echo json_encode($this->UserManagment_model->get_clients());
   }
   public function update_role($id)
   {
@@ -99,6 +122,40 @@ class Usermanagment extends CI_Controller
       }
     }
   }
+  public function update_client($id)
+  {
+    if (!isset($id)) {
+      echo json_encode(['error' => true, 'message' => 'empty id']);
+      return exit;
+    } else {
+      if ($this->input->post('role_update')) {
+        $this->form_validation->set_rules('role_type', 'Client', 'required|trim');
+        if ($this->form_validation->run() === FALSE) {
+          $this->session->set_flashdata('error', validation_errors());
+          redirect('dashboard/client_types');
+        } else {
+          $message = $this->UserManagment_model->update_client($this->input->post('role_type'), $id);
+          if ($message) {
+            # code...
+            $this->session->set_flashdata('message', 'Client Type Updated');
+            echo json_encode($message);
+            redirect('dashboard/client_types');
+          } else {
+            # code...
+            $this->session->set_flashdata('error', "Error unable to compelte task, try again later");
+            redirect('dashboard/client_types');
+          }
+        }
+      } else {
+
+        # code...
+        $data = $this->UserManagment_model->get_client($id);
+        $this->session->set_flashdata('updating', true);
+        $this->session->set_flashdata('data', $data[0]);
+        echo json_encode($data[0]);
+      }
+    }
+  }
   public function del_role($id)
   {
     if (!isset($id)) {
@@ -108,11 +165,28 @@ class Usermanagment extends CI_Controller
       $message = $this->UserManagment_model->del_role($id);
       if ($message) {
         $this->session->set_flashdata('message', 'Deactivated');
-        echo json_encode($message);
+        // echo json_encode($message);
         redirect('dashboard/roles');
       } else {
         $this->session->set_flashdata('error', 'Data not Proccesed');
         redirect('dashboard/roles');
+      }
+    }
+  }
+  public function del_client($id)
+  {
+    if (!isset($id)) {
+      echo json_encode(['error' => true, 'message' => 'empty id']);
+      return exit;
+    } else {
+      $message = $this->UserManagment_model->del_client($id);
+      if ($message) {
+        $this->session->set_flashdata('message', 'Deactivated');
+        // echo json_encode($message);
+        redirect('dashboard/client_types');
+      } else {
+        $this->session->set_flashdata('error', 'Data not Proccesed');
+        redirect('dashboard/client_types');
       }
     }
   }
