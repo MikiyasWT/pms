@@ -25,7 +25,7 @@
     <!-- Bootstrap css -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
-    <link href="<?php echo base_url(); ?>assets/css/app.css" rel="stylesheet" type="text/css" id="app-style" />
+    <link href="<?php echo base_url(); ?>assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
     <!-- icons -->
     <link href="<?php echo base_url(); ?>assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- Head js -->
@@ -247,11 +247,11 @@
                 <div class="logo-box">
                     <a href="index.html" class="logo logo-dark text-center">
                         <span class="logo-sm">
-                            <img src="<?php echo base_url(); ?>assets/images/logo-resmax-sm.png" alt="" height="4%" width="auto">
+                            <img src="<?php echo base_url(); ?>assets/images/logo-resmax-sm.png" alt="" height="45px" width="auto">
 
                         </span>
                         <span class="logo-lg">
-                            <img src="<?php echo base_url(); ?>assets/images/logo-resmax.png" alt="" height="6%" width="auto">
+                            <img src="<?php echo base_url(); ?>assets/images/logo-resmax.png" alt="" height="60px" width="auto">
                             <!-- <span class="logo-lg-text-light">U</span> -->
                         </span>
                     </a>
