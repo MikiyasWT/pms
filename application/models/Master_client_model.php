@@ -88,12 +88,14 @@ class Master_client_model extends CI_Model
     return $response;
   }
   public function get_client($id)
-  { $this->db->select('*,master_clients.id');
+  {
+    $this->db->select('*,master_clients.id');
     $this->db->join('master_client_types', 'master_client_types.id = master_clients.type');
     $this->db->where('master_clients.id', $id);
     // echo $this->db->get_compiled_select('master_clients');
     // exit;
-    return $this->db->get('master_clients')->result();
+    $data = $this->db->get('master_clients')->result();
+    return (isset($data[0]))? $data[0] :false ;
   }
   // ------------------------------------------------------------------------
 

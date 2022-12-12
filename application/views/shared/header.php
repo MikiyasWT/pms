@@ -196,7 +196,7 @@
                         <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                             <img src="<?php echo base_url(); ?>assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
                             <span class="pro-user-name ms-1">
-                                Geneva <i class="mdi mdi-chevron-down"></i>
+                                <?= $this->session->user->full_name ?> <i class="mdi mdi-chevron-down"></i>
                             </span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
@@ -245,7 +245,7 @@
 
                 <!-- LOGO -->
                 <div class="logo-box">
-                    <a href="index.html" class="logo logo-dark text-center">
+                    <a href="<?= base_url('dashboard'); ?>" class="logo logo-dark text-center">
                         <span class="logo-sm">
                             <img src="<?php echo base_url(); ?>assets/images/logo-resmax-sm.png" alt="" height="45px" width="auto">
 
@@ -256,7 +256,7 @@
                         </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light text-center">
+                    <a href="<?= base_url('dashboard'); ?>" class="logo logo-light text-center">
                         <span class="logo-sm">
                             <img src="<?php echo base_url(); ?>assets/images/logo-resmax-sm.png" alt="" height="45px" width="auto">
                         </span>

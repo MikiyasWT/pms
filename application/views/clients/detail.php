@@ -19,7 +19,7 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp; Client</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/update_client/'.$mc->id) ?>" method="POST">
+                        <form action="<?= base_url('master_client/update_client/' . $mc->id) ?>" method="POST">
                             <div class="row">
 
                                 <div class="col-md-4 mb-3">
@@ -65,7 +65,7 @@ $this->load->view('shared/sidebar'); ?>
                                     <?php (form_error('type')) ? $this->load->view('components/error_toster', ['error' => form_error('type')]) : null; ?>
                                     <label for="inputState" class="form-label">Client Type</label>
                                     <select id="inputState" class="form-select" name="type">
- </select>
+                                    </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
                                     <?php (form_error('fax')) ? $this->load->view('components/error_toster', ['error' => form_error('fax')]) : null; ?>
@@ -96,7 +96,7 @@ $this->load->view('shared/sidebar'); ?>
                                 <label for="example-textarea" class="form-label">Comments</label>
                                 <textarea class="form-control" id="example-textarea" rows="5" name="comment"><?= $retVal = ($mc->comments) ? $mc->comments : "N/A"; ?></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Create</button>
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
 
                         </form>
 
@@ -137,6 +137,6 @@ $this->load->view('shared/sidebar'); ?>
                 });
             }
         });
-        $("#inputState").val(<?=  $mc->type;?>).change();
+        $("#inputState").val(<?= $mc->type; ?>).change();
     });
 </script>

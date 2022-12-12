@@ -23,6 +23,7 @@ class Dashboard extends CI_Controller
   {
     $data['roles'] = $this->UserManagment_model->get_roles();
     $this->load->view('User_management/roles', $data);
+    // ($data['roles'] == false) ?  : $this->load->view('errors/pages404');
   }
   public function users()
   {
@@ -41,8 +42,10 @@ class Dashboard extends CI_Controller
   }
   public function client_detail($id)
   {
-    $data['mc'] = $this->Master_client_model->get_client($id)[0];
-    $this->load->view('clients/detail', $data);
+    $data['mc'] = $this->Master_client_model->get_client($id);
+    ($data['mc'] === false) ? $this->load->view('errors/pages404') : $this->load->view('clients/detail', $data);
+    // echo '<pre>';
+    // print_r($data);
   }
   public function client_types()
   {

@@ -101,7 +101,8 @@ class UserManagment_model extends CI_Model
   public function get_role($id)
   {
     $this->db->where('id', $id);
-    return $this->db->get('tbl_roles')->result();
+    $data = $this->db->get('tbl_roles')->result();
+    return (isset($data[0]))? $data[0]: false;
     // return $this->db->get_where('tbl_roles',["id"=>$id]);
   }
   public function get_client($id)

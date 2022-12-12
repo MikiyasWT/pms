@@ -7,7 +7,7 @@
           <div class="user-box text-center">
               <img src="<?php echo base_url(); ?>assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
               <div class="dropdown">
-                  <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown">Geneva Kennedy</a>
+                  <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown"><?= $this->session->user->full_name ?></a>
                   <div class="dropdown-menu user-pro-dropdown">
 
                       <!-- item-->
@@ -36,7 +36,7 @@
 
                   </div>
               </div>
-              <p class="text-muted">Admin Head</p>
+              <p class="text-muted"><?= $this->session->user->role_type ?></p>
           </div>
 
           <!--- Sidemenu -->

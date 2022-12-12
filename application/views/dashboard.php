@@ -14,7 +14,7 @@ $this->load->view('shared/sidebar'); ?>
             <!-- start page title -->
             <?php $this->load->view('shared/breadcrumb'); ?>
             <!-- end page title -->
-
+            <!-- <?php var_dump($this->session->user->full_name);?>  -->
 
         </div> <!-- container -->
 
