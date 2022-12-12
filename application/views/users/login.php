@@ -51,12 +51,12 @@
                             <?php echo form_open('auth/login'); ?>
 
                             <div class="mb-3">
-                                <label for="emailaddress" class="form-label">Email address</label>
+                                <label for="emailaddress" class="form-label">Email address<span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" id="emailaddress" name="email" required="" placeholder="Enter your email">
                             </div>
 
                             <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="password" class="form-label">Password<span class="text-danger">*</span></label>
                                 <div class="input-group input-group-merge">
                                     <input type="password" required id="password" class="form-control" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$" title=' Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters ' placeholder="Enter your password">
                                     <div class="input-group-text" data-password="false">
@@ -65,15 +65,15 @@
                                 </div>
                             </div>
                             <div class="mb-3 text-danger">
-                              <?php echo validation_errors(); ?>
+                                <?php echo validation_errors(); ?>
                             </div>
 
 
-            <?php if(isset($error)) :?>
-              <div class="mb-3 text-danger">
-               <?php echo $message ?> 
-             </div> 
-             <?php endif; ?> 
+                            <?php if (isset($error)) : ?>
+                                <div class="mb-3 text-danger">
+                                    <?php echo $message ?>
+                                </div>
+                            <?php endif; ?>
 
 
 

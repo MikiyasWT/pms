@@ -11,16 +11,16 @@
                     <div class="row">
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="floatingPassword" placeholder="Adam Sandler" name="name" required>
-                            <label for="floatingPassword">Full Name</label>
-                            <input type="hidden" name="user_update" value="true">
+                            <label for="floatingPassword">Full Name<span class="text-danger">*</span></label>
+                            <input type="hidden" name="user_update" value="true" aria-required="">
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
-                            <label for="floatingInput">Email address</label>
+                            <input type="email" class="form-control" id="floatingInput" required placeholder="name@example.com" name="email">
+                            <label for="floatingInput">Email address<span class="text-danger">*</span></label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="floatingTextarea2" placeholder="0912345678" name="phone">
-                            <label for="floatingTextarea2">Phone Number</label>
+                            <input type="text" data-toggle="input-mask" data-mask-format="0000000000" required maxlength="14" class="form-control" id="floatingTextarea2" placeholder="0912345678" name="phone">
+                            <label for="floatingTextarea2">Phone Number<span class="text-danger">*</span></label>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
@@ -46,10 +46,10 @@
 
                     <div class="row">
                         <div class="col form-floating mb-3">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example" name="role_type">
+                            <select class="form-select" id="floatingSelect" required aria-label="Floating label select example" name="role_type">
                                 <option selected=""></option>
                             </select>
-                            <label for="floatingSelect">Roles</label>
+                            <label for="floatingSelect">Roles<span class="text-danger">*</span></label>
                         </div>
                         <div hidden class="col form-floating mb-3 user_sts">
                             <select class="form-select" id="user_sts" aria-label="Floating label select example" name="user_status">

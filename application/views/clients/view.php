@@ -21,7 +21,7 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                    <i class="mdi mdi-account-circle-outline"></i> Clients
+                                    <i class="mdi mdi-account-group mdi-24px"></i> Clients
                                 </h4>
                             </div>
                             <div class="col-6" style="text-align: right">
@@ -170,7 +170,7 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="<?= base_url("dashboard/client_detail"); ?>/'+row.id+'" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
+                        return '<a href="<?= base_url("dashboard/client_detail"); ?>/' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
                     }
                 }
             ]

@@ -23,18 +23,18 @@ $this->load->view('shared/sidebar'); ?>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                     <?php (form_error('name')) ? $this->load->view('components/error_toster', ['error'=>form_error('name')]) : null ; ?>
-                                    <label for="inputEmail4" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control " id="inputEmail4" placeholder="Client Name" name="name">
+                                    <label for="inputEmail4" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control " id="inputEmail4" required placeholder="Client Name" name="name">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('email')) ? $this->load->view('components/error_toster', ['error'=>form_error('email')]) : null ; ?>
-                                    <label for="inputEmail4" class="form-label">Email</label>
-                                    <input type="email" class="form-control " id="inputEmail4" placeholder="Email" name="email">
+                                    <label for="inputEmail4" class="form-label">Email<span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control " id="inputEmail4" required placeholder="Email" name="email">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('phone')) ? $this->load->view('components/error_toster', ['error'=>form_error('phone')]) : null ; ?>
-                                    <label for="inputPassword4" class="form-label">Phone</label>
-                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="phone">
+                                    <label for="inputPassword4" class="form-label">Phone<span class="text-danger">*</span></label>
+                                    <input type="text" data-toggle="input-mask" required data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="phone">
                                 </div>
                             </div>
                             <div class="row">
@@ -50,8 +50,8 @@ $this->load->view('shared/sidebar'); ?>
                                 </div>
                                 <div class="mb-3 col-md-4">
                                 <?php (form_error('address')) ? $this->load->view('components/error_toster', ['error'=>form_error('address')]) : null ; ?>
-                                    <label for="inputAddress" class="form-label">Address</label>
-                                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+                                    <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="inputAddress" required placeholder="1234 Main St" name="address">
                                 </div>
                             </div>
                             <div class="row">
@@ -62,8 +62,8 @@ $this->load->view('shared/sidebar'); ?>
                                 </div>
                                 <div class="mb-3 col-md-4">
                                 <?php (form_error('type')) ? $this->load->view('components/error_toster', ['error'=>form_error('type')]) : null ; ?>
-                                    <label for="inputState" class="form-label">Client Type</label>
-                                    <select id="inputState" class="form-select" name="type">
+                                    <label for="inputState" class="form-label">Client Type <span class="text-danger">*</span></label>
+                                    <select id="inputState" class="form-select" required name="type">
                                         <option>Choose</option>
 
                                     </select>
@@ -78,18 +78,18 @@ $this->load->view('shared/sidebar'); ?>
                             <div class="row">
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('c_person')) ? $this->load->view('components/error_toster', ['error'=>form_error('c_person')]) : null ; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person</label>
-                                    <input type="text" class="form-control " id="inputEmail4" placeholder="Contact person Name" name="c_person">
+                                    <label for="inputEmail4" class="form-label">Contact Person<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control " id="inputEmail4" required placeholder="Contact person Name" name="c_person">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('cp_email')) ? $this->load->view('components/error_toster', ['error'=>form_error('cp_email')]) : null ; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person Email</label>
-                                    <input type="email" class="form-control " id="inputEmail4" name="cp_email" placeholder="email">
+                                    <label for="inputEmail4" class="form-label">Contact Person Email<span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control " id="inputEmail4" required name="cp_email" placeholder="email">
                                 </div>
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('cp_number')) ? $this->load->view('components/error_toster', ['error'=>form_error('cp_number')]) : null ; ?>
-                                    <label for="inputPassword4" class="form-label">Contact Person Phone</label>
-                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number">
+                                    <label for="inputPassword4" class="form-label">Contact Person Phone<span class="text-danger">*</span></label>
+                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" required maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number">
                                 </div>
                             </div>
                             <div class="mb-3">

@@ -56,7 +56,7 @@
                   </li>
                   <li>
                       <a href="#sidebarClient" data-bs-toggle="collapse">
-                          <i class="mdi mdi-account-circle-outline"></i>
+                          <i class="mdi mdi-account-group-outline"></i>
                           <span> Clients </span>
                           <span class="menu-arrow"></span>
                       </a>
@@ -85,12 +85,12 @@
                               <!-- <li>
                                   <a href="project-detail.html">Detail</a>
                                 </li> -->
-                                <li>
-                                    <a href="<?= base_url('dashboard/projects_create'); ?>">Create Project</a>
-                                </li>
-                                <li>
-                                    <a href="<?= base_url('dashboard/projects'); ?>">View</a>
-                                </li>
+                              <li>
+                                  <a href="<?= base_url('dashboard/projects_create'); ?>">Create Project</a>
+                              </li>
+                              <li>
+                                  <a href="<?= base_url('dashboard/projects'); ?>">View</a>
+                              </li>
                           </ul>
                       </div>
                   </li>
