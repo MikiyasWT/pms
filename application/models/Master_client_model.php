@@ -36,7 +36,13 @@ class Master_client_model extends CI_Model
   }
   public function insert_client($data = null)
   {
-      return $this->db->insert('master_clients', $data);
+    return $this->db->insert('master_clients', $data);
+  }
+  public function update_client($data, $id)
+  {
+    $this->db->set($data);
+    $this->db->where('id', $id);
+    return $this->db->update('master_clients');
   }
   public function get_clients($postData = null)
   {
@@ -80,6 +86,14 @@ class Master_client_model extends CI_Model
       "data" => $records
     );
     return $response;
+  }
+  public function get_client($id)
+  { $this->db->select('*,master_clients.id');
+    $this->db->join('master_client_types', 'master_client_types.id = master_clients.type');
+    $this->db->where('master_clients.id', $id);
+    // echo $this->db->get_compiled_select('master_clients');
+    // exit;
+    return $this->db->get('master_clients')->result();
   }
   // ------------------------------------------------------------------------
 

@@ -8,10 +8,11 @@ class Dashboard extends CI_Controller
   {
     parent::__construct(); // you have missed this line.
     $this->load->library('session');
-    $this->load->model('UserManagment_model');
     if (!($this->session->userdata('logged_in'))) {
       redirect('auth/login');
     }
+    $this->load->model('UserManagment_model');
+    $this->load->model('Master_client_model');
   }
 
   public function index()
@@ -21,7 +22,7 @@ class Dashboard extends CI_Controller
   public function roles()
   {
     $data['roles'] = $this->UserManagment_model->get_roles();
-    $this->load->view('User_management/roles',$data);
+    $this->load->view('User_management/roles', $data);
   }
   public function users()
   {
@@ -38,9 +39,14 @@ class Dashboard extends CI_Controller
   {
     $this->load->view('clients/create');
   }
+  public function client_detail($id)
+  {
+    $data['mc'] = $this->Master_client_model->get_client($id)[0];
+    $this->load->view('clients/detail', $data);
+  }
   public function client_types()
   {
     $data['roles'] = $this->UserManagment_model->get_clients();
-    $this->load->view('User_management/client_types',$data);
+    $this->load->view('User_management/client_types', $data);
   }
 }
