@@ -25,7 +25,7 @@ $this->load->view('shared/sidebar'); ?>
                                 </h4>
                             </div>
                             <div class="col-6" style="text-align: right">
-                                <button class="col-2 col-sm-auto btn btn-info mt-md-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="material-symbols-outlined">person_add</i></button>
+                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/client_create'); ?>"><i class="material-symbols-outlined">person_add</i></a>
                             </div>
                         </div>
                     </div>
@@ -170,9 +170,7 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     data: null,
                     render: function(data, type, row) {
-                        disabled = '';
-                        if (row.status !== 'active') disabled = 'disabled';
-                        return '<button onclick="offcanvas_edit(' + row.id + ')" type="button" data-id="' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</button> '
+                        return '<a href="<?= base_url("dashboard/client_detail"); ?>/'+row.id+'" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
                     }
                 }
             ]
@@ -180,7 +178,6 @@ $this->load->view('shared/sidebar'); ?>
         setInterval(function() {
             usertable.ajax.reload(null, false);
         }, 10000);
-
 
 
     });
