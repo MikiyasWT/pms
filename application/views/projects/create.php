@@ -73,7 +73,7 @@ $this->load->view('shared/sidebar'); ?>
 
                                 <div class="mb-3">
                                 <?php (form_error('description')) ? $this->load->view('components/error_toster', ['error'=>form_error('description')]) : null ; ?>
-                                    <label for="inputDescription" class="form-label">Description</label>
+                                    <label description" class="form-label">Description</label>
                                     <textarea class="form-control" id="inputDescription" rows="5" name="description"></textarea>
                                 </div>
 

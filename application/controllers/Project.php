@@ -56,7 +56,7 @@ class Project extends CI_Controller
     
       $client = $this->input->post('client');
       $title = $this->input->post('title');
-      $description = $this->input->post('descrption');
+      $description= $this->input->post('description');
       $start_date = $this->input->post('start_date');
       $end_date = $this->input->post('end_date');
       $status = $this->input->post('status');
@@ -123,6 +123,61 @@ class Project extends CI_Controller
   public function get_projects()
   {
     echo json_encode($this->Projects_model->get_projects($_GET));
+  }
+
+
+
+
+
+  public function update_project($id)
+  {
+    $this->form_validation->set_rules('client', 'Client', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'required');
+    $this->form_validation->set_rules('description', 'Description', 'required');
+    $this->form_validation->set_rules('start_date', 'Start Date', 'required');
+    $this->form_validation->set_rules('end_date', 'End Date', 'required');
+    $this->form_validation->set_rules('status', 'Status', 'required');
+    $this->form_validation->set_rules('project_category', 'Project Category', 'required');
+    // $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
+    if ($this->form_validation->run() === FALSE) {
+      $this->session->set_flashdata('error', validation_errors());
+      // echo json_encode(['error' => true, 'message' => validation_errors()]);
+      // redirect('dashboard/client_create');
+      
+      $this->load->view('projects/detail',$data);
+    } else {
+      $client = $this->input->post('client');
+      $title = $this->input->post('title'); //description
+      $description = $this->input->post('description');
+      $start_date = $this->input->post('start_date');
+      $end_date = $this->input->post('end_date');
+      $status = $this->input->post('status');
+      $project_category = $this->input->post('project_category');
+      // $register_date = date('Y-m-d h:i:s');
+      $data = array(
+        "client" => $client,
+        "title" => $title,
+        "description" => $description,
+        "start_date" => $start_date,
+        "end_date " => $end_date ,
+        "status" => $status,
+        "project_category" => $project_category,
+        "created" => date('Y-m-d h:i:s'),
+        "created_by" => $this->session->userdata('user_id'),
+        "modified" => date('Y-m-d h:i:s'),
+        "modified_by" => $this->session->userdata('user_id'),
+      );
+
+
+      $result = $this->Projects_model->update_project($data,$id);
+      if ($result) {
+        $this->session->set_flashdata('message', 'Project Updated');
+        redirect('dashboard/projects');
+      } else {
+        $this->session->set_flashdata('error', 'Data not Updated');
+        redirect('dashboard/projects');
+      }
+    }
   }
 
   

@@ -42,6 +42,26 @@ class Projects_model extends CI_Model {
     return $this->db->get('master_categories')->result_array();
   }
 
+  public function get_project_category_by_Id($id){
+    
+
+    $this->db->select('*');
+    $this->db->where('master_categories.id', $id);
+    // echo $this->db->get_compiled_select('master_clients');
+    // exit;
+    $data = $this->db->get('master_categories')->result();
+    return (isset($data[0]))? $data[0] :false ;
+  }
+
+  public function get_project_client_by_Id($id){
+    $this->db->select('*');
+    $this->db->where('master_clients.id', $id);
+    // echo $this->db->get_compiled_select('master_clients');
+    // exit;
+    $data = $this->db->get('master_clients')->result();
+    return (isset($data[0]))? $data[0] :false ;
+  }
+
   public function create_new_project($data = null){
     return $this->db->insert('tbl_projects', $data);
   }
@@ -102,5 +122,22 @@ class Projects_model extends CI_Model {
     return $response;
   }
 
+
+  public function get_project($id)
+  {
+    $this->db->select('*,tbl_projects.id');
+    $this->db->where('tbl_projects.id', $id);
+    // echo $this->db->get_compiled_select('master_clients');
+    // exit;
+    $data = $this->db->get('tbl_projects')->result();
+    return (isset($data[0]))? $data[0] :false ;
+  }
+
+  public function update_project($data, $id)
+  {
+    $this->db->set($data);
+    $this->db->where('id', $id);
+    return $this->db->update('tbl_projects');
+  }
 }
 

@@ -12,7 +12,8 @@ class Dashboard extends CI_Controller
       redirect('auth/login');
     }
     $this->load->model('UserManagment_model');
-    $this->load->model('Master_client_model');
+    $this->load->model('Master_client_model'); 
+    $this->load->model('Projects_model'); 
   }
 
   public function index()
@@ -47,6 +48,16 @@ class Dashboard extends CI_Controller
     // echo '<pre>';
     // print_r($data);
   }
+
+  public function project_detail($id){
+
+    $data['project'] = $this->Projects_model->get_project($id);
+    $data['category'] = $this->Projects_model->get_project_category_by_Id($id);
+    $data['client'] = $this->Projects_model->get_project_client_by_Id($id);
+    
+    ($data['project'] === false) ? $this->load->view('errors/pages404') : $this->load->view('projects/detail', $data);
+   }
+
   public function client_types()
   {
     $data['roles'] = $this->UserManagment_model->get_clients();

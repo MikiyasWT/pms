@@ -4,7 +4,7 @@ $this->load->view('shared/sidebar'); ?>
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
 <!-- ============================================================== -->
-<?php $data['title'] = 'Clients'; ?>
+<?php $data['title'] = 'Projects'; ?>
 
 <div class="content-page">
     <div class="content">
@@ -17,86 +17,72 @@ $this->load->view('shared/sidebar'); ?>
             <!-- end page title -->
             <div class="mt-1">
                 <div class="card">
-                    <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp; Client</h4>
+                    <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp;Update Project</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/update_client/'.$mc->id) ?>" method="POST">
+                        <form action="<?= base_url('Project/update_project/' . $project->id) ?>" method="POST">
                             <div class="row">
 
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('name')) ? $this->load->view('components/error_toster', ['error' => form_error('name')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control " id="inputEmail4" placeholder="Client Name" name="name" value="<?= $retVal = ($mc->name) ? $mc->name : "N/A"; ?>">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('email')) ? $this->load->view('components/error_toster', ['error' => form_error('email')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Email</label>
-                                    <input value="<?= $retVal = ($mc->email) ? $mc->email : "N/A"; ?>" type="email" class="form-control " id="inputEmail4" placeholder="Email" name="email">
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('phone')) ? $this->load->view('components/error_toster', ['error' => form_error('phone')]) : null; ?>
-                                    <label for="inputPassword4" class="form-label">Phone</label>
-                                    <input value="<?= $retVal = ($mc->phone) ? $mc->phone : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="phone">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('city')) ? $this->load->view('components/error_toster', ['error' => form_error('city')]) : null; ?>
-                                    <label for="inputCity" class="form-label">City</label>
-                                    <input value="<?= $retVal = ($mc->city) ? $mc->city : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="city">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('state')) ? $this->load->view('components/error_toster', ['error' => form_error('state')]) : null; ?>
-                                    <label for="inputCity" class="form-label">State</label>
-                                    <input value="<?= $retVal = ($mc->state) ? $mc->state : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="state">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('address')) ? $this->load->view('components/error_toster', ['error' => form_error('address')]) : null; ?>
-                                    <label for="inputAddress" class="form-label">Address</label>
-                                    <input value="<?= $retVal = ($mc->address) ? $mc->address : "N/A"; ?>" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('country')) ? $this->load->view('components/error_toster', ['error' => form_error('country')]) : null; ?>
-                                    <label for="inputCity" class="form-label">Country</label>
-                                    <input value="<?= $retVal = ($mc->country) ? $mc->country : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="country">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('type')) ? $this->load->view('components/error_toster', ['error' => form_error('type')]) : null; ?>
-                                    <label for="inputState" class="form-label">Client Type</label>
-                                    <select id="inputState" class="form-select" name="type">
- </select>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('fax')) ? $this->load->view('components/error_toster', ['error' => form_error('fax')]) : null; ?>
-                                    <label for="inputPassword4" class="form-label">Fax</label>
-                                    <input value="<?= $retVal = ($mc->fax) ? $mc->fax : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="fax">
-                                </div>
-                            </div>
+                                
 
-                            <div class="row">
                                 <div class="col-md-4 mb-3">
-                                    <?php (form_error('c_person')) ? $this->load->view('components/error_toster', ['error' => form_error('c_person')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person</label>
-                                    <input value="<?= $retVal = ($mc->contact_person) ? $mc->contact_person : "N/A"; ?>" type="text" class="form-control " id="inputEmail4" placeholder="Contact person Name" name="c_person">
+                                    <?php (form_error('title')) ? $this->load->view('components/error_toster', ['error'=>form_error('title')]) : null ; ?>
+                                    <label for="inputTitle" class="form-label">Title</label>
+                                    <input type="text" class="form-control " id="inputTitle" placeholder="Project title" name="title" value="<?= $retVal = ($project->title) ? $project->title : "N/A"; ?>" >
                                 </div>
+
+                                <div class="mb-3 col-md-4">
+                                <?php (form_error('client')) ? $this->load->view('components/error_toster', ['error'=>form_error('client')]) : null ; ?>
+                                    <label for="inputClient" class="form-label">Client</label>
+                                    <select id="inputClient" class="form-select" name="client" value="<?= $retVal = ($client->id) ? $client->id: "N/A"; ?>" >
+                                        <option><?= $client->name ?></option>
+
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-md-4">
+                                <?php (form_error('project_category')) ? $this->load->view('components/error_toster', ['error'=>form_error('project_category')]) : null ; ?>
+                                    <label for="inputProjectCategory" class="form-label">Project Category</label>   
+                                    <select id="inputProjectCategory" class="form-select" name="project_category" value="<?= $retVal = ($category->id) ? $category->id: "N/A"; ?>">
+                                        <option><?= $category->categories ?></option> 
+                                         
+                                    </select>
+                                </div>
+
+    
+
+
                                 <div class="col-md-4 mb-3">
-                                    <?php (form_error('cp_email')) ? $this->load->view('components/error_toster', ['error' => form_error('cp_email')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person Email</label>
-                                    <input value="<?= $retVal = ($mc->contact_person_email) ? $mc->contact_person_email : "N/A"; ?>" type="email" class="form-control " id="inputEmail4" name="cp_email" placeholder="email">
+                                <?php (form_error('start_date')) ? $this->load->view('components/error_toster', ['error'=>form_error('start_date')]) : null ; ?>
+                                    <label for="inputStart_date" class="form-label">Start Date</label>
+                                    <input type="date" class="form-control" id="inputStart_date"  name="start_date" value="<?= $retVal = ($project->start_date) ? $project->start_date : "N/A"; ?>">
                                 </div>
+
                                 <div class="col-md-4 mb-3">
-                                    <?php (form_error('cp_number')) ? $this->load->view('components/error_toster', ['error' => form_error('cp_number')]) : null; ?>
-                                    <label for="inputPassword4" class="form-label">Contact Person Phone</label>
-                                    <input value="<?= $retVal = ($mc->contact_person_number) ? $mc->contact_person_number : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number">
+                                <?php (form_error('end_date')) ? $this->load->view('components/error_toster', ['error'=>form_error('end_date')]) : null ; ?>
+                                    <label for="inputEnd_date" class="form-label">End Date</label>
+                                    <input type="date" class="form-control" id="inputEnd_date"  name="end_date" value="<?= $retVal = ($project->end_date) ? $project->end_date : "N/A"; ?>">
                                 </div>
+
+                                <div class="mb-3 col-md-4">
+                                <?php (form_error('status')) ? $this->load->view('components/error_toster', ['error'=>form_error('status')]) : null ; ?>
+                                    <label for="inputStatus" class="form-label">Status</label>
+                                    <select id="inputStatus" class="form-select" name="status" value="<?= $retVal = ($project->status) ? $project->status : "N/A"; ?>" >
+                        
+                                        <option value="active" selected>Active</option>
+                                        <option value="deactive">Deactive</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                <?php (form_error('description')) ? $this->load->view('components/error_toster', ['error'=>form_error('description')]) : null ; ?>
+                                    <label for="inputDescription" class="form-label">Description</label>
+                                    <textarea class="form-control" id="inputDescription" rows="5" name="description" value="<?= $retVal = ($project->description) ? $project->description : "N/A"; ?>"></textarea>
+                                </div>
+
+                                
                             </div>
-                            <div class="mb-3">
-                                <?php (form_error('comment')) ? $this->load->view('components/error_toster', ['error' => form_error('comment')]) : null; ?>
-                                <label for="example-textarea" class="form-label">Comments</label>
-                                <textarea class="form-control" id="example-textarea" rows="5" name="comment"><?= $retVal = ($mc->comments) ? $mc->comments : "N/A"; ?></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Create</button>
+                            
+                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
 
                         </form>
 
@@ -122,21 +108,37 @@ $this->load->view('shared/sidebar'); ?>
 
 <!-- Script -->
 <script>
-    $(function() {
-
+   $(function () {
+        
         $.ajax({
             type: "get",
-            url: "<?= base_url('usermanagment/get_clients') ?>",
-            data: "data",
-            dataType: "json",
-            success: function(response) {
-                console.log(response)
-                var $dropdown = $("#inputState");
+        url: "<?= base_url('Master_client/getListOfClientsId')?>",
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+            var $dropdown = $("#inputClient");
                 $.each(response, function() {
-                    $dropdown.append($("<option />").val(this.id).text(this.client_type));
+                    $dropdown.append($("<option />").val(this.id).text(this.name));
                 });
-            }
-        });
-        $("#inputState").val(<?=  $mc->type;?>).change();
+        }
     });
+});
+
+    $(function () {
+        
+        $.ajax({
+            type: "get",
+        url: "<?= base_url('Project/getProjectCategories')?>",
+        data: "data",
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+            var $dropdown = $("#inputProjectCategory");
+                $.each(response, function() {
+                    $dropdown.append($("<option />").val(this.id).text(this.categories));
+                });
+        }
+    });
+});
 </script>
