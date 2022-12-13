@@ -52,4 +52,19 @@ class Dashboard extends CI_Controller
     $data['roles'] = $this->UserManagment_model->get_clients();
     $this->load->view('User_management/client_types', $data);
   }
+
+
+  public function projects(){
+    $this->load->view('projects/view');
+  }
+
+  public function create_project(){
+    $this->load->view('projects/create');
+  }
+
+  public function add_Category(){
+    $this->load->view('projects/add_categories');
+  }
 }
+
+

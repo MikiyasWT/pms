@@ -99,11 +99,19 @@ class Master_client extends CI_Controller
         redirect('dashboard/clients');
       }
     }
-  }
+  }   
+
   public function get_clients()
   {
     echo json_encode($this->Master_client_model->get_clients($_GET));
   }
+  
+  public function getListOfClientsId(){
+    
+    echo json_encode($this->Master_client_model->getListOfClients());
+
+  }
+
   public function get_client($id)
   {
     echo json_encode($this->Master_client_model->get_client($id));

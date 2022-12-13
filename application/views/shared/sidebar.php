@@ -85,12 +85,15 @@
                               <!-- <li>
                                   <a href="project-detail.html">Detail</a>
                                 </li> -->
-                              <li>
-                                  <a href="<?= base_url('dashboard/projects_create'); ?>">Create Project</a>
-                              </li>
-                              <li>
-                                  <a href="<?= base_url('dashboard/projects'); ?>">View</a>
-                              </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/create_project'); ?>">Create Project</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/projects'); ?>">View</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/add_Category'); ?>">Add Categories</a>
+                                </li>
                           </ul>
                       </div>
                   </li>
