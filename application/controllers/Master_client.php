@@ -128,7 +128,8 @@ class Master_client extends CI_Controller
       $this->session->set_flashdata('error', validation_errors());
       // echo json_encode(['error' => true, 'message' => validation_errors()]);
       // redirect('dashboard/client_create');
-      $this->load->view('clients/create');
+      $data['mc'] = $this->Master_client_model->get_client($id);
+      $this->load->view('clients/detail',$data);
     } else {
       $name = $this->input->post('name');
       $phone = $this->input->post('phone');
