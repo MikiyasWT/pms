@@ -24,17 +24,18 @@ $this->load->view('shared/sidebar'); ?>
                                     <i class="mdi mdi-account-group mdi-24px"></i> Clients
                                 </h4>
                             </div>
+                            <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
                             <div class="col-6" style="text-align: right">
                                 <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/client_create'); ?>"><i class="material-symbols-outlined">person_add</i></a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body p-2">
-                        <div class="container-fluid">
+                        <!-- <div class="container-fluid">
                             <?php $data['error'] = $this->session->flashdata('error');
                             $data['message'] = $this->session->flashdata('message');
                             (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                        </div>
+                        </div> -->
 
                         <table id="demo-foo-addrow" class="table table-dark table-striped dt-responsive nowrap w-100 ">
                             <thead class="table-dark">
@@ -91,8 +92,10 @@ $this->load->view('shared/sidebar'); ?>
 <?php $this->load->view('shared/footer'); ?>
 <script>
     $(function() {
+
+        //data table populating
         usertable = $('#demo-foo-addrow').DataTable({
-            processing: true,
+            processing: false,
             serverSide: true,
             serverMethod: 'get',
             ajax: {
@@ -178,8 +181,29 @@ $this->load->view('shared/sidebar'); ?>
         setInterval(function() {
             usertable.ajax.reload(null, false);
         }, 10000);
-
-
+        //toaster
+        <?php if (!empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+            $.toast({
+                heading: "Error",
+                hideAfter: 3000,
+                icon: "info",
+                loaderBg: "#1ea69a",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php endif; ?>
+        <?php if (empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+            $.toast({
+                heading: "Well Done!",
+                hideAfter: 3000,
+                icon: "success",
+                loaderBg: "#5ba035",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php endif; ?>
     });
 </script>
 <!-- Script -->

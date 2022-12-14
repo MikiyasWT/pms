@@ -56,7 +56,7 @@
 <script src="<?= base_url(); ?>assets/js/pages/datatables.init.js"></script>
 
 <!-- Validation init js-->
-<script src="assets/js/pages/form-validation.init.js"></script>
+<script src="<?= base_url(); ?>assets/js/pages/form-validation.init.js"></script>
 
 <!-- Dashboard 2 init -->
 <!-- <script src="<?php echo base_url(); ?>assets/libs/parsleyjs/parsley.min.js"></script> -->
@@ -68,6 +68,11 @@
 <script src="<?php echo base_url(); ?>assets/js/app.min.js"></script>
 <!-- <script src="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.all.min.js"></script> -->
 <!-- <script src="<?php echo base_url(); ?>assets/js/pages/sweet-alerts.init.js"></script> -->
+<!-- Tost-->
+<script src="<?php echo base_url(); ?>assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
+<!-- toastr init js-->
+<script src="<?= base_url(); ?>assets/js/pages/toastr.init.js"></script>
+
 </body>
 
 </html>

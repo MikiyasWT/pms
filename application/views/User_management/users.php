@@ -30,12 +30,6 @@ $this->load->view('shared/sidebar'); ?>
                         </div>
                     </div>
                     <div class="card-body p-2">
-                        <div class="container-fluid">
-                            <?php $data['error'] = $this->session->flashdata('error');
-                            $data['message'] = $this->session->flashdata('message');
-                            (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                        </div>
-
                         <table id="demo-foo-addrow" class="table table-dark table-striped dt-responsive nowrap w-100 ">
                             <thead class="table-dark">
                                 <tr>
@@ -208,6 +202,29 @@ $this->load->view('shared/sidebar'); ?>
                 });
             });
         });
+        //toaster
+        <?php if (!empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+            $.toast({
+                heading: "Error",
+                hideAfter: 3000,
+                icon: "info",
+                loaderBg: "#1ea69a",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php endif; ?>
+        <?php if (empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+            $.toast({
+                heading: "Well Done!",
+                hideAfter: 3000,
+                icon: "success",
+                loaderBg: "#5ba035",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php endif; ?>
     });
      //retriving user for ready to be edited
      function offcanvas_edit(id) {

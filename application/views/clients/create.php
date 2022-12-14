@@ -8,7 +8,6 @@ $this->load->view('shared/sidebar'); ?>
 
 <div class="content-page">
     <div class="content">
-
         <!-- Start Content-->
         <div class="container-fluid">
 
@@ -19,7 +18,7 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp; Client</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/create_client') ?>" class="needs-validation <?= $retVal = (set_value('name')!=null) ?  'was-validated' : null; ?> " novalidate method="POST">
+                        <form action="<?= base_url('master_client/create_client') ?>" class="needs-validation <?= $retVal = (set_value('name') != null) ?  'was-validated' : null; ?> " novalidate method="POST">
                             <div class="row">
                                 <div class="position-relative col-md-4 mb-4">
                                     <label for="validationTooltip01" class="form-label">Full Name <span class="text-danger">*</span></label>
@@ -167,22 +166,17 @@ $this->load->view('shared/sidebar'); ?>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Create</button>
-
                         </form>
-
                     </div> <!-- end card-body -->
                 </div> <!-- end card-->
             </div>
         </div> <!-- content -->
-
-
     </div>
+</div>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-
-
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 </div>
 <!-- END wrapper -->
 
@@ -193,7 +187,8 @@ $this->load->view('shared/sidebar'); ?>
 <!-- Script -->
 <script>
     $(function() {
-
+        var spinner = $('#preloader');
+        var load = $("#status");
         $.ajax({
             type: "get",
             url: "<?= base_url('usermanagment/get_clients') ?>",
@@ -207,5 +202,14 @@ $this->load->view('shared/sidebar'); ?>
                 });
             }
         });
+        // $('.needs-validation').submit(function(e) {
+        //     // e.preventDefault();
+        //     spinner.show();
+        //     laod.show();
+        //     console.log('show')
+        // }).done(() => {
+        //     spinner.hide()
+        //     load.hide()
+        // })
     });
 </script>
