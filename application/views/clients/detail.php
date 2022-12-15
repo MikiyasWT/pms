@@ -19,82 +19,151 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp;Update Client</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/update_client/' . $mc->id) ?>" method="POST">
+                        <form action="<?= base_url('master_client/update_client/' . $mc->id) ?>" class="needs-validation <?= $retVal = (set_value('name') != null) ?  'was-validated' : null; ?> " novalidate method="POST">
                             <div class="row">
-
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('name')) ? $this->load->view('components/error_toster', ['error' => form_error('name')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Full Name<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control " pattern="/^[a-zA-Z ]*$/" title="Only Name is allowed" id="inputEmail4" placeholder="Client Name" name="name" value="<?= $retVal = ($mc->name) ? $mc->name : "N/A"; ?>">
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="validationTooltip01" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control " pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" title="Only Name is allowed" id="validationTooltip01" required placeholder="Client Name" name="name" value="<?= $retVal = ($mc->name) ? $mc->name : "N/A"; ?>">
+                                    <div class="invalid-feedback small">
+                                    </div>
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('name')) ? strip_tags(form_error('name')) : 'Please enter first name.'; ?> </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('email')) ? $this->load->view('components/error_toster', ['error' => form_error('email')]) : null; ?>
+                                <div class="position-relative col-md-4 mb-4">
                                     <label for="inputEmail4" class="form-label">Email<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->email) ? $mc->email : "N/A"; ?>" type="email" class="form-control " id="inputEmail4" placeholder="Email" name="email">
+                                    <input type="email" class="form-control " value="<?= $retVal = ($mc->email) ? $mc->email : "N/A"; ?>" id="inputEmail4" required placeholder="Email" name="email">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('name')) ? strip_tags(form_error('email')) : 'Please enter email.'; ?>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('phone')) ? $this->load->view('components/error_toster', ['error' => form_error('phone')]) : null; ?>
-                                    <label for="inputPassword4" class="form-label">Phone<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->phone) ? $mc->phone : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="phone">
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="inputPhone" class="form-label">Phone<span class="text-danger">*</span></label>
+                                    <input type="text" data-toggle="input-mask" required data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPhone" placeholder="0912345678" name="phone" value="<?= $retVal = ($mc->phone) ? $mc->phone : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('phone')) ? strip_tags(form_error('phone')) : 'Please enter Phone.'; ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('city')) ? $this->load->view('components/error_toster', ['error' => form_error('city')]) : null; ?>
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="inputAddress" pattern="^[a-zA-Z0-9\s,'-]*$" required placeholder="1234 Main St" name="address" value="<?= $retVal = ($mc->address) ? $mc->address : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('address')) ? strip_tags(form_error('address')) : 'Please enter Address.'; ?>
+                                    </div>
+                                </div>
+                                <div class="position-relative mb-4 col-md-4">
                                     <label for="inputCity" class="form-label">City</label>
-                                    <input value="<?= $retVal = ($mc->city) ? $mc->city : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="city">
+                                    <input type="text" class="form-control" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" id="inputCity" name="city" value="<?= $retVal = ($mc->city) ? $mc->city : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Please enter City.
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('city')) ? strip_tags(form_error('city')) : 'Please enter City.'; ?>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('state')) ? $this->load->view('components/error_toster', ['error' => form_error('state')]) : null; ?>
+                                <div class="position-relative mb-4 col-md-4">
                                     <label for="inputCity" class="form-label">State</label>
-                                    <input value="<?= $retVal = ($mc->state) ? $mc->state : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="state">
-                                </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('address')) ? $this->load->view('components/error_toster', ['error' => form_error('address')]) : null; ?>
-                                    <label for="inputAddress" class="form-label">Address<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->address) ? $mc->address : "N/A"; ?>" type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="address">
+                                    <input type="text" class="form-control" id="inputCity" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" name="state" value="<?= $retVal = ($mc->state) ? $mc->state : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('state')) ? strip_tags(form_error('state')) : 'Please enter State.'; ?>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('country')) ? $this->load->view('components/error_toster', ['error' => form_error('country')]) : null; ?>
+                                <div class="position-relative mb-4 col-md-4">
                                     <label for="inputCity" class="form-label">Country</label>
-                                    <input value="<?= $retVal = ($mc->country) ? $mc->country : "N/A"; ?>" type="text" class="form-control" id="inputCity" name="country">
+                                    <input type="text" class="form-control" pattern="[a-zA-Z]{3,}" id="inputCity" name="country" value="<?= $retVal = ($mc->country) ? $mc->country : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('country')) ? strip_tags(form_error('country')) : 'Please enter Country.'; ?>
+                                    </div>
                                 </div>
-                                <div class="mb-3 col-md-4">
-                                    <?php (form_error('type')) ? $this->load->view('components/error_toster', ['error' => form_error('type')]) : null; ?>
-                                    <label for="inputState" class="form-label">Client Type<span class="text-danger">*</span></label>
-                                    <select id="inputState" class="form-select" name="type">
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputState" class="form-label">Client Type <span class="text-danger">*</span></label>
+                                    <select id="inputState" class="form-select" required name="type">
+                                        <option value="" disabled selected hidden>Select your option</option>
                                     </select>
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('type')) ? strip_tags(form_error('type')) : 'Please Select Client Type.'; ?>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('fax')) ? $this->load->view('components/error_toster', ['error' => form_error('fax')]) : null; ?>
+                                <div class="position-relative col-md-4 mb-4">
                                     <label for="inputPassword4" class="form-label">Fax</label>
-                                    <input value="<?= $retVal = ($mc->fax) ? $mc->fax : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="fax">
+                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="fax" value="<?= $retVal = ($mc->fax) ? $mc->fax : "N/A"; ?>">
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('fax')) ? strip_tags(form_error('fax')) : 'Please Fax Number.'; ?>
+                                    </div>
                                 </div>
                             </div>
-
                             <div class="row">
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('c_person')) ? $this->load->view('components/error_toster', ['error' => form_error('c_person')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->contact_person) ? $mc->contact_person : "N/A"; ?>" type="text" class="form-control " id="inputEmail4" placeholder="Contact person Name" name="c_person">
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="inputname" class="form-label">Contact Person<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control " pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" id="inputname" required placeholder="Contact person Name" name="c_person" value="<?= $retVal = ($mc->contact_person) ? $mc->contact_person : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Please Enter Contact Person's name.
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('c_person')) ? strip_tags(form_error('c_person')) : "Please Enter Contact Person's name."; ?>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('cp_email')) ? $this->load->view('components/error_toster', ['error' => form_error('cp_email')]) : null; ?>
-                                    <label for="inputEmail4" class="form-label">Contact Person Email<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->contact_person_email) ? $mc->contact_person_email : "N/A"; ?>" type="email" class="form-control " id="inputEmail4" name="cp_email" placeholder="email">
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="inputEmail" class="form-label">Contact Person Email<span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control " id="inputEmail" required name="cp_email" placeholder="email" value="<?= $retVal = ($mc->contact_person_email) ? $mc->contact_person_email : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        Please Enter Contact Person's email.
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('cp_email')) ? strip_tags(form_error('cp_email')) : "Please Enter Contact Person's email."; ?>
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mb-3">
+                                <div class="position-relative col-md-4 mb-4">
                                     <?php (form_error('cp_number')) ? $this->load->view('components/error_toster', ['error' => form_error('cp_number')]) : null; ?>
                                     <label for="inputPassword4" class="form-label">Contact Person Phone<span class="text-danger">*</span></label>
-                                    <input value="<?= $retVal = ($mc->contact_person_number) ? $mc->contact_person_number : "N/A"; ?>" type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number">
+                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" required maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number" value="<?= $retVal = ($mc->contact_person_number) ? $mc->contact_person_number : "N/A"; ?>">
+                                    <div class="valid-tooltip">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('cp_number')) ? strip_tags(form_error('cp_number')) : "Please Enter Contact Person's phone."; ?>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <?php (form_error('comment')) ? $this->load->view('components/error_toster', ['error' => form_error('comment')]) : null; ?>
+                            <div class="mb-4">
                                 <label for="example-textarea" class="form-label">Comments</label>
-                                <textarea class="form-control" id="example-textarea" rows="5" name="comment"><?= $retVal = ($mc->comments) ? $mc->comments : "N/A"; ?></textarea>
+                                <textarea class="form-control" id="example-textarea" rows="5" name="comments"><?= $retVal = ($mc->comments) ? $mc->comments : "N/A"; ?></textarea>
+                                <div class="invalid-tooltip">
+                                    <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
+                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
 

@@ -10,7 +10,7 @@
                 <form action="<?= base_url('Usermanagment/insert_user') ?>" method="post" id="user_edit">
                     <div class="row">
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="floatingPassword" placeholder="Adam Sandler" name="name" required>
+                            <input type="text" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" title="Only Name is allowed" class="form-control" id="floatingPassword" placeholder="Adam Sandler" name="name" required>
                             <label for="floatingPassword">Full Name<span class="text-danger">*</span></label>
                             <input type="hidden" name="user_update" value="true" aria-required="">
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" id="dob" data-provide="datepicker">
+                                <input type="date" class="form-control" required name="dob" id="dob" data-provide="datepicker">
                             </div>
                         </div>
                     </div>
@@ -33,11 +33,11 @@
                         <div class="col">
                             <div class="form-floating mb-3">
                                 <div class="form-check">
-                                    <input type="radio" id="customRadio1" name="gender" value="male" class="form-check-input">
+                                    <input type="radio" id="customRadio1"required name="gender" value="male" class="form-check-input">
                                     <label class="form-check-label" for="customRadio1">Male</label>
                                 </div>
                                 <div class="form-check">
-                                    <input type="radio" id="customRadio2" name="gender" value="female" class="form-check-input">
+                                    <input type="radio" id="customRadio2" required name="gender" value="female" class="form-check-input">
                                     <label class="form-check-label" for="customRadio2">Female</label>
                                 </div>
                             </div>

@@ -160,7 +160,7 @@ $this->load->view('shared/sidebar'); ?>
                             </div>
                             <div class="mb-4">
                                 <label for="example-textarea" class="form-label">Comments</label>
-                                <textarea class="form-control" id="example-textarea" rows="5" name="comment"><?= set_value('comment'); ?></textarea>
+                                <textarea class="form-control" id="example-textarea" rows="5" name="comments"><?= set_value('comment'); ?></textarea>
                                 <div class="invalid-tooltip">
                                     <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
                                 </div>

@@ -41,7 +41,7 @@
 <body data-layout-mode="default" data-theme="light" data-topbar-color="light" data-menu-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='false'>
     <div id="preloader" style="display: hide;">
         <div id="status" style="display: hide;">
-            <div class="spinner-grow avatar-lg text-secondary m-2">Loading...</div>
+            <div class="spinner-grow avatar-lg text-secondary m-2">Loading..</div>
         </div>
     </div>
     <!-- Begin page -->

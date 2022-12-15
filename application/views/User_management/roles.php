@@ -19,11 +19,6 @@ $this->load->view('shared/sidebar'); ?>
                     <div class="card-header">
                         <div class="row justify-content-between">
                             <h2 class="col-auto header-title">Roles</h2>
-                            <div class="col-auto">
-                                <?php $data['error'] = $this->session->flashdata('error');
-                                $data['message'] = $this->session->flashdata('message');
-                                (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                            </div>
                             <div class="col-1">
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
                             </div>
@@ -137,18 +132,20 @@ $this->load->view('components/delete_modal.php', $data); ?>
             });
         });
         //toaster
-        <?php if (!empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php if ($this->session->flashdata('error')) : ?>
             $.toast({
                 heading: "Error",
                 hideAfter: 3000,
-                icon: "info",
+                icon: "error",
                 loaderBg: "#1ea69a",
                 position: "top-right",
                 stack: 1,
                 text: "<?= $this->session->flashdata('message'); ?>"
             });
-        <?php endif; ?>
-        <?php if (empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php $this->session->unset_userdata('error');
+            $this->session->unset_userdata('message');
+        endif; ?>
+        <?php if ($this->session->flashdata('success')) : ?>
             $.toast({
                 heading: "Well Done!",
                 hideAfter: 3000,
@@ -158,6 +155,8 @@ $this->load->view('components/delete_modal.php', $data); ?>
                 stack: 1,
                 text: "<?= $this->session->flashdata('message'); ?>"
             });
-        <?php endif; ?>
+        <?php $this->session->unset_userdata('success');
+            $this->session->unset_userdata('message');
+        endif; ?>
     });
 </script>

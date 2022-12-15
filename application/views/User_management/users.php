@@ -24,6 +24,11 @@ $this->load->view('shared/sidebar'); ?>
                                     <i class="mdi mdi-account-multiple"></i> Users
                                 </h4>
                             </div>
+                            <div class="container-fluid">
+                            <?php $data['error'] = $this->session->flashdata('error');
+                            $data['message'] = $this->session->flashdata('message');
+                            // (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
+                        </div>
                             <div class="col-6" style="text-align: right">
                                 <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="material-symbols-outlined">person_add</i></button>
                             </div>
@@ -180,30 +185,30 @@ $this->load->view('shared/sidebar'); ?>
         $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
             var id = $(e.relatedTarget).data('id'); // get the id
             $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
-            $("#role_del").click(function(e) {
-                e.preventDefault();
-                id = $(this).attr('data-delete-id');
-                console.log(id)
-                $("#danger-alert-modal").modal('show');
-                $.ajax({
-                    type: "post",
-                    url: '<?= base_url("Usermanagment/del_user/"); ?>' + id,
-                    dataType: "JSON",
-                    success: function(response) {
-                        <?php $this->session->set_flashdata('message', 'Deactivated'); ?>
-                        usertable.destroy(true)
-                        usertable.ajax.reload();
+        });
+        $("#role_del").click(function(e) {
+            e.preventDefault();
+            id = $(this).attr('data-delete-id');
+            console.log(id)
+            $("#danger-alert-modal").modal('show');
+            $.ajax({
+                type: "post",
+                url: '<?= base_url("Usermanagment/del_user/"); ?>' + id,
+                dataType: "JSON",
+                success: function(response) {
+                    <?php $this->session->set_flashdata('message', strip_tags(validation_errors())); ?>
+                    usertable.destroy(true)
+                    usertable.ajax.reload();
+                    // window.location.reload();
+                    $(document).ajaxStop(function() {
                         // window.location.reload();
-                        $(document).ajaxStop(function() {
-                            // window.location.reload();
 
-                        });
-                    }
-                });
+                    });
+                }
             });
         });
         //toaster
-        <?php if (!empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php if ($this->session->flashdata('error')) : ?>
             $.toast({
                 heading: "Error",
                 hideAfter: 3000,
@@ -211,10 +216,10 @@ $this->load->view('shared/sidebar'); ?>
                 loaderBg: "#1ea69a",
                 position: "top-right",
                 stack: 1,
-                text: "<?= $this->session->flashdata('message'); ?>"
+                text:"<?= $this->session->flashdata('message'); ?>"||'Form error'
             });
         <?php endif; ?>
-        <?php if (empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php if ($this->session->flashdata('success')) : ?>
             $.toast({
                 heading: "Well Done!",
                 hideAfter: 3000,

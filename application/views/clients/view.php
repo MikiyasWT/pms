@@ -182,18 +182,20 @@ $this->load->view('shared/sidebar'); ?>
             usertable.ajax.reload(null, false);
         }, 10000);
         //toaster
-        <?php if (!empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php if ($this->session->flashdata('error')) : ?>
             $.toast({
                 heading: "Error",
                 hideAfter: 3000,
-                icon: "info",
+                icon: "error",
                 loaderBg: "#1ea69a",
                 position: "top-right",
                 stack: 1,
                 text: "<?= $this->session->flashdata('message'); ?>"
             });
-        <?php endif; ?>
-        <?php if (empty($this->session->flashdata('error')) && $this->session->flashdata('message') !== null) : ?>
+        <?php $this->session->unset_userdata('error');
+            $this->session->unset_userdata('message');
+        endif; ?>
+        <?php if ($this->session->flashdata('success')) : ?>
             $.toast({
                 heading: "Well Done!",
                 hideAfter: 3000,
@@ -203,7 +205,9 @@ $this->load->view('shared/sidebar'); ?>
                 stack: 1,
                 text: "<?= $this->session->flashdata('message'); ?>"
             });
-        <?php endif; ?>
+        <?php $this->session->unset_userdata('success');
+            $this->session->unset_userdata('message');
+        endif; ?>
     });
 </script>
 <!-- Script -->

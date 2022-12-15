@@ -74,6 +74,7 @@ class UserManagment_model extends CI_Model
     $this->db->join('tbl_roles', 'tbl_roles.id = tbl_users.role');
     if ($searchQuery != '')
       $this->db->where($searchQuery);
+    $this->db->order_by('tbl_users.id', 'DESC');
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $records = $this->db->get()->result();
