@@ -39,16 +39,16 @@ class Master_client extends CI_Controller
   }
   public function create_client()
   {
-    $this->form_validation->set_rules('name', 'Full Name', 'required|trim|alpha_numeric_spaces');
+    $this->form_validation->set_rules('name', 'Full Name', 'required|trim|alpha_numeric_spaces|regex_match[/[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/]');
     $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim|is_natural');
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-    $this->form_validation->set_rules('address', 'address', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('city', 'city', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('state', 'state', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('country', 'country', 'required|trim|alpha');
+    $this->form_validation->set_rules('address', 'address', "trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z0-9\s,'-]*$/]");
+    $this->form_validation->set_rules('city', 'city', 'trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/]');
+    $this->form_validation->set_rules('state', 'state', 'trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/]');
+    $this->form_validation->set_rules('country', 'country', 'required|trim|alpha|regex_match[/[a-zA-Z]{3,}/]');
     $this->form_validation->set_rules('type', 'Client', 'required|trim');
     $this->form_validation->set_rules('fax', 'Fax', 'trim|is_natural');
-    $this->form_validation->set_rules('c_person', 'Contact Person', 'required|trim|alpha_numeric_spaces');
+    $this->form_validation->set_rules('c_person', 'Contact Person', 'required|trim|alpha_numeric_spaces|regex_match[/[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/]');
     $this->form_validation->set_rules('cp_number', 'Contact Person Phone', 'required|trim|is_natural');
     $this->form_validation->set_rules('cp_email', 'Contact Person email', 'required|trim|valid_email');
     $this->form_validation->set_rules('comments', 'Comment', 'trim|alpha_numeric_spaces');
@@ -91,10 +91,13 @@ class Master_client extends CI_Controller
         "comments" => $comments
       );
       $result = $this->Master_client_model->insert_client($data);
+      // sleep(5);
       if ($result) {
+        $this->session->set_flashdata('success', true);
         $this->session->set_flashdata('message', 'Added New Client');
         redirect('dashboard/clients');
       } else {
+        $this->session->set_flashdata('error', true);
         $this->session->set_flashdata('error', 'Data not inserted');
         redirect('dashboard/clients');
       }
@@ -118,16 +121,16 @@ class Master_client extends CI_Controller
   }
   public function update_client($id)
   {
-    $this->form_validation->set_rules('name', 'Full Name', 'required|trim|alpha_numeric_spaces');
+    $this->form_validation->set_rules('name', 'Full Name', 'required|trim|alpha_numeric_spaces|regex_match[/[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/]');
     $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim|is_natural');
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
-    $this->form_validation->set_rules('address', 'address', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('city', 'city', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('state', 'state', 'trim|alpha_numeric_spaces');
-    $this->form_validation->set_rules('country', 'country', 'required|trim|alpha');
+    $this->form_validation->set_rules('address', 'address', "trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z0-9\s,'-]*$/]");
+    $this->form_validation->set_rules('city', 'city', 'trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/]');
+    $this->form_validation->set_rules('state', 'state', 'trim|alpha_numeric_spaces|regex_match[/^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$/]');
+    $this->form_validation->set_rules('country', 'country', 'required|trim|alpha|regex_match[/[a-zA-Z]{3,}/]');
     $this->form_validation->set_rules('type', 'Client', 'required|trim');
     $this->form_validation->set_rules('fax', 'Fax', 'trim|is_natural');
-    $this->form_validation->set_rules('c_person', 'Contact Person', 'required|trim|alpha_numeric_spaces');
+    $this->form_validation->set_rules('c_person', 'Contact Person', 'required|trim|alpha_numeric_spaces|regex_match[/[a-zA-Z][a-zA-Z ]+[a-zA-Z]$/]');
     $this->form_validation->set_rules('cp_number', 'Contact Person Phone', 'required|trim|is_natural');
     $this->form_validation->set_rules('cp_email', 'Contact Person email', 'required|trim|valid_email');
     $this->form_validation->set_rules('comments', 'Comment', 'trim|alpha_numeric_spaces');
@@ -137,7 +140,7 @@ class Master_client extends CI_Controller
       // echo json_encode(['error' => true, 'message' => validation_errors()]);
       // redirect('dashboard/client_create');
       $data['mc'] = $this->Master_client_model->get_client($id);
-      $this->load->view('clients/detail',$data);
+      $this->load->view('clients/detail', $data);
     } else {
       $name = $this->input->post('name');
       $phone = $this->input->post('phone');
@@ -170,12 +173,14 @@ class Master_client extends CI_Controller
         "contact_person_email" => $cp_email,
         "comments" => $comments
       );
-      $result = $this->Master_client_model->update_client($data,$id);
+      $result = $this->Master_client_model->update_client($data, $id);
       if ($result) {
         $this->session->set_flashdata('message', 'Client Updated');
+        $this->session->set_flashdata('success', true);
         redirect('dashboard/clients');
       } else {
-        $this->session->set_flashdata('error', 'Data not Updated');
+        $this->session->set_flashdata('error', true);
+        $this->session->set_flashdata('message', 'Data not Updated');
         redirect('dashboard/clients');
       }
     }

@@ -76,11 +76,16 @@ class Master_client_model extends CI_Model
     $records = $this->db->get('master_clients')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
-    $this->db->select('*');
+    $this->db->select('master_clients.*,c.full_name as created_by, m.full_name as modified_by,master_client_types.client_type');
     $this->db->from('master_clients');
     $this->db->join('master_client_types', 'master_client_types.id = master_clients.type');
+    $this->db->join('tbl_users c', 'master_clients.created_by = c.id','left');
+    $this->db->join('tbl_users m', 'master_clients.modified_by = m.id','left');
+    // return $this->db->get_compiled_select();
+    // exit;
     if ($searchQuery != '')
       $this->db->where($searchQuery);
+    $this->db->order_by('master_clients.id', 'DESC');
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $records = $this->db->get()->result();
