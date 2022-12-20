@@ -72,7 +72,7 @@
 <script src="<?php echo base_url(); ?>assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
 <!-- toastr init js-->
 <script src="<?= base_url(); ?>assets/js/pages/toastr.init.js"></script>
-
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </body>
 
 </html>

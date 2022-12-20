@@ -91,7 +91,7 @@ class Master_client extends CI_Controller
         "comments" => $comments
       );
       $result = $this->Master_client_model->insert_client($data);
-      // sleep(5);
+      sleep(5);
       if ($result) {
         $this->session->set_flashdata('success', true);
         $this->session->set_flashdata('message', 'Added New Client');
