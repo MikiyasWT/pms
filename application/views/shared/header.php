@@ -11,14 +11,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
+    <!-- Jquery Toast css -->
+    <link href="<?php echo base_url(); ?>assets/libs/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet" type="text/css" />
     <!-- third party css -->
-    <link href="<?= base_url();?>assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url();?>assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url();?>assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
-    <link href="<?= base_url();?>assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?= base_url(); ?>assets/libs/datatables.net-select-bs5/css//select.bootstrap5.min.css" rel="stylesheet" type="text/css" />
     <!-- third party css end -->
-    <link href="<?= base_url();?>assets/libs/ladda/ladda.min.css" rel="stylesheet" type="text/css">
-    <link href="<?= base_url();?>assets/libs/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url(); ?>assets/libs/ladda/ladda.min.css" rel="stylesheet" type="text/css">
+    <link href="<?= base_url(); ?>assets/libs/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css">
     <!-- plugin css -->
     <link href="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- <link href="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"> -->
@@ -31,18 +33,21 @@
     <!-- Head js -->
     <script src="<?php echo base_url(); ?>assets/js/head.js"></script>
 
+
 </head>
 
 <!-- body start -->
 
 <body data-layout-mode="default" data-theme="light" data-topbar-color="light" data-menu-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='false'>
-
+    <div id="preloader" style="display: hide;">
+        <div id="status" style="display: hide;">
+            <div class="spinner-grow avatar-lg text-secondary m-2">Loading..</div>
+        </div>
+    </div>
     <!-- Begin page -->
     <div id="wrapper">
-
-
         <!-- Topbar Start -->
-        <div  class="navbar-custom">
+        <div class="navbar-custom">
             <div class="container-fluid">
                 <ul class="list-unstyled topnav-menu float-end mb-0">
                     <!-- Search start -->

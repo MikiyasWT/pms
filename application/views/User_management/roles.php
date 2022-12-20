@@ -19,11 +19,6 @@ $this->load->view('shared/sidebar'); ?>
                     <div class="card-header">
                         <div class="row justify-content-between">
                             <h2 class="col-auto header-title">Roles</h2>
-                            <div class="col-auto">
-                                <?php $data['error'] = $this->session->flashdata('error');
-                                $data['message'] = $this->session->flashdata('message');
-                                (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                            </div>
                             <div class="col-1">
                                 <button type="button" class="btn btn-success waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#con-close-modal">Insert</button>
                             </div>
@@ -87,54 +82,81 @@ $this->load->view('components/delete_modal.php', $data); ?>
 <?php $this->load->view('shared/footer'); ?>
 <script>
     $(function() {
-        var divClone = $("#con-close-modal").clone(true,true);
+        var divClone = $("#con-close-modal").clone(true, true);
         $('.btn-success').click(function(e) {
             e.preventDefault();
             $(".modal-title").text("Insert");
-                $(".btn-info").text("Insert changes");
-                $('#role_edit').attr('action', "<?= base_url('Usermanagment/insert_role/'); ?>")
-                $("#field-1").val(null);
-                // $("p").removeAttr("hidden");
-                $("p").attr("hidden", true);
+            $(".btn-info").text("Insert changes");
+            $('#role_edit').attr('action', "<?= base_url('Usermanagment/insert_role/'); ?>")
+            $("#field-1").val(null);
+            // $("p").removeAttr("hidden");
+            $("p").attr("hidden", true);
         });
-   
-    $(".btn-warning").click(function(e) {
-        e.preventDefault();
-        // $("#con-close-modal").html("Yeah all good mate!");
-        id = $(this).data('id');
-        console.log(id)
-        $("#con-close-modal").modal('show');
-        $.ajax({
-            type: "get",
-            url: '<?= base_url("Usermanagment/update_role/"); ?>' + id,
-            dataType: "JSON",
-            success: function(response) {
-                $(".modal-title").text("Update");
-                $(".btn-info").text("Update changes");
-                $('#role_edit').attr('action', "<?= base_url('Usermanagment/update_role/'); ?>" + id)
-                $("#field-1").val(response.role_type);
-                $("p").removeAttr("hidden");
-            }
-        });
-    });
-    $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
-        var id = $(e.relatedTarget).data('id'); // get the id
-        $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
-        $("#role_del").click(function(e) {
+
+        $(".btn-warning").click(function(e) {
             e.preventDefault();
-            id = $(this).attr('data-delete-id');
-            // console.log(id)
-            // $("#danger-alert-modal").modal('show');
+            // $("#con-close-modal").html("Yeah all good mate!");
+            id = $(this).data('id');
+            console.log(id)
+            $("#con-close-modal").modal('show');
             $.ajax({
-                type: "post",
-                url: '<?= base_url("Usermanagment/del_role/"); ?>' + id,
+                type: "get",
+                url: '<?= base_url("Usermanagment/update_role/"); ?>' + id,
                 dataType: "JSON",
-                success: function(response) {}
-            });
-            $(document).ajaxStop(function() {
-                window.location.reload();
+                success: function(response) {
+                    $(".modal-title").text("Update");
+                    $(".btn-info").text("Update changes");
+                    $('#role_edit').attr('action', "<?= base_url('Usermanagment/update_role/'); ?>" + id)
+                    $("#field-1").val(response.role_type);
+                    $("p").removeAttr("hidden");
+                }
             });
         });
+        $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
+            var id = $(e.relatedTarget).data('id'); // get the id
+            $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
+            $("#role_del").click(function(e) {
+                e.preventDefault();
+                id = $(this).attr('data-delete-id');
+                // console.log(id)
+                // $("#danger-alert-modal").modal('show');
+                $.ajax({
+                    type: "post",
+                    url: '<?= base_url("Usermanagment/del_role/"); ?>' + id,
+                    dataType: "JSON",
+                    success: function(response) {}
+                });
+                $(document).ajaxStop(function() {
+                    window.location.reload();
+                });
+            });
+        });
+        //toaster
+        <?php if ($this->session->flashdata('error')) : ?>
+            $.toast({
+                heading: "Error",
+                hideAfter: 3000,
+                icon: "error",
+                loaderBg: "#1ea69a",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php $this->session->unset_userdata('error');
+            $this->session->unset_userdata('message');
+        endif; ?>
+        <?php if ($this->session->flashdata('success')) : ?>
+            $.toast({
+                heading: "Well Done!",
+                hideAfter: 3000,
+                icon: "success",
+                loaderBg: "#5ba035",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php $this->session->unset_userdata('success');
+            $this->session->unset_userdata('message');
+        endif; ?>
     });
-});
 </script>

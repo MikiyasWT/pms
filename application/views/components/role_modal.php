@@ -17,7 +17,7 @@
                         <div class="col-md-8">
                             <div class="mb-3">
                                 <!-- <label for="field-1" class="form-label">Role Name</label> -->
-                                <input type="text" class="form-control" required name="role_type" id="field-1" placeholder="Admin">
+                                <input type="text"  pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" title="Only Text is and more than 3 chars" class="form-control" required name="role_type" id="field-1" placeholder="Admin">
                             </div>
                             <p hidden>If you update the current status will automatically changed to active</p>
                         </div>
