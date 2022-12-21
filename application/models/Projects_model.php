@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
@@ -16,7 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class Projects_model extends CI_Model {
+class Projects_model extends CI_Model
+{
 
   // ------------------------------------------------------------------------
 
@@ -31,7 +32,8 @@ class Projects_model extends CI_Model {
   // ------------------------------------------------------------------------
   public function index()
   {
-    // 
+    $this->db->select('id,title');
+    return $this->db->get('tbl_projects')->result_array();
   }
 
   // ------------------------------------------------------------------------

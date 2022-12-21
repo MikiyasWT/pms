@@ -22,6 +22,8 @@
     <link href="<?= base_url(); ?>assets/libs/ladda/ladda.min.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url(); ?>assets/libs/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css">
     <!-- plugin css -->
+    <!-- <link href="<?= base_url(); ?>assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="<?= base_url(); ?>assets/libs/dropify/css/dropify.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- <link href="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"> -->
     <!-- Bootstrap css -->

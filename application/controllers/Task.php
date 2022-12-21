@@ -4,29 +4,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Controller Projects
+ * Controller Task
  *
  * This controller for ...
  *
  * @package   CodeIgniter
  * @category  Controller CI
- * @author    Setiawan Jodi <jodisetiawan@fisip-untirta.ac.id>
- * @author    Raul Guerrero <r.g.c@me.com>
- * @link      https://github.com/setdjod/myci-extension/
+ * @author    cronos
+ * @link      https://github.com/cronos1967
  * @param     ...
  * @return    ...
  *
  */
 
-class Projects extends CI_Controller
+class Task extends CI_Controller
 {
-    
+
   public function __construct()
   {
     parent::__construct();
-
     $this->load->library('session');
-    $this->load->model('Projects_model');
+    $this->load->model('Tasks_model');
     if (!($this->session->userdata('logged_in'))) {
       redirect('auth/login');
     }
@@ -34,15 +32,14 @@ class Projects extends CI_Controller
 
   public function index()
   {
-    echo json_encode($this->Projects_model->index());
+    echo json_encode($this->Tasks_model);
   }
-  public function create_project()
+  public function get_status()
   {
-
+    echo json_encode($this->Tasks_model->get_status());
   }
-
 }
 
 
-/* End of file Projects.php */
-/* Location: ./application/controllers/Projects.php */
+/* End of file Task.php */
+/* Location: ./application/controllers/Task.php */
