@@ -18,7 +18,8 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-clipboard-check"></i> &nbsp; Task</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/create_client') ?>" class="needs-validation <?= $retVal = (set_value('Title') != null) ?  'was-validated' : null; ?> " novalidate method="POST" id="create_client">
+                        <form action="<?= '' //base_url('master_client/create_client') 
+                                        ?>" class="needs-validation <?= $retVal = (set_value('Title') != null) ?  'was-validated' : null; ?> " novalidate method="POST" id="create_client">
                             <div class="row">
                                 <div class="position-relative col-md mb-4">
                                     <label for="validationTooltip01" class="form-label">Title <span class="text-danger">*</span></label>
@@ -55,6 +56,29 @@ $this->load->view('shared/sidebar'); ?>
                                     </div>
                                 </div>
                                 <div class="position-relative mb-4 col-md-4">
+                                    <label for="example-readonly" class="form-label">Duration</label>
+                                    <input type="text" id="example-readonly" class="form-control" readonly="" name="duration">
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('duration')) ? strip_tags(form_error('duration')) : 'Please select status.'; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="example-textarea" class="form-label">Description</label>
+                                    <textarea class="form-control" id="example-textarea" rows="5" name="description"><?= set_value('comment'); ?></textarea>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
+                                    </div>
+                                </div>
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputrescource" class="form-label">Resources <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="file" id="inputrescource" multiple="">
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('resources')) ? strip_tags(form_error('resources')) : 'Please enter resources.'; ?>
+                                    </div>
+                                </div>
+                                <div class="position-relative mb-4 col-md-4">
                                     <label for="inputstatus" class="form-label">Task Status<span class="text-danger">*</span></label>
                                     <select class="form-control form-select" id="inputstatus" name="status" required>
                                         <option selected="" value="" disabled>Open this select menu</option>
@@ -64,41 +88,7 @@ $this->load->view('shared/sidebar'); ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="position-relative mb-4 col-md-6">
-                                    <label for="inputrescource" class="form-label">Resources <span class="text-danger">*</span></label>
-                                    <div class="dropify-wrapper" style="height: 314px;">
-                                        <div class="dropify-message"><span class="file-icon">
-                                                <p>Drag and drop a file here or click</p>
-                                            </span>
-                                            <p class="dropify-error">Ooops, something wrong appended.</p>
-                                        </div>
-                                        <div class="dropify-loader"></div>
-                                        <div class="dropify-errors-container">
-                                            <ul></ul>
-                                        </div><input type="file" multiple data-plugins="dropify"><button type="button" class="dropify-clear">Remove</button>
-                                        <div class="dropify-preview"><span class="dropify-render"></span>
-                                            <div class="dropify-infos">
-                                                <div class="dropify-infos-inner">
-                                                    <p class="dropify-filename"><span class="file-icon"></span> <span class="dropify-filename-inner"></span></p>
-                                                    <p class="dropify-infos-message">Drag and drop or click to replace</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('resources')) ? strip_tags(form_error('resources')) : 'Please enter resources.'; ?>
-                                    </div>
-                                </div>
-                                <div class="position-relative mb-4 col-md-6">
-                                    <label for="example-textarea" class="form-label">Description</label>
-                                    <textarea class="form-control" id="example-textarea" rows="5" name="description"><?= set_value('comment'); ?></textarea>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="submit" class="ml-4 btn btn-primary waves-effect waves-light align-self-end">Create</button>
+                            <button type="submit" class="ml-4 btn btn-primary waves-effect waves-light">Create</button>
                         </form>
                     </div> <!-- end card-body -->
                 </div> <!-- end card-->
@@ -151,11 +141,12 @@ $this->load->view('shared/sidebar'); ?>
         var load = $("#status");
         var form = $("#create_client");
         form.submit(function(e) {
-            console.log(e.result)
-            if (e.result) {
-                spinner.show();
-                load.show();
-            }
+            e.preventDefault()
+            console.log(e)
+            // if (e.result) {
+            //     spinner.show();
+            //     load.show();
+            // }
         })
     });
 </script>
