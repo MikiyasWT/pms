@@ -38,7 +38,7 @@ class Tasks_model extends CI_Model
   public function insert_task($data = null)
   {
     if ($data == null) {
-      return 'Data no avalable';
+      return false;
     }
     return $this->db->insert('tbl_tasks', $data);
   }
@@ -68,17 +68,17 @@ class Tasks_model extends CI_Model
     $records = $this->db->get('tbl_tasks')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
-    $this->db->select('tbl_tasks.*,p.title as task_project,c.full_name as created_by, m.full_name as modified_by,master_status.m.status as task_status');
+    $this->db->select('tbl_tasks.*,p.title as task_project,c.full_name as created_by, m.full_name as modified_by,master_status.m_status as task_status');
     $this->db->from('tbl_tasks');
     $this->db->join('master_status', 'master_status.id = tbl_tasks.task_status');
-    $this->db->join('tbl_users c', 'master_clients.created_by = c.id', 'left');
-    $this->db->join('tbl_users m', 'master_clients.modified_by = m.id', 'left');
+    $this->db->join('tbl_users c', 'task_created_by = c.id', 'left');
+    $this->db->join('tbl_users m', 'task_modified_by = m.id', 'left');
     $this->db->join('tbl_projects p', 'tbl_tasks.task_project = p.id', 'left');
     // return $this->db->get_compiled_select();
     // exit;
     if ($searchQuery != '')
       $this->db->where($searchQuery);
-    $this->db->order_by('tbl_tasks.id', 'DESC');
+    $this->db->order_by('task_id', 'DESC');
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $records = $this->db->get()->result();

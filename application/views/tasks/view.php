@@ -26,7 +26,7 @@ $this->load->view('shared/sidebar'); ?>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
                             <div class="col-6" style="text-align: right">
-                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/client_create'); ?>"><i class="material-symbols-outlined">person_add</i></a>
+                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_tasks'); ?>"><i class="material-symbols-outlined">person_add</i></a>
                             </div>
                         </div>
                     </div>
@@ -41,23 +41,13 @@ $this->load->view('shared/sidebar'); ?>
                             <thead class="table-dark">
                                 <tr>
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Address</th>
-                                    <th>State</th>
-                                    <th>City</th>
-                                    <th>Country</th>
-                                    <th>Type</th>
-                                    <th>Fax</th>
-                                    <th>Contact person</th>
-                                    <th>contact person number</th>
-                                    <th>Contact person email</th>
-                                    <th>Comments</th>
-                                    <th>Created</th>
-                                    <th>Created by</th>
-                                    <th>Modified</th>
-                                    <th>Modified by</th>
+                                    <th>Title</th>
+                                    <th>Project</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    <th>Duraiton</th>
+                                    <th>Description</th>
+                                    <th>Resources</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -95,11 +85,11 @@ $this->load->view('shared/sidebar'); ?>
 
         //data table populating
         usertable = $('#demo-foo-addrow').DataTable({
-            processing: false,
+            processing: true,
             serverSide: true,
             serverMethod: 'get',
             ajax: {
-                url: '<?= base_url('Master_client/get_clients') ?>',
+                url: '<?= base_url('Task/get_tasks') ?>',
                 dataSrc: 'data'
             },
             columns: [{
@@ -107,58 +97,34 @@ $this->load->view('shared/sidebar'); ?>
                     render: (data, type, row, meta) => meta.row + 1
                 },
                 {
-                    "data": "name"
+                    "data": "task_title"
                 },
                 {
-                    "data": "email"
+                    "data": "task_project"
                 },
                 {
-                    "data": "phone"
+                    "data": "task_start_day"
                 },
                 {
-                    "data": "address"
+                    "data": "task_end_day"
                 },
                 {
-                    "data": "state"
+                    "data": "task_duration"
                 },
                 {
-                    "data": "city"
+                    "data": "task_description"
                 },
                 {
-                    "data": "country"
+                    "data": "task_resources",
+                    render: function(data, type, row) {
+                        // return type(data)
+                        for (const item of data) {
+                            return item
+                        }
+                    }
                 },
                 {
-                    "data": "client_type"
-                },
-                {
-                    "data": "fax"
-                },
-                {
-                    "data": "contact_person"
-                },
-                {
-                    "data": "contact_person_number"
-                },
-                {
-                    "data": "contact_person_email"
-                },
-                {
-                    "data": "comments"
-                },
-                {
-                    "data": "created"
-                },
-                {
-                    "data": "created_by"
-                },
-                {
-                    "data": "modified"
-                },
-                {
-                    "data": "modified_by"
-                },
-                {
-                    "data": "status",
+                    "data": "task_status",
                     render: function(data, type, row) {
                         // console.log(data)
                         color = '';

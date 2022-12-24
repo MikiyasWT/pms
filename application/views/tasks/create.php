@@ -18,12 +18,11 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-clipboard-check"></i> &nbsp; Task</h4>
                     <div class="card-body">
-                        <form action="<?= '' //base_url('master_client/create_client') 
-                                        ?>" class="needs-validation <?= $retVal = (set_value('Title') != null) ?  'was-validated' : null; ?> " novalidate method="POST" id="create_client">
+                        <form enctype="multipart/form-data" action="<?= base_url('task/insert') ?>" class="needs-validation <?= $retVal = (set_value('title') != null) ?  'was-validated' : null; ?> " novalidate method="POST" id="create_client">
                             <div class="row">
                                 <div class="position-relative col-md mb-4">
                                     <label for="validationTooltip01" class="form-label">Title <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control " pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" title="Only Title is allowed" id="validationTooltip01" required placeholder="Task Title" name="title" value="<?php echo set_value('title'); ?>">
+                                    <input type="text" class="form-control " pattern="[a-zA-Z ][a-zA-Z ]+[a-zA-Z]$" title="Only Title is allowed" id="validationTooltip01" required placeholder="Task Title" name="title" value="<?php echo set_value('title'); ?>">
                                     <div class="invalid-feedback small">
                                     </div>
                                     <div class="invalid-tooltip">
@@ -36,7 +35,7 @@ $this->load->view('shared/sidebar'); ?>
                                         <option value="" disabled selected hidden>Select your option</option>
                                     </select>
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('type')) ? strip_tags(form_error('type')) : 'Please Select Client Type.'; ?>
+                                        <?= (form_error('project')) ? strip_tags(form_error('project')) : 'Please Select project.'; ?>
                                     </div>
                                 </div>
                             </div>
@@ -57,23 +56,23 @@ $this->load->view('shared/sidebar'); ?>
                                 </div>
                                 <div class="position-relative mb-4 col-md-4">
                                     <label for="example-readonly" class="form-label">Duration</label>
-                                    <input type="text" id="example-readonly" class="form-control" readonly="" name="duration">
+                                    <input type="text" id="example-readonly" class="form-control" readonly="" name="duration" value="<?php echo set_value('duration'); ?>">
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('duration')) ? strip_tags(form_error('duration')) : 'Please select status.'; ?>
+                                        <?= (form_error('duration')) ? strip_tags(form_error('duration')) : 'Please select duration.'; ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="position-relative mb-4 col-md-4">
                                     <label for="example-textarea" class="form-label">Description</label>
-                                    <textarea class="form-control" id="example-textarea" rows="5" name="description"><?= set_value('comment'); ?></textarea>
+                                    <textarea class="form-control" id="example-textarea" rows="5" name="description"><?= set_value('description'); ?></textarea>
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
+                                        <?= (form_error('description')) ? strip_tags(form_error('description')) : "Please Enter description."; ?>
                                     </div>
                                 </div>
                                 <div class="position-relative mb-4 col-md-4">
                                     <label for="inputrescource" class="form-label">Resources <span class="text-danger">*</span></label>
-                                    <input class="form-control" type="file" id="inputrescource" multiple="">
+                                    <input class="form-control" type="file" id="inputrescource" multiple="" name="files[]">
                                     <div class="invalid-tooltip">
                                         <?= (form_error('resources')) ? strip_tags(form_error('resources')) : 'Please enter resources.'; ?>
                                     </div>
@@ -141,7 +140,7 @@ $this->load->view('shared/sidebar'); ?>
         var load = $("#status");
         var form = $("#create_client");
         form.submit(function(e) {
-            e.preventDefault()
+            // e.preventDefault()
             console.log(e)
             // if (e.result) {
             //     spinner.show();
