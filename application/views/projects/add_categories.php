@@ -17,7 +17,7 @@ $this->load->view('shared/sidebar'); ?>
             <!-- end page title -->
             <div class="mt-1">
                 <div class="card">
-                    <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp; Project Category</h4>
+                    <h4 class=" card-header"><i class="mdi mdi-briefcase-check-outline"></i> &nbsp; Project Category</h4>
                     <div class="card-body">
                         <form action="<?= base_url('Project/create_project_category')?>" method="POST">
                             <div class="row">

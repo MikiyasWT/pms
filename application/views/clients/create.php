@@ -98,18 +98,7 @@ $this->load->view('shared/sidebar'); ?>
                                         <?= (form_error('country')) ? strip_tags(form_error('country')) : 'Please enter Country.'; ?>
                                     </div>
                                 </div>
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputState" class="form-label">Client Type <span class="text-danger">*</span></label>
-                                    <select id="inputState" class="form-select" required name="type">
-                                        <option value="" disabled selected hidden>Select your option</option>
-                                    </select>
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('type')) ? strip_tags(form_error('type')) : 'Please Select Client Type.'; ?>
-                                    </div>
-                                </div>
+                               c
                                 <div class="position-relative col-md-4 mb-4">
                                     <label for="inputPassword4" class="form-label">Fax</label>
                                     <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="fax" value="<?php echo set_value('fax'); ?>">

@@ -21,20 +21,21 @@ $this->load->view('shared/sidebar'); ?>
                     <div class="card-body">
                         <form action="<?= base_url('Project/update_project/' . $project->id) ?>" method="POST">
                             <div class="row">
-
                                 
+                                <!-- <?php print_r($category->id); 
+                                ?> -->
 
                                 <div class="col-md-4 mb-3">
                                     <?php (form_error('title')) ? $this->load->view('components/error_toster', ['error'=>form_error('title')]) : null ; ?>
                                     <label for="inputTitle" class="form-label">Title</label>
-                                    <input type="text" class="form-control " id="inputTitle" placeholder="Project title" name="title" value="<?= $retVal = ($project->title) ? $project->title : "N/A"; ?>" >
+                                    <input type="text" class="form-control " id="inputTitle" placeholder="Project title" name="title" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" value="<?= $retVal = ($project->title) ? $project->title : "N/A"; ?>" >
                                 </div>
 
                                 <div class="mb-3 col-md-4">
                                 <?php (form_error('client')) ? $this->load->view('components/error_toster', ['error'=>form_error('client')]) : null ; ?>
                                     <label for="inputClient" class="form-label">Client</label>
                                     <select id="inputClient" class="form-select" name="client" value="<?= $retVal = ($client->id) ? $client->id: "N/A"; ?>" >
-                                        <option><?= $client->name ?></option>
+                                        <option value='' disabled selected>select Option</option>
 
                                     </select>
                                 </div>
@@ -43,7 +44,8 @@ $this->load->view('shared/sidebar'); ?>
                                 <?php (form_error('project_category')) ? $this->load->view('components/error_toster', ['error'=>form_error('project_category')]) : null ; ?>
                                     <label for="inputProjectCategory" class="form-label">Project Category</label>   
                                     <select id="inputProjectCategory" class="form-select" name="project_category" value="<?= $retVal = ($category->id) ? $category->id: "N/A"; ?>">
-                                        <option><?= $category->categories ?></option> 
+                                    <option value='' disabled selected>select Option</option>
+
                                          
                                     </select>
                                 </div>
@@ -60,7 +62,7 @@ $this->load->view('shared/sidebar'); ?>
                                 <div class="col-md-4 mb-3">
                                 <?php (form_error('end_date')) ? $this->load->view('components/error_toster', ['error'=>form_error('end_date')]) : null ; ?>
                                     <label for="inputEnd_date" class="form-label">End Date</label>
-                                    <input type="date" class="form-control" id="inputEnd_date"  name="end_date" value="<?= $retVal = ($project->end_date) ? $project->end_date : "N/A"; ?>">
+                                    <input type="date" class="form-control" id="inputEnd_date"  name="end_date" disabled  value="<?= $retVal = ($project->end_date) ? $project->end_date : "N/A"; ?>">
                                 </div>
 
                                 <div class="mb-3 col-md-4">
@@ -76,10 +78,10 @@ $this->load->view('shared/sidebar'); ?>
                                 <div class="mb-3">
                                 <?php (form_error('description')) ? $this->load->view('components/error_toster', ['error'=>form_error('description')]) : null ; ?>
                                     <label for="inputDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="inputDescription" rows="5" name="description" value="<?= $retVal = ($project->description) ? $project->description : "N/A"; ?>"></textarea>
+                                    <textarea class="form-control" id="inputDescription" rows="5" name="description" ><?= $retVal = ($project->description) ? $project->description : "N/A"; ?></textarea>
                                 </div>
 
-                                
+                                 
                             </div>
                             
                             <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
@@ -116,11 +118,12 @@ $this->load->view('shared/sidebar'); ?>
         data: "data",
         dataType: "json",
         success: function (response) {
-            console.log(response)
+            console.log(response[0].id)
             var $dropdown = $("#inputClient");
                 $.each(response, function() {
                     $dropdown.append($("<option />").val(this.id).text(this.name));
                 });
+                $("#inputClient").val(<?= $project->client; ?>).change();
         }
     });
 });
@@ -138,7 +141,70 @@ $this->load->view('shared/sidebar'); ?>
                 $.each(response, function() {
                     $dropdown.append($("<option />").val(this.id).text(this.categories));
                 });
+                $("#inputProjectCategory").val(<?= $project->project_category; ?>).change();
         }
     });
 });
+
+
+
+$(function(){
+    var start = $('#inputStart_date').val();
+    var end = $('#inputEnd_date').val(); 
+    let today = new Date().toISOString().split('T')[0]
+    let tomorrow = new Date(today+86400000);
+  // $( "#inputStart_datse" ).attr('min',today);
+
+     document.getElementById('inputStart_date').setAttribute('min', today);
+
+})
+
+
+$( "#inputStart_date" ).on('change', function() {
+  //alert( this.value ); 
+  //let startdate = this.value
+  //$('#inputStart_date').val().min = today  
+  
+  
+//   let start =  new Date(this.val);
+//   console.log(start)
+var checkInDate = $(this).val();
+    var split = checkInDate.split('-');
+    var tomorrow = new Date(split[0], split[1]-1, parseInt(split[2])+2, 0,0,0,0).toISOString().split('T')[0];
+//   var nextdate = new Date(next)
+//   $('#inputEnd_date').min =  nextdate;
+  $('#inputEnd_date').removeAttr('disabled');
+  console.log(tomorrow)
+  document.getElementById('inputEnd_date').setAttribute('min', tomorrow);
+  
+
+});
+
+
+$( "#inputEnd_date" ).on('change', function() {
+   
+
+  data = {      'start_date': "" + $('#inputStart_date').val() + "",   
+                'end_date': "" + $('#inputEnd_date').val() + ""
+            }
+  $.ajax({
+        type: "get",
+        url: "<?= base_url('Project/check_project_end_date')?>",
+        data: data,
+        success: function (response) {
+           
+           if(response == false){
+            //var start = $('#inputStart_date').val();
+            
+            //style.borderColor = "red";
+            $('#inputEnd_date').css("borderColor","red");
+            
+            
+           }
+        }
+    });
+});
+
+
+
 </script>

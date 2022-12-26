@@ -43,9 +43,8 @@ class Projects_model extends CI_Model {
   }
 
   public function get_project_category_by_Id($id){
-    
 
-    $this->db->select('*');
+    $this->db->select('*,master_categories.id');
     $this->db->where('master_categories.id', $id);
     // echo $this->db->get_compiled_select('master_clients');
     // exit;
@@ -54,7 +53,7 @@ class Projects_model extends CI_Model {
   }
 
   public function get_project_client_by_Id($id){
-    $this->db->select('*');
+    $this->db->select('*,master_clients.id');
     $this->db->where('master_clients.id', $id);
     // echo $this->db->get_compiled_select('master_clients');
     // exit;

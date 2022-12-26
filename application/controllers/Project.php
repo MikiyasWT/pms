@@ -36,21 +36,59 @@ class Project extends CI_Controller
   {
     // 
   }
+   
+  //|callback_check_project_end_date[start_date]
+  public function check_project_end_date(){
+    $start_date = date('Y-m-d',strtotime($_GET['start_date']));
+    $end_date = date('Y-m-d',strtotime($_GET['end_date']));
+    
+    if(date_create($start_date) >= date_create($end_date))
+    {
+      
+        echo false;
+    }
+    else
+    {
+        echo true;
+    }
+  }
+
+
+  public function start_date_validator()
+   {
+    
+    $start_date = date('Y-m-d',strtotime($_GET['start_date']));
+    //echo $start_date;
+    $curdate = date("Y/m/d");
+
+    $today = date_create($curdate);
+    $project_start_date = date_create($start_date);
+    
+    if($project_start_date >= $today)
+    { 
+      echo true;
+    }
+    else{
+        echo false;
+    }
+}
+
   public function create_project()
-  {
+  { 
     $this->form_validation->set_rules('client', 'Client', 'required');
-    $this->form_validation->set_rules('title', 'Title', 'required');
-    $this->form_validation->set_rules('description', 'Description', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'required|trim|alpha_numeric_spaces|min_length[3]|max_length[100]');
+    $this->form_validation->set_rules('description', 'Description', 'required|trim|alpha_numeric_spaces|min_length[3]|max_length[2000]');
     $this->form_validation->set_rules('start_date', 'Start Date', 'required');
     $this->form_validation->set_rules('end_date', 'End Date', 'required');
-    $this->form_validation->set_rules('status', 'Status', 'required');
+    $this->form_validation->set_rules('status', 'Status', 'required|alpha');
     $this->form_validation->set_rules('project_category', 'Project Category', 'required');
     
-    
+
 
     if ($this->form_validation->run() === FALSE) {
       $this->session->set_flashdata('error', validation_errors());
-      redirect('dashboard/projects');
+      //redirect('dashboard/create_project');
+      $this->load->view('projects/create');
     } else {
       //$created_by
     
@@ -61,7 +99,7 @@ class Project extends CI_Controller
       $end_date = $this->input->post('end_date');
       $status = $this->input->post('status');
       $project_category = $this->input->post('project_category');
-
+      
       $data = array(
         "client" => $client,
         "title" => $title,
@@ -132,18 +170,18 @@ class Project extends CI_Controller
   public function update_project($id)
   {
     $this->form_validation->set_rules('client', 'Client', 'required');
-    $this->form_validation->set_rules('title', 'Title', 'required');
-    $this->form_validation->set_rules('description', 'Description', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'required|trim|alpha_numeric_spaces|min_length[3]|max_length[100]');
+    $this->form_validation->set_rules('description', 'Description', 'required|trim|alpha_numeric_spaces|min_length[3]|max_length[2000]');
     $this->form_validation->set_rules('start_date', 'Start Date', 'required');
     $this->form_validation->set_rules('end_date', 'End Date', 'required');
-    $this->form_validation->set_rules('status', 'Status', 'required');
+    $this->form_validation->set_rules('status', 'Status', 'required|alpha');
     $this->form_validation->set_rules('project_category', 'Project Category', 'required');
     // $this->form_validation->set_rules('role_type', 'Role', 'required|trim');
     if ($this->form_validation->run() === FALSE) {
+      $data['project'] = $this->Projects_model->get_project($id);
+      $data['category'] = $this->Projects_model->get_project_category_by_Id($id);
+      $data['client'] = $this->Projects_model->get_project_client_by_Id($id);
       $this->session->set_flashdata('error', validation_errors());
-      // echo json_encode(['error' => true, 'message' => validation_errors()]);
-      // redirect('dashboard/client_create');
-      
       $this->load->view('projects/detail',$data);
     } else {
       $client = $this->input->post('client');
