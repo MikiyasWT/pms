@@ -111,6 +111,7 @@ class Projects_model extends CI_Model
     if ($searchQuery != '')
       $this->db->where($searchQuery);
     $this->db->order_by($columnName, $columnSortOrder);
+    $this->db->order_by('tbl_projects.id', 'DESC');
     $this->db->limit($rowperpage, $start);
     $records = $this->db->get()->result();
     ## Response

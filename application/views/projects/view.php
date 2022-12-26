@@ -21,7 +21,7 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                <i class="mdi mdi-briefcase-check-outline"></i> Projects
+                                    <i class="mdi mdi-briefcase-check-outline"></i> Projects
                                 </h4>
                             </div>
                             <div class="col-6" style="text-align: right">
@@ -30,12 +30,6 @@ $this->load->view('shared/sidebar'); ?>
                         </div>
                     </div>
                     <div class="card-body p-2">
-                        <div class="container-fluid">
-                            <?php $data['error'] = $this->session->flashdata('error');
-                            $data['message'] = $this->session->flashdata('message');
-                            (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                        </div>
-
                         <table id="demo-foo-addrow" class="table table-dark table-striped dt-responsive nowrap w-100 ">
                             <thead class="table-dark">
                                 <tr>
@@ -84,6 +78,33 @@ $this->load->view('shared/sidebar'); ?>
 <?php $this->load->view('shared/footer'); ?>
 <script>
     $(function() {
+        //toaster
+        <?php if ($this->session->flashdata('error')) : ?>
+            $.toast({
+                heading: "Error",
+                hideAfter: 3000,
+                icon: "error",
+                loaderBg: "#1ea69a",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php $this->session->unset_userdata('error');
+            $this->session->unset_userdata('message');
+        endif; ?>
+        <?php if ($this->session->flashdata('success')) : ?>
+            $.toast({
+                heading: "Well Done!",
+                hideAfter: 3000,
+                icon: "success",
+                loaderBg: "#5ba035",
+                position: "top-right",
+                stack: 1,
+                text: "<?= $this->session->flashdata('message'); ?>"
+            });
+        <?php $this->session->unset_userdata('success');
+            $this->session->unset_userdata('message');
+        endif; ?>
         usertable = $('#demo-foo-addrow').DataTable({
             processing: true,
             serverSide: true,
@@ -126,8 +147,8 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     "data": "full_name"
                 },
-                
-                
+
+
                 {
                     "data": "status",
                     render: function(data, type, row) {
@@ -144,7 +165,7 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="<?= base_url("dashboard/project_detail"); ?>/'+row.id+'" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
+                        return '<a href="<?= base_url("dashboard/project_detail"); ?>/' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
                     }
                 }
             ]
