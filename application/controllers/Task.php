@@ -45,30 +45,15 @@ class Task extends CI_Controller
   {
     echo json_encode($this->Tasks_model->get_tasks($_GET));
   }
-  public function upload_check()
-  {
-    // $upload = new Upload();
-    // echo '<pre>';
-    $res = $this->upload->upload_files();
-    // print $retVal = ($res[0]) ? : $res[1] ;
-    // if ($res[0]) {
-    //   echo $upload->get_files();
-    // } else {
-    //   foreach ($res[1] as $key) {
-    //     echo $key;
-    //   }
-    // }
-    if ($res[0]) {
-      $str = '';
-      foreach ($res[1] as $key) {
-        $str += $key . ',';
-      }
-      $this->form_validation->set_message('upload_check', 'The {field}' . $str);
-      return FALSE;
-    } else {
-      return TRUE;
-    }
-  }
+public function validate_date()
+{
+  // return 'connected';
+  $e_date = date('Y/m/d h:i:s',strtotime($_GET['e_date']));
+  $s_date = date('Y/m/d h:i:s',strtotime($_GET['s_date']));
+  $diff = date_diff(date_create($s_date),date_create($e_date));
+  echo $diff->format('%d days, %h Hours');
+  // var_dump($diff);
+}
   public function insert()
   {
     # code...
@@ -97,7 +82,7 @@ class Task extends CI_Controller
       if (!$res[0]) {
         goto end_s;
       }
-      echo $this->upload->get_files();
+      var_dump($this->upload->get_files());
       exit;
       
       $data = array(
@@ -108,7 +93,7 @@ class Task extends CI_Controller
         "task_start_day" => $s_date,
         "task_end_day" => $e_date,
         "task_description" => $description,
-        "task_duration" => date('Y-m-d h:i:s'),
+        "task_duration" =>$duration,
         "task_status" => $status,
         "task_resources" => $this->upload->get_files()
       );

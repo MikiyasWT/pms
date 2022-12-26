@@ -117,10 +117,13 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     "data": "task_resources",
                     render: function(data, type, row) {
-                        // return type(data)
-                        for (const item of data) {
-                            return item
-                        }
+                        // let res = data.split(',')
+                        // console.log(data)
+                        // down = res.forEach(element => 
+                        //     `<?= base_url()?>${element}`
+                        // );
+                        // return down
+                        return data
                     }
                 },
                 {

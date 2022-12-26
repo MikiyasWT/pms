@@ -49,14 +49,14 @@ $this->load->view('shared/sidebar'); ?>
                                 </div>
                                 <div class="position-relative col-md-4 mb-4">
                                     <label for="inputtext2" class="form-label">End Date<span class="text-danger">*</span></label>
-                                    <input type="datetime-local" class="form-control " value="<?php echo set_value('e_date'); ?>" id="inputtext2" required placeholder="End Date" name="e_date">
+                                    <input type="datetime-local" class="form-control " value="<?php echo set_value('e_date'); ?>" disabled id="inputtext2" required placeholder="End Date" name="e_date">
                                     <div class="invalid-tooltip">
                                         <?= (form_error('e_date')) ? strip_tags(form_error('e_date')) : 'Please enter End date.'; ?>
                                     </div>
                                 </div>
                                 <div class="position-relative mb-4 col-md-4">
-                                    <label for="example-readonly" class="form-label">Duration</label>
-                                    <input type="text" id="example-readonly" class="form-control" readonly="" name="duration" value="<?php echo set_value('duration'); ?>">
+                                    <label for="inputduration" class="form-label">Duration</label>
+                                    <input type="text" id="inputduration" class="form-control" readonly="" name="duration" value="<?php echo set_value('duration'); ?>">
                                     <div class="invalid-tooltip">
                                         <?= (form_error('duration')) ? strip_tags(form_error('duration')) : 'Please select duration.'; ?>
                                     </div>
@@ -110,6 +110,29 @@ $this->load->view('shared/sidebar'); ?>
 
 <script>
     $(function() {
+        var today = new Date().toISOString().slice(0, 16);
+        console.log(today)
+        document.getElementById("inputtext").min = today;
+        $('#inputtext').on('change', function() {
+            document.getElementById("inputtext2").min = $('#inputtext').val();
+            $("#inputtext2").removeAttr('disabled');
+        })
+        $('#inputtext2').on('change', function() {
+            data = {
+                'e_date': "" + $('#inputtext2').val() + "",
+                's_date': "" + $('#inputtext').val() + ""
+            }
+            // console.log($('#inputtext2').val())
+            $.ajax({
+                type: "get",
+                url: "<?= base_url('task/validate_date') ?>",
+                data: data,
+                success: function(response) {
+                    console.log(response)
+                    $('#inputduration').val(response);
+                }
+            });
+        })
         $.ajax({
             type: "get",
             url: "<?= base_url('projects') ?>",
