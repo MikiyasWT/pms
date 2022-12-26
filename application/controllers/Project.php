@@ -34,7 +34,7 @@ class Project extends CI_Controller
 
   public function index()
   {
-    // 
+    echo json_encode($this->Projects_model->index());
   }
 
   //|callback_check_project_end_date[start_date]
