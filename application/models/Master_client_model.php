@@ -44,6 +44,12 @@ class Master_client_model extends CI_Model
     $this->db->where('id', $id);
     return $this->db->update('master_clients');
   }
+
+  public function getListOfClients(){
+    // $this->db->select('*,master_clients.id');
+    $this->db->select('name,id');
+    return $this->db->get('master_clients')->result();
+  }
   public function get_clients($postData = null)
   {
     ## Read value

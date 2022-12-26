@@ -73,6 +73,13 @@
 <!-- <script src="<?php echo base_url(); ?>assets/js/pages/sweet-alerts.init.js"></script> -->
 <!-- Tost-->
 <script src="<?php echo base_url(); ?>assets/libs/jquery-toast-plugin/jquery.toast.min.js"></script>
+
+ <!-- Plugins js-->
+ <script src="<?php echo base_url(); ?>assets/libs/flatpickr/flatpickr.min.js"></script>
+        <script src="<?php echo base_url(); ?>assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
+        <!-- Init js-->
+        <script src="<?php echo base_url(); ?>assets/js/pages/form-pickers.init.js"></script>
 <!-- toastr init js-->
 <script src="<?= base_url(); ?>assets/js/pages/toastr.init.js"></script>
 <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
