@@ -57,7 +57,10 @@
 
 <!-- Validation init js-->
 <script src="<?= base_url(); ?>assets/js/pages/form-validation.init.js"></script>
-
+<!-- Plugins js -->
+<script src="<?= base_url(); ?>assets/libs/dropzone/min/dropzone.min.js"></script>
+<script src="<?= base_url(); ?>assets/libs/dropify/js/dropify.min.js"></script>
+<script src="<?= base_url(); ?>assets/js/pages/form-fileuploads.init.js"></script>
 <!-- Dashboard 2 init -->
 <!-- <script src="<?php echo base_url(); ?>assets/libs/parsleyjs/parsley.min.js"></script> -->
 <script src="<?php echo base_url(); ?>assets/js/pages/dashboard-2.init.js"></script>
@@ -79,7 +82,7 @@
         <script src="<?php echo base_url(); ?>assets/js/pages/form-pickers.init.js"></script>
 <!-- toastr init js-->
 <script src="<?= base_url(); ?>assets/js/pages/toastr.init.js"></script>
-
+<script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
 </body>
 
 </html>

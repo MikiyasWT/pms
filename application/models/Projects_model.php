@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
@@ -16,7 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  *
  */
 
-class Projects_model extends CI_Model {
+class Projects_model extends CI_Model
+{
 
   // ------------------------------------------------------------------------
 
@@ -28,6 +29,7 @@ class Projects_model extends CI_Model {
 
   public function index()
   {
+    $this->db->select('id,title');
   
   }
 
@@ -46,7 +48,7 @@ class Projects_model extends CI_Model {
 
     $this->db->select('*,master_categories.id');
     $this->db->where('master_categories.id', $id);
-    // echo $this->db->get_compiled_select('master_clients');
+    return $this->db->get('tbl_projects')->result_array();echo $this->db->get_compiled_select('master_clients');
     // exit;
     $data = $this->db->get('master_categories')->result();
     return (isset($data[0]))? $data[0] :false ;

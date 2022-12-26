@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 15, 2022 at 12:09 PM
+-- Generation Time: Dec 20, 2022 at 02:28 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -101,7 +101,20 @@ INSERT INTO `master_clients` (`id`, `created`, `created_by`, `modified`, `modifi
 (23, '2022-12-14 02:48:58', 10, NULL, NULL, 'Galvin Le', 'Mollitia debitis exp', 'Voluptas minima plac', 'Irure', 'Quia', 2, 'hibopariz@mailinator.com', 1166219743, 1264883588, 'Kevyn Austin', 1603956202, 'fubafa@mailinator.com', NULL, 'active', '0'),
 (24, '2022-12-15 10:13:22', 10, NULL, NULL, 'Dominic Clark', 'Non quia eius non om', 'Magnam expedita quia', 'Eiusmod facere autem', 'Adipisicing', 2, 'duru@mailinator.com', 1913588748, 1588722530, 'Serina Joseph', 1902735174, 'xafog@mailinator.com', NULL, 'active', '0'),
 (25, '2022-12-15 10:16:24', 10, NULL, NULL, 'Mikayla Shepard', 'Ut voluptate aliqua', 'Reiciendis dolor qui', 'Ipsa nihil sunt des', 'Vero', 2, 'gadyhexywe@mailinator.com', 1556651225, 1719288405, 'Madeson Gallegos', 1301191802, 'kidehe@mailinator.com', NULL, 'active', '0'),
-(26, '2022-12-15 12:08:23', 10, NULL, NULL, 'Kiona Patel', 'Sunt in et quam offi', 'Odit nostrud magni l', 'Exercitation dolorem', 'Quas', 1, 'goma@mailinator.com', 1289673891, 1279635844, 'Kylan Stevenson', 1392914370, 'covi@mailinator.com', 'Laborum doloribus ut', 'active', '0');
+(26, '2022-12-15 12:08:23', 10, NULL, NULL, 'Kiona Patel', 'Sunt in et quam offi', 'Odit nostrud magni l', 'Exercitation dolorem', 'Quas', 1, 'goma@mailinator.com', 1289673891, 1279635844, 'Kylan Stevenson', 1392914370, 'covi@mailinator.com', 'Laborum doloribus ut', 'active', '0'),
+(27, '2022-12-20 09:49:09', 10, NULL, NULL, 'Tallulah Nixon', 'Ipsum nobis dolor s', 'Dolores in distincti', 'Non doloremque delec', 'Vero', 1, 'lezon@mailinator.com', 1659405809, 1354287918, 'Lysandra Holmes', 1116988577, 'gicatowy@mailinator.com', 'Autem dignissimos et', 'active', '0'),
+(28, '2022-12-20 09:49:43', 10, NULL, NULL, 'Lacy Barnes', 'Dignissimos magna mo', 'Proident', 'Earum magnam maiores', 'Aliquid', 2, 'cydik@mailinator.com', 1321933879, 1775546547, 'Merritt Byrd', 1941223320, 'lecol@mailinator.com', 'Aliqua Iure sed occ', 'active', '0'),
+(29, '2022-12-20 09:51:09', 10, NULL, NULL, 'Seth Preston', 'Rerum est et pariatu', 'Reprehenderit', 'Ea non velit asperna', 'Adipisicing', 2, 'gojejytyp@mailinator.com', 1802327976, 1216214174, 'Russell French', 1664933930, 'winegon@mailinator.com', 'Iste ut labore deser', 'active', '0'),
+(30, '2022-12-20 09:52:25', 10, NULL, NULL, 'Ulric Wiley', 'Sint officia neque', 'Natus vel aute nesci', 'Officia duis iure vo', 'Fuga', 1, 'kyfydari@mailinator.com', 1813216289, 1786902872, 'Kristen Peters', 1741937621, 'gafaje@mailinator.com', 'Quia provident cupi', 'active', '0'),
+(31, '2022-12-20 09:53:25', 10, NULL, NULL, 'Cameron Thompson', 'Non aliqua Ducimus', 'Quia porro cum aut q', 'Est cum possimus i', 'Numquam', 1, 'nigu@mailinator.com', 1958844800, 1293241431, 'Zane Hicks', 1801718122, 'luligan@mailinator.com', 'Non voluptatum quae', 'active', '0'),
+(32, '2022-12-20 09:55:03', 10, NULL, NULL, 'Kennedy White', 'Lorem omnis sed et n', 'Ducimus aliquip atq', 'Et modi culpa qui a', 'Mollit', 1, 'hofyty@mailinator.com', 1537542211, 1822116956, 'Odessa Fields', 1706567531, 'mugogy@mailinator.com', 'Magni cupidatat eius', 'active', '0'),
+(33, '2022-12-20 09:59:55', 10, NULL, NULL, 'MacKensie Wagner', 'Doloribus qui conseq', 'Reiciendis consequat', 'Ratione repudiandae', 'Ipsum', 1, 'xudej@mailinator.com', 1801466201, 1549155358, 'Benjamin Tyson', 1874699695, 'syqupam@mailinator.com', 'Veritatis repellendu', 'active', '0'),
+(34, '2022-12-20 10:09:58', 10, NULL, NULL, 'Keane Robertson', 'Explicabo Pariatur', 'Impedit sapiente re', 'Excepteur officiis v', 'Eum', 2, 'qakisum@mailinator.com', 1189612824, 1801748264, 'Alea Aguirre', 1699444380, 'jile@mailinator.com', 'Voluptas corporis as', 'active', '0'),
+(35, '2022-12-20 12:00:11', 10, NULL, NULL, 'Mechelle Harrell', 'Aperiam nostrud et a', 'Sunt eos quia asper', 'Dignissimos molestia', 'Molestiae', 1, 'vinafyfehy@mailinator.com', 1769573569, 1231781236, 'Raja Rosario', 1956108812, 'nupymar@mailinator.com', 'Ad do consectetur re', 'active', '0'),
+(36, '2022-12-20 12:11:53', 10, NULL, NULL, 'Keith Moran', 'Fugit anim id enim', 'Qui omnis dolore dol', 'Fugiat dolorem ea r', 'Autsas', 1, 'bivydop@mailinator.com', 1234607419, 1321128745, 'Edan Beard', 1273833184, 'gelowy@mailinator.com', 'Atque alias irure al', 'active', '0'),
+(44, '2022-12-20 12:25:52', 10, NULL, NULL, 'Louis Vinson', 'Qui in aut rerum vol', 'Reiciendis tenetur n', 'Obcaecati est non r', 'Cumque', 1, 'cekywaciz@mailinator.com', 1766816977, 1913304265, 'Gareth Knowles', 1881768485, 'hifucet@mailinator.com', 'Odit itaque debitis', 'active', '0'),
+(45, '2022-12-20 12:26:42', 10, NULL, NULL, 'Shellie Jackson', 'Est vero ullamco sun', 'Magni a temporibus s', 'Sint architecto rer', 'Assumend', 2, 'sicyzoho@mailinator.com', 1463258183, 1934762496, 'Althea Valentine', 1588993121, 'golomu@mailinator.com', 'Sed harum sunt repel', 'active', '0'),
+(46, '2022-12-20 12:27:39', 10, '2022-12-20 12:33:29', 10, 'Mona Irwin', 'Itaque laudantium a', 'In incidunt', 'Beatae voluptas eius', 'Ipsam', 1, 'mumulom@mailinator.com', 1281504840, 1183865813, 'Zahir Morrow', 1801258356, 'tadisen@mailinator.com', 'Sapiente qui perfere', 'active', '0');
 
 -- --------------------------------------------------------
 
@@ -124,6 +137,33 @@ CREATE TABLE `master_client_types` (
 INSERT INTO `master_client_types` (`id`, `client_type`, `created`, `status`, `deleted`) VALUES
 (1, 'ICT', '2022-12-09 12:13:57', 'active', '0'),
 (2, 'Project Manager', '2022-12-09 01:30:25', 'active', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `master_status`
+--
+
+CREATE TABLE `master_status` (
+  `id` int(11) NOT NULL,
+  `m_status` varchar(50) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `deleted` enum('0','1') NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `master_status`
+--
+
+INSERT INTO `master_status` (`id`, `m_status`, `created_at`, `deleted`) VALUES
+(1, 'Inactive', '2022-12-20 11:09:25', '0'),
+(2, 'Active', '2022-12-20 11:09:25', '0'),
+(3, 'Running', '2022-12-20 11:10:16', '0'),
+(4, 'Completed', '2022-12-20 11:10:16', '0'),
+(5, 'Pending', '2022-12-20 11:10:16', '0'),
+(6, 'Rejected', '2022-12-20 11:10:16', '0'),
+(7, 'Approved', '2022-12-20 11:10:16', '0'),
+(8, 'Confirmed', '2022-12-20 11:10:24', '0');
 
 -- --------------------------------------------------------
 
@@ -176,6 +216,28 @@ INSERT INTO `tbl_roles` (`id`, `role_type`, `created_at`, `role_status`) VALUES
 (2, 'Admin', '2022-11-28 10:28:42', 'active'),
 (3, 'superadmin', '2022-11-28 02:21:12', 'active'),
 (4, 'user', '2022-11-29 07:40:24', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_tasks`
+--
+
+CREATE TABLE `tbl_tasks` (
+  `task_id` bigint(11) NOT NULL,
+  `task_created_by` bigint(11) NOT NULL,
+  `task_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `task_modified` datetime DEFAULT current_timestamp(),
+  `task_modified_by` bigint(11) DEFAULT NULL,
+  `task_project` bigint(11) NOT NULL,
+  `task_title` varchar(500) NOT NULL,
+  `task_description` varchar(1000) NOT NULL,
+  `task_duration` datetime NOT NULL,
+  `task_start_day` datetime NOT NULL,
+  `task_end_day` datetime NOT NULL,
+  `task_resources` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`task_resources`)),
+  `task_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -239,6 +301,12 @@ ALTER TABLE `master_client_types`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `master_status`
+--
+ALTER TABLE `master_status`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_projects`
 --
 ALTER TABLE `tbl_projects`
@@ -253,6 +321,16 @@ ALTER TABLE `tbl_projects`
 --
 ALTER TABLE `tbl_roles`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_tasks`
+--
+ALTER TABLE `tbl_tasks`
+  ADD PRIMARY KEY (`task_id`),
+  ADD KEY `frk_created_by` (`task_created_by`),
+  ADD KEY `frk_modified_by` (`task_modified_by`),
+  ADD KEY `frk_project` (`task_project`),
+  ADD KEY `frk_task_status` (`task_status`);
 
 --
 -- Indexes for table `tbl_users`
@@ -275,13 +353,19 @@ ALTER TABLE `master_categories`
 -- AUTO_INCREMENT for table `master_clients`
 --
 ALTER TABLE `master_clients`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `master_client_types`
 --
 ALTER TABLE `master_client_types`
   MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `master_status`
+--
+ALTER TABLE `master_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `tbl_projects`
@@ -294,6 +378,12 @@ ALTER TABLE `tbl_projects`
 --
 ALTER TABLE `tbl_roles`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_tasks`
+--
+ALTER TABLE `tbl_tasks`
+  MODIFY `task_id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
@@ -321,6 +411,15 @@ ALTER TABLE `tbl_projects`
   ADD CONSTRAINT `fkr_created_by` FOREIGN KEY (`created_by`) REFERENCES `tbl_users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fkr_maste_client` FOREIGN KEY (`client`) REFERENCES `master_clients` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `fkr_modified_by` FOREIGN KEY (`modified_by`) REFERENCES `tbl_users` (`id`) ON DELETE NO ACTION;
+
+--
+-- Constraints for table `tbl_tasks`
+--
+ALTER TABLE `tbl_tasks`
+  ADD CONSTRAINT `frk_created_by` FOREIGN KEY (`task_created_by`) REFERENCES `tbl_users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `frk_modified_by` FOREIGN KEY (`task_modified_by`) REFERENCES `tbl_users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `frk_project` FOREIGN KEY (`task_project`) REFERENCES `tbl_projects` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `frk_task_status` FOREIGN KEY (`task_status`) REFERENCES `master_status` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_users`
