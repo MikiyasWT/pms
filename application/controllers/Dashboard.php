@@ -12,6 +12,7 @@ class Dashboard extends CI_Controller
       redirect('auth/login');
     }
     $this->load->model('UserManagment_model');
+    $this->load->model('Tasks_model');
     $this->load->model('Master_client_model'); 
     $this->load->model('Projects_model'); 
   }
@@ -70,19 +71,6 @@ class Dashboard extends CI_Controller
   public function tasks()
   {
     $this->load->view('tasks/view');
-  }
-
-
-  public function projects(){
-    $this->load->view('projects/view');
-  }
-
-  public function create_project(){
-    $this->load->view('projects/create');
-  }
-
-  public function add_Category(){
-    $this->load->view('projects/add_categories');
   }
 }
 

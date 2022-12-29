@@ -4,11 +4,10 @@ $this->load->view('shared/sidebar'); ?>
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
 <!-- ============================================================== -->
-<?php $data['title'] = 'Clients'; ?>
+<?php $data['title'] = 'Task Update'; ?>
 
 <div class="content-page">
     <div class="content">
-
         <!-- Start Content-->
         <div class="container-fluid">
 
@@ -17,171 +16,89 @@ $this->load->view('shared/sidebar'); ?>
             <!-- end page title -->
             <div class="mt-1">
                 <div class="card">
-                    <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp;Update Client</h4>
+                    <h4 class=" card-header"><i class="mdi mdi-clipboard-outline"></i> &nbsp;Update Task</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('master_client/update_client/' . $mc->id) ?>" class="needs-validation <?= $retVal = (set_value('name') != null) ?  'was-validated' : null; ?> " novalidate method="POST">
+                        <form enctype="multipart/form-data" action="<?= base_url('task/update/') . $task->task_id ?>" class="needs-validation <?= $retVal = (set_value('title') != null) ?  'was-validated' : null; ?> " novalidate method="POST" id="create_client">
                             <div class="row">
-                                <div class="position-relative col-md-4 mb-4">
-                                    <label for="validationTooltip01" class="form-label">Full Name <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control " pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" title="Only Name is allowed" id="validationTooltip01" required placeholder="Client Name" name="name" value="<?= $retVal = ($mc->name) ? $mc->name : "N/A"; ?>">
+                                <div class="position-relative col-md mb-4">
+                                    <label for="validationTooltip01" class="form-label">Title <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control " pattern="[a-zA-Z ][a-zA-Z ]+[a-zA-Z]$" title="Only Title is allowed" id="validationTooltip01" required placeholder="Task Title" name="title" value="<?= $retVal = (set_value('title') == null) ? $task->task_title : set_value('title'); ?>">
                                     <div class="invalid-feedback small">
                                     </div>
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('name')) ? strip_tags(form_error('name')) : 'Please enter first name.'; ?> </div>
-                                </div>
-                                <div class="position-relative col-md-4 mb-4">
-                                    <label for="inputEmail4" class="form-label">Email<span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control " value="<?= $retVal = ($mc->email) ? $mc->email : "N/A"; ?>" id="inputEmail4" required placeholder="Email" name="email">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('name')) ? strip_tags(form_error('email')) : 'Please enter email.'; ?>
+                                        <?= (form_error('title')) ? strip_tags(form_error('title')) : 'Please enter title.'; ?>
                                     </div>
                                 </div>
-                                <div class="position-relative col-md-4 mb-4">
-                                    <label for="inputPhone" class="form-label">Phone<span class="text-danger">*</span></label>
-                                    <input type="text" data-toggle="input-mask" required data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPhone" placeholder="0912345678" name="phone" value="<?= $retVal = ($mc->phone) ? $mc->phone : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('phone')) ? strip_tags(form_error('phone')) : 'Please enter Phone.'; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="inputAddress" pattern="^[a-zA-Z0-9\s,'-]*$" required placeholder="1234 Main St" name="address" value="<?= $retVal = ($mc->address) ? $mc->address : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('address')) ? strip_tags(form_error('address')) : 'Please enter Address.'; ?>
-                                    </div>
-                                </div>
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputCity" class="form-label">City</label>
-                                    <input type="text" class="form-control" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" id="inputCity" name="city" value="<?= $retVal = ($mc->city) ? $mc->city : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        Please enter City.
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('city')) ? strip_tags(form_error('city')) : 'Please enter City.'; ?>
-                                    </div>
-                                </div>
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputCity" class="form-label">State</label>
-                                    <input type="text" class="form-control" id="inputCity" pattern="^[a-zA-Z]+(?:[\s-][a-zA-Z]+)*$" name="state" value="<?= $retVal = ($mc->state) ? $mc->state : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('state')) ? strip_tags(form_error('state')) : 'Please enter State.'; ?>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputCity" class="form-label">Country</label>
-                                    <input type="text" class="form-control" pattern="[a-zA-Z]{3,}" id="inputCity" name="country" value="<?= $retVal = ($mc->country) ? $mc->country : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('country')) ? strip_tags(form_error('country')) : 'Please enter Country.'; ?>
-                                    </div>
-                                </div>
-                                <div class="position-relative mb-4 col-md-4">
-                                    <label for="inputState" class="form-label">Client Type <span class="text-danger">*</span></label>
-                                    <select id="inputState" class="form-select" required name="type">
+                                <div class="position-relative mb-4 col-md">
+                                    <label for="inputproject" class="form-label">Projects <span class="text-danger">*</span></label>
+                                    <select id="inputproject" class="form-select" required name="project">
                                         <option value="" disabled selected hidden>Select your option</option>
                                     </select>
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('type')) ? strip_tags(form_error('type')) : 'Please Select Client Type.'; ?>
-                                    </div>
-                                </div>
-                                <div class="position-relative col-md-4 mb-4">
-                                    <label for="inputPassword4" class="form-label">Fax</label>
-                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="fax" value="<?= $retVal = ($mc->fax) ? $mc->fax : "N/A"; ?>">
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('fax')) ? strip_tags(form_error('fax')) : 'Please Fax Number.'; ?>
+                                        <?= (form_error('project')) ? strip_tags(form_error('project')) : 'Please Select project.'; ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="position-relative col-md-4 mb-4">
-                                    <label for="inputname" class="form-label">Contact Person<span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control " pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" id="inputname" required placeholder="Contact person Name" name="c_person" value="<?= $retVal = ($mc->contact_person) ? $mc->contact_person : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
+                                    <label for="inputtext" class="form-label">Start Date<span class="text-danger">*</span></label>
+                                    <input type="datetime-local" class="form-control " value="<?= $retVal = (set_value('s_date') == null) ? $task->task_start_day : set_value('s_date'); ?>" id="inputtext" required placeholder="Start date" name="s_date">
                                     <div class="invalid-tooltip">
-                                        Please Enter Contact Person's name.
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('c_person')) ? strip_tags(form_error('c_person')) : "Please Enter Contact Person's name."; ?>
+                                        <?= (form_error('s_date')) ? strip_tags(form_error('s_date')) : 'Please enter Start date.'; ?>
                                     </div>
                                 </div>
                                 <div class="position-relative col-md-4 mb-4">
-                                    <label for="inputEmail" class="form-label">Contact Person Email<span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control " id="inputEmail" required name="cp_email" placeholder="email" value="<?= $retVal = ($mc->contact_person_email) ? $mc->contact_person_email : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
+                                    <label for="inputtext2" class="form-label">End Date<span class="text-danger">*</span></label>
+                                    <input type="datetime-local" class="form-control " value="<?= $retVal = (set_value('e_date') == null) ? $task->task_end_day : set_value('e_date'); ?>" id="inputtext2" required placeholder="End Date" name="e_date">
                                     <div class="invalid-tooltip">
-                                        Please Enter Contact Person's email.
-                                    </div>
-                                    <div class="invalid-tooltip">
-                                        <?= (form_error('cp_email')) ? strip_tags(form_error('cp_email')) : "Please Enter Contact Person's email."; ?>
+                                        <?= (form_error('e_date')) ? strip_tags(form_error('e_date')) : 'Please enter End date.'; ?>
                                     </div>
                                 </div>
-                                <div class="position-relative col-md-4 mb-4">
-                                    <?php (form_error('cp_number')) ? $this->load->view('components/error_toster', ['error' => form_error('cp_number')]) : null; ?>
-                                    <label for="inputPassword4" class="form-label">Contact Person Phone<span class="text-danger">*</span></label>
-                                    <input type="text" data-toggle="input-mask" data-mask-format="0000000000" required maxlength="14" class="form-control" id="inputPassword4" placeholder="0912345678" name="cp_number" value="<?= $retVal = ($mc->contact_person_number) ? $mc->contact_person_number : "N/A"; ?>">
-                                    <div class="valid-tooltip">
-                                        Looks good!
-                                    </div>
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputduration" class="form-label">Duration</label>
+                                    <input type="text" id="inputduration" class="form-control" readonly="" name="duration" value="<?= $retVal = (set_value('duration') == null) ? $task->task_duration : set_value('duration'); ?>">
                                     <div class="invalid-tooltip">
-                                        <?= (form_error('cp_number')) ? strip_tags(form_error('cp_number')) : "Please Enter Contact Person's phone."; ?>
+                                        <?= (form_error('duration')) ? strip_tags(form_error('duration')) : 'Please select duration.'; ?>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-4">
-                                <label for="example-textarea" class="form-label">Comments</label>
-                                <textarea class="form-control" id="example-textarea" rows="5" name="comments"><?= $retVal = ($mc->comments) ? $mc->comments : "N/A"; ?></textarea>
-                                <div class="invalid-tooltip">
-                                    <?= (form_error('comment')) ? strip_tags(form_error('comment')) : "Please Enter Comment."; ?>
+                            <div class="row">
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="example-textarea" class="form-label">Description</label>
+                                    <textarea class="form-control" id="example-textarea" rows="5" name="description"><?= $retVal = (set_value('description') == null) ? $task->task_description : set_value('description'); ?></textarea>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('description')) ? strip_tags(form_error('description')) : "Please Enter description."; ?>
+                                    </div>
+                                </div>
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputrescource" class="form-label">Resources <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="file" id="inputrescource" multiple="" name="files[]">
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('resources')) ? strip_tags(form_error('resources')) : 'Please enter resources.'; ?>
+                                    </div>
+                                </div>
+                                <div class="position-relative mb-4 col-md-4">
+                                    <label for="inputstatus" class="form-label">Task Status<span class="text-danger">*</span></label>
+                                    <select class="form-control form-select" id="inputstatus" name="status" required>
+                                        <option selected="" value="" disabled>Open this select menu</option>
+                                    </select>
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('status')) ? strip_tags(form_error('status')) : 'Please select status.'; ?>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary waves-effect waves-light">Update</button>
-
+                            <button type="submit" class="ml-4 btn btn-primary waves-effect waves-light">Update</button>
                         </form>
-
                     </div> <!-- end card-body -->
                 </div> <!-- end card-->
             </div>
         </div> <!-- content -->
-
-
     </div>
+</div>
 
-    <!-- ============================================================== -->
-    <!-- End Page content -->
-    <!-- ============================================================== -->
-
-
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
 </div>
 <!-- END wrapper -->
 
@@ -190,32 +107,84 @@ $this->load->view('shared/sidebar'); ?>
 <?php $this->load->view('shared/footer'); ?>
 
 <!-- Script -->
+
 <script>
     $(function() {
-
+        var today = new Date().toISOString().slice(0, 16);
+        // console.log(today)
+        // document.getElementById("inputtext").min = today;
+        // $('#inputtext').attr('min',today)
+        $('#inputtext').on('change', function() {
+            $('#inputtext2').attr('min', $('#inputtext').val())
+            // document.getElementById("inputtext2").min = $('#inputtext').val();
+            $("#inputtext2").removeAttr('disabled');
+        })
+        $('#inputtext2').on('change', function() {
+            data = {
+                'e_date': "" + $('#inputtext2').val() + "",
+                's_date': "" + $('#inputtext').val() + ""
+            }
+            // console.log($('#inputtext2').val())
+            $.ajax({
+                type: "get",
+                url: "<?= base_url('task/validate_date') ?>",
+                data: data,
+                success: function(response) {
+                    console.log(response)
+                    $('#inputduration').val(response);
+                }
+            });
+        })
         $.ajax({
             type: "get",
-            url: "<?= base_url('usermanagment/get_clients') ?>",
+            url: "<?= base_url('projects') ?>",
+            data: "data",
+            dataType: "json",
+            success: function(response) {
+                // console.log(response)
+                var $dropdown = $("#inputproject");
+                $.each(response, function() {
+                    $dropdown.append($("<option />").val(this.id).text(this.title));
+                });
+            }
+        });
+        $("#inputproject").val('<?= $task->task_project; ?>').change();
+        $.ajax({
+            type: "get",
+            url: "<?= base_url('task/get_status') ?>",
             data: "data",
             dataType: "json",
             success: function(response) {
                 console.log(response)
-                var $dropdown = $("#inputState");
+                var $dropdown = $("#inputstatus");
                 $.each(response, function() {
-                    $dropdown.append($("<option />").val(this.id).text(this.client_type));
+                    $dropdown.append($("<option />").val(this.id).text(this.m_status));
                 });
             }
         });
-        $("#inputState").val(<?= $mc->type; ?>).change();
+        $("#inputstatus").val('<?= $task->task_status; ?>').change();
+        //toaster
+        <?php if ($this->session->flashdata('error')) : ?>
+            $.toast({
+                heading: "Error",
+                hideAfter: 3000,
+                icon: "error",
+                loaderBg: "#1ea69a",
+                position: "top-right",
+                stack: 1,
+                text: '<?= $this->session->flashdata('error');?>'
+            });
+        <?php endif; ?>
         var spinner = $('#preloader');
         var load = $("#status");
-        var form = $(".needs-validation");
+        var form = $("#create_client");
         form.submit(function(e) {
-            console.log(e.result)
-            if (e.result) {
-                spinner.show();
-                load.show();
-            }
+            // e.preventDefault()
+            console.log(e)
+            // if (e.result) {
+            //     spinner.show();
+            //     load.show();
+            // }
         })
     });
 </script>
