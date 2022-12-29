@@ -19,16 +19,22 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-account"></i> &nbsp;Update Project</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('Project/update_project/' . $project->id) ?>" method="POST">
+                    <form action="<?= base_url('Project/update_project/' . $project->id) ?>" method="POST" class="needs-validation <?= $retVal = (set_value('name') != null) ?  'was-validated' : null; ?> " novalidate >
+                        
                             <div class="row">
 
-                                <!-- <?php print_r($category->id);
-                                        ?> -->
 
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('title')) ? $this->load->view('components/error_toster', ['error' => form_error('title')]) : null; ?>
-                                    <label for="inputTitle" class="form-label">Title</label>
+
+                                
+
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="inputTitle" class="form-label">Title <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control " id="inputTitle" placeholder="Project title" name="title" pattern="[a-zA-Z][a-zA-Z ]+[a-zA-Z]$" value="<?= $retVal = ($project->title) ? $project->title : "N/A"; ?>">
+                                    <div class="invalid-feedback small">
+                                    </div>
+
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('title')) ? strip_tags(form_error('title')) : 'Please enter Project Title.'; ?> </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
@@ -59,10 +65,16 @@ $this->load->view('shared/sidebar'); ?>
                                     <input type="date" class="form-control" id="inputStart_date" name="start_date" value="<?= $retVal = ($project->start_date) ? $project->start_date : "N/A"; ?>">
                                 </div>
 
-                                <div class="col-md-4 mb-3">
-                                    <?php (form_error('end_date')) ? $this->load->view('components/error_toster', ['error' => form_error('end_date')]) : null; ?>
-                                    <label for="inputEnd_date" class="form-label">End Date</label>
-                                    <input type="date" class="form-control" id="inputEnd_date" name="end_date" disabled value="<?= $retVal = ($project->end_date) ? $project->end_date : "N/A"; ?>">
+                                
+
+                                <div class="position-relative col-md-4 mb-4">
+                                    <label for="inputEnd_date" class="form-label">End Date<span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control flatpickr-input active" id="inputEnd_date" required name="end_date" value="<?= $retVal = ($project->end_date) ? $project->end_date : "N/A"; ?>" disabled>
+                                    <div class="invalid-feedback small">
+                                    </div>
+
+                                    <div class="invalid-tooltip">
+                                        <?= (form_error('end_date')) ? strip_tags(form_error('end_date')) : 'Please enter valid end date .'; ?> </div>
                                 </div>
 
                                 <div class="mb-3 col-md-4">
@@ -75,11 +87,16 @@ $this->load->view('shared/sidebar'); ?>
                                     </select>
                                 </div>
 
-                                <div class="mb-3">
-                                    <?php (form_error('description')) ? $this->load->view('components/error_toster', ['error' => form_error('description')]) : null; ?>
-                                    <label for="inputDescription" class="form-label">Description</label>
-                                    <textarea class="form-control" id="inputDescription" rows="5" name="description"><?= $retVal = ($project->description) ? $project->description : "N/A"; ?></textarea>
-                                </div>
+                               
+
+                                <div class="row mx-1 mb-5">
+
+                                    <label for="inputDescription" class="form-label">Description<span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="inputDescription" rows="5" pattern="[A-Za-z0-9]{1,500}" required placeholder="Project Description" name="description" value="<?php echo set_value('description'); ?>"><?= $retVal = ($project->description) ? $project->description : "N/A"; ?></textarea>
+
+
+
+</div>
 
 
                             </div>
