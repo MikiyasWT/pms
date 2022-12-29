@@ -85,11 +85,34 @@
                               <!-- <li>
                                   <a href="project-detail.html">Detail</a>
                                 </li> -->
+                                <li>
+                                    <a href="<?= base_url('dashboard/create_project'); ?>">Create Project</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/projects'); ?>">View</a>
+                                </li>
+                                <li>
+                                    <a href="<?= base_url('dashboard/add_Category'); ?>">Add Categories</a>
+                                </li>
+                          </ul>
+                      </div>
+                  </li>
+                  <li>
+                      <a href="#sidebarTasks" data-bs-toggle="collapse">
+                          <i class="mdi mdi-clipboard-multiple-outline"></i>
+                          <span> Tasks </span>
+                          <span class="menu-arrow"></span>
+                      </a>
+                      <div class="collapse" id="sidebarTasks">
+                          <ul class="nav-second-level">
+                              <!-- <li>
+                                  <a href="project-detail.html">Detail</a>
+                                </li> -->
                               <li>
-                                  <a href="<?= base_url('dashboard/projects_create'); ?>">Create Project</a>
+                                  <a href="<?= base_url('dashboard/create_tasks'); ?>">Create Tasks</a>
                               </li>
                               <li>
-                                  <a href="<?= base_url('dashboard/projects'); ?>">View</a>
+                                  <a href="<?= base_url('dashboard/tasks'); ?>">View</a>
                               </li>
                           </ul>
                       </div>

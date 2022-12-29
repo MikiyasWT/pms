@@ -3,7 +3,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  *
- * Model Master_client_model
+ * Model Tasks_model
  *
  * This Model for ...
  * 
@@ -16,7 +16,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
  *
  */
 
-class Master_client_model extends CI_Model
+class Tasks_model extends CI_Model
 {
 
   // ------------------------------------------------------------------------
@@ -32,25 +32,17 @@ class Master_client_model extends CI_Model
   // ------------------------------------------------------------------------
   public function index()
   {
-    // 
+    $this->db->select('task_id,task_title');
+    return $this->db->get('Task_model')->result_array();
   }
-  public function insert_client($data = null)
+  public function insert_task($data = null)
   {
-    return $this->db->insert('master_clients', $data);
+    if ($data == null) {
+      return false;
+    }
+    return $this->db->insert('tbl_tasks', $data);
   }
-  public function update_client($data, $id)
-  {
-    $this->db->set($data);
-    $this->db->where('id', $id);
-    return $this->db->update('master_clients');
-  }
-
-  public function getListOfClients(){
-    // $this->db->select('*,master_clients.id');
-    $this->db->select('name,id');
-    return $this->db->get('master_clients')->result();
-  }
-  public function get_clients($postData = null)
+  public function get_tasks($postData = null)
   {
     ## Read value
     $draw = $postData['draw'];
@@ -63,29 +55,30 @@ class Master_client_model extends CI_Model
     ## Search 
     $searchQuery = "";
     if ($searchValue != '') {
-      $searchQuery = " (name like '%" . $searchValue . "%' or email like '%" . $searchValue . "%' or phone like'%" . $searchValue . "%' or contact_person like '%" . $searchValue . "%' ) ";
+      $searchQuery = " (task_title like '%" . $searchValue . "%' or title like '%" . $searchValue . "%' ) ";
     }
     ## Total number of records without filtering
     $this->db->select('count(*) as allcount');
-    $records = $this->db->get('master_clients')->result();
+    $records = $this->db->get('tbl_tasks')->result();
     $totalRecords = $records[0]->allcount;
     ## Total number of record with filtering
     $this->db->select('count(*) as allcount');
     if ($searchQuery != '')
       $this->db->where($searchQuery);
-    $records = $this->db->get('master_clients')->result();
+    $records = $this->db->get('tbl_tasks')->result();
     $totalRecordwithFilter = $records[0]->allcount;
 
-    $this->db->select('master_clients.*,c.full_name as created_by, m.full_name as modified_by,master_client_types.client_type');
-    $this->db->from('master_clients');
-    $this->db->join('master_client_types', 'master_client_types.id = master_clients.type');
-    $this->db->join('tbl_users c', 'master_clients.created_by = c.id','left');
-    $this->db->join('tbl_users m', 'master_clients.modified_by = m.id','left');
+    $this->db->select('tbl_tasks.*,p.title as task_project,c.full_name as created_by, m.full_name as modified_by,master_status.m_status as task_status');
+    $this->db->from('tbl_tasks');
+    $this->db->join('master_status', 'master_status.id = tbl_tasks.task_status');
+    $this->db->join('tbl_users c', 'task_created_by = c.id', 'left');
+    $this->db->join('tbl_users m', 'task_modified_by = m.id', 'left');
+    $this->db->join('tbl_projects p', 'tbl_tasks.task_project = p.id', 'left');
     // return $this->db->get_compiled_select();
     // exit;
     if ($searchQuery != '')
       $this->db->where($searchQuery);
-    $this->db->order_by('master_clients.id', 'DESC');
+    $this->db->order_by('task_id', 'DESC');
     $this->db->order_by($columnName, $columnSortOrder);
     $this->db->limit($rowperpage, $start);
     $records = $this->db->get()->result();
@@ -98,19 +91,14 @@ class Master_client_model extends CI_Model
     );
     return $response;
   }
-  public function get_client($id)
-  {
-    $this->db->select('*,master_clients.id');
-    $this->db->join('master_client_types', 'master_client_types.id = master_clients.type');
-    $this->db->where('master_clients.id', $id);
-    // echo $this->db->get_compiled_select('master_clients');
-    // exit;
-    $data = $this->db->get('master_clients')->result();
-    return (isset($data[0]))? $data[0] :false ;
-  }
+public function get_status()
+{
+  $this->db->select('id,m_status');
+  return $this->db->get('master_status')->result_array();
+}
   // ------------------------------------------------------------------------
 
 }
 
-/* End of file Master_client_model.php */
-/* Location: ./application/models/Master_client_model.php */
+/* End of file Tasks_model.php */
+/* Location: ./application/models/Tasks_model.php */

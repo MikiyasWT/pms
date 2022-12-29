@@ -9,7 +9,9 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
     <meta content="Coderthemes" name="author" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
     <!-- App favicon -->
+    
     <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico">
     <!-- Jquery Toast css -->
     <link href="<?php echo base_url(); ?>assets/libs/jquery-toast-plugin/jquery.toast.min.css" rel="stylesheet" type="text/css" />
@@ -22,8 +24,14 @@
     <link href="<?= base_url(); ?>assets/libs/ladda/ladda.min.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url(); ?>assets/libs/ladda/ladda-themeless.min.css" rel="stylesheet" type="text/css">
     <!-- plugin css -->
+    <!-- <link href="<?= base_url(); ?>assets/libs/dropzone/min/dropzone.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="<?= base_url(); ?>assets/libs/dropify/css/dropify.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url(); ?>assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- <link href="<?php echo base_url(); ?>assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="<?= base_url(); ?>assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+
+        <link href="<?= base_url(); ?>assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+        <link href="<?= base_url(); ?>assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
     <!-- Bootstrap css -->
     <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- App css -->
