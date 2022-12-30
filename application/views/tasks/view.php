@@ -21,7 +21,7 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
+                                    <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
                                 </h4>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
@@ -117,13 +117,13 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     "data": "task_resources",
                     render: function(data, type, row) {
-                        // let res = data.split(',')
-                        // console.log(data)
-                        // down = res.forEach(element => 
-                        //     `<?= base_url()?>${element}`
-                        // );
-                        // return down
-                        return data
+                        var sanitized = '[' + data.replace(/}{/g, '},{') + ']';
+                        var res = JSON.parse(sanitized);
+                        var file = ''
+                        res[0].map((element,i) => {
+                            file += '<a href="<?= base_url() ?>/' + element + '" download class="btn btn-info btn-sm waves-effect waves-light">Resource '+(i+1)+'<span class="btn-label-right"><i class="mdi mdi-download"></i></span></a>&nbsp'
+                        })
+                        return file;
                     }
                 },
                 {
