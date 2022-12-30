@@ -21,12 +21,12 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                    <i class="mdi mdi-account-group mdi-24px"></i> Clients
+                                <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
                                 </h4>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
                             <div class="col-6" style="text-align: right">
-                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_tasks'); ?>"><i class="material-symbols-outlined">person_add</i></a>
+                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_tasks'); ?>"><i class="mdi mdi-book-plus-outline"></i></a>
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@ $this->load->view('shared/sidebar'); ?>
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="<?= base_url("dashboard/client_detail"); ?>/' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
+                        return '<a href="<?= base_url("dashboard/tasks_detail"); ?>/' + row.task_id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
                     }
                 }
             ]

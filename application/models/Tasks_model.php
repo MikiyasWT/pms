@@ -42,6 +42,15 @@ class Tasks_model extends CI_Model
     }
     return $this->db->insert('tbl_tasks', $data);
   }
+  public function update($data = null,$id = null)
+  {
+    if ($id == null) {
+      return false;
+    }
+    $this->db->set($data);
+    $this->db->where('task_id', $id);
+    return $this->db->update('tbl_tasks');
+  }
   public function get_tasks($postData = null)
   {
     ## Read value
@@ -90,6 +99,19 @@ class Tasks_model extends CI_Model
       "data" => $records
     );
     return $response;
+  }
+  public function get_task($id)
+  {
+    # code...
+    $this->db->select('tbl_tasks.*,p.title as task_project,c.full_name as created_by, m.full_name as modified_by,master_status.m_status as task_status');
+    $this->db->from('tbl_tasks');
+    $this->db->join('master_status', 'master_status.id = tbl_tasks.task_status');
+    $this->db->join('tbl_users c', 'task_created_by = c.id', 'left');
+    $this->db->join('tbl_users m', 'task_modified_by = m.id', 'left');
+    $this->db->join('tbl_projects p', 'tbl_tasks.task_project = p.id', 'left');
+    $this->db->where('task_id', $id);
+    $data = $this->db->get()->result();
+    return (isset($data[0]))? $data[0] :false ;
   }
 public function get_status()
 {

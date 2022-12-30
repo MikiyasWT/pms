@@ -1,0 +1,1 @@
+This folder is required,where resources for tasks are saved in here.

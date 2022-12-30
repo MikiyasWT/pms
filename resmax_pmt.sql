@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2022 at 02:28 PM
+-- Generation Time: Dec 29, 2022 at 10:41 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -70,51 +70,6 @@ CREATE TABLE `master_clients` (
   `status` enum('active','deactive') NOT NULL DEFAULT 'active',
   `deleted` enum('0','1') NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `master_clients`
---
-
-INSERT INTO `master_clients` (`id`, `created`, `created_by`, `modified`, `modified_by`, `name`, `address`, `city`, `state`, `country`, `type`, `email`, `phone`, `fax`, `contact_person`, `contact_person_number`, `contact_person_email`, `comments`, `status`, `deleted`) VALUES
-(1, '2022-12-09 02:38:31', 10, '2022-12-15 12:04:46', 10, 'Naida', 'Pastor Square adis ketema', 'Addis Abeba', 'Addis Abeba', 'Ethiopia', 1, 'bamlakdesalgn@gmail.com', 923974523, 1597530512, 'Natnael', 928187484, 'natnael@resmax.com', 'Test Commnets or comment', 'active', '0'),
-(2, '2022-12-09 02:40:09', 10, '2022-12-12 10:35:09', 10, 'Alem Demoz', 'Pastor Square adis ketema', 'Addis Abeba', 'Addis Abeba', 'Ethiopia', 1, 'bamlakdesalgn@gmail.com', 923974523, 1597530512, 'Natnael', 928187484, 'natnael@resmax.com', NULL, 'active', '0'),
-(3, '2022-12-09 02:42:29', 10, NULL, NULL, 'Bamlak Desalgn', 'Pastor Square adis ketema', 'Addis Abeba', 'Addis Abeba', 'Ethiopia', 2, 'bamlak@resmax.com', 923974523, 1597530512, 'Natnael', 928187484, 'natnael@resmax.com', NULL, 'active', '0'),
-(4, '2022-12-09 02:43:29', 10, NULL, NULL, 'Test name', 'Pastor Square adis ketema', 'Addis Abeba', 'Amhara', 'Ethiopia', 1, '1235@gmail.com', 900979899, 1597530512, 'Natnael', 928187484, 'natnael@resmax.com', NULL, 'active', '0'),
-(5, '2022-12-13 02:23:25', 10, NULL, NULL, 'Raja', 'pastor squre 122', 'Addis Abeba', 'Addis Abeba', 'Ethiopia', 2, 'raja@gmil.com', 945874445, 1597535165, 'Elsa', 945477845, 'elsa@gmail.com', NULL, 'active', '0'),
-(6, '2022-12-14 09:31:24', 10, NULL, NULL, 'Chastity Shaw', 'At harum occaecat ut', 'Nisi', 'Velit dolor explicab', 'In', 2, 'cofosapece@mailinator.com', 1739319165, 1909571320, 'Austin Mckee', 1605314652, 'mapa@mailinator.com', NULL, 'active', '0'),
-(7, '2022-12-14 10:26:44', 10, NULL, NULL, 'Catila ford', 'Tempor qui labore vo', 'Qui necessitatibus m', 'Ullamco vel mollitia', 'Est', 1, 'lukazy@mailinator.com', 1391562865, 1289681196, 'Raymond Moran', 1896607261, 'dekuk@mailinator.com', NULL, 'active', '0'),
-(8, '2022-12-14 12:40:45', 10, NULL, NULL, 'Berk Joyner', 'Non doloribus quos o', 'Labore illum nostru', 'Eaque et ut alias vo', 'Quae', 1, 'govujeda@mailinator.com', 1453335535, 1473199275, 'Pamela Richardson', 1234912715, 'gaxa@mailinator.com', NULL, 'active', '0'),
-(9, '2022-12-14 12:41:05', 10, NULL, NULL, 'Yoko Fernandez', 'Laborum Magna quasi', 'Ullamco et non molli', 'Rerum non odio ea is', 'Possimus', 2, 'zedupy@mailinator.com', 1683713355, 1387727572, 'Salvador Poole', 1872665154, 'lalefexif@mailinator.com', NULL, 'active', '0'),
-(10, '2022-12-14 12:42:46', 10, NULL, NULL, 'Remedios Delaney', 'Est sunt dolorum qua', 'Reiciendis ut non cu', 'Eveniet cupidatat i', 'Possimu', 1, 'gelyhedigi@mailinator.com', 1983462595, 1946647141, 'Ronan Haynes', 1749108400, 'pijek@mailinator.com', NULL, 'active', '0'),
-(11, '2022-12-14 12:51:04', 10, NULL, NULL, 'Astra Sexton', 'Et ea est officiis', 'Reprehenderit est d', 'Ut quis ea est corru', 'Suscipit', 2, 'lelypop@mailinator.com', 1237394253, 1444424188, 'Martina Guerrero', 1645801639, 'qymywuto@mailinator.com', NULL, 'active', '0'),
-(12, '2022-12-14 12:57:55', 10, NULL, NULL, 'Wing Mcdaniel', 'Totam velit quis lab', 'Quo sequi beatae dic', 'Doloremque in expedi', 'laboriosam', 2, 'zyxipas@mailinator.com', 1422974586, 1856236351, 'Lisandra Mendoza', 1969736650, 'cilox@mailinator.com', NULL, 'active', '0'),
-(13, '2022-12-14 12:59:38', 10, NULL, NULL, 'Bamlak Desalgen', 'Pastor Square', 'Addis Ababa', 'Addis Ababa', 'Ethiopia', 2, 'bamlakdesalgn@gmail.com', 923974523, 923974523, 'Bamlak', 923974523, 'bamlakdesalgn@gmail.com', NULL, 'active', '0'),
-(14, '2022-12-14 12:59:59', 10, NULL, NULL, 'Amery Andrews', 'Laboris delectus no', 'Sint ipsa omnis qui', 'Dolore pariatur Cul', 'Recusandae', 1, 'tysacyru@mailinator.com', 1459739313, 1368233266, 'Teegan Pace', 1482265605, 'pexifij@mailinator.com', NULL, 'active', '0'),
-(15, '2022-12-14 01:03:23', 10, NULL, NULL, 'Benedict Herrera', 'Quia velit in nobis', 'Quo est in reprehend', 'Voluptatibus molesti', 'Tempora', 2, 'xikuno@mailinator.com', 1205997134, 1774252903, 'Mannix Walton', 1178258325, 'ryjykiwibo@mailinator.com', NULL, 'active', '0'),
-(16, '2022-12-14 01:04:44', 10, NULL, NULL, 'Petra Morse', 'Eiusmod cupiditate v', 'Ea fugit ipsum ali', 'Laborum In et moles', 'Incididunt', 2, 'dolu@mailinator.com', 1602564579, 1528698418, 'Elmo Brooks', 1468331129, 'lyhuwe@mailinator.com', NULL, 'active', '0'),
-(17, '2022-12-14 01:05:25', 10, '2022-12-15 10:10:17', 10, 'Jameson Cooper', 'Minima esse ex iure', 'Laudantium quisquam', 'Voluptatibus commodo', 'Minima', 1, 'vaxiwoquz@mailinator.com', 1359179662, 1994112162, 'Brock Burks', 1234392591, 'qirihywa@mailinator.com', NULL, 'active', '0'),
-(18, '2022-12-14 02:34:26', 10, '2022-12-15 11:58:46', 10, 'Serina Alston', 'Natus rerum sit est', 'Maxime voluptatem et', 'Veritatis praesentiu', 'deleniti', 1, 'veputifywo@mailinator.com', 1613219303, 1591237557, 'Cameran Shaw', 1735589561, 'hiricy@mailinator.com', NULL, 'active', '0'),
-(19, '2022-12-14 02:36:46', 10, NULL, NULL, 'Marsden Horton', 'Expedita praesentium', 'Exercitationem offic', 'Est exercitation er', 'Culpa', 1, 'caxigygomo@mailinator.com', 1155171539, 1538898982, 'Conan Meyer', 1234671517, 'riwoga@mailinator.com', NULL, 'active', '0'),
-(20, '2022-12-14 02:39:41', 10, NULL, NULL, 'Aristotle May', 'Elit neque nihil om', 'Enim architecto pari', 'Quia perspiciatis n', 'Laboriosam', 2, 'lizu@mailinator.com', 1535737900, 1815306998, 'Plato Benjamin', 1929793191, 'zatemuki@mailinator.com', NULL, 'active', '0'),
-(21, '2022-12-14 02:40:59', 10, NULL, NULL, 'Naida Willis', 'A enim dignissimos q', 'Magni ut voluptas no', 'Exercitationem accus', 'Aliquam', 1, 'dalekyv@mailinator.com', 1341214562, 1875598799, 'Vernon Burch', 1371568371, 'wicaluje@mailinator.com', NULL, 'active', '0'),
-(22, '2022-12-14 02:46:13', 10, NULL, NULL, 'Janna Gates', 'Nam facere elit bea', 'Explicabo Dolorem i', 'Nesciunt labore des', 'Labore', 2, 'fexax@mailinator.com', 1159426691, 1575969977, 'Renee Guthrie', 1185896259, 'fexocag@mailinator.com', NULL, 'active', '0'),
-(23, '2022-12-14 02:48:58', 10, NULL, NULL, 'Galvin Le', 'Mollitia debitis exp', 'Voluptas minima plac', 'Irure', 'Quia', 2, 'hibopariz@mailinator.com', 1166219743, 1264883588, 'Kevyn Austin', 1603956202, 'fubafa@mailinator.com', NULL, 'active', '0'),
-(24, '2022-12-15 10:13:22', 10, NULL, NULL, 'Dominic Clark', 'Non quia eius non om', 'Magnam expedita quia', 'Eiusmod facere autem', 'Adipisicing', 2, 'duru@mailinator.com', 1913588748, 1588722530, 'Serina Joseph', 1902735174, 'xafog@mailinator.com', NULL, 'active', '0'),
-(25, '2022-12-15 10:16:24', 10, NULL, NULL, 'Mikayla Shepard', 'Ut voluptate aliqua', 'Reiciendis dolor qui', 'Ipsa nihil sunt des', 'Vero', 2, 'gadyhexywe@mailinator.com', 1556651225, 1719288405, 'Madeson Gallegos', 1301191802, 'kidehe@mailinator.com', NULL, 'active', '0'),
-(26, '2022-12-15 12:08:23', 10, NULL, NULL, 'Kiona Patel', 'Sunt in et quam offi', 'Odit nostrud magni l', 'Exercitation dolorem', 'Quas', 1, 'goma@mailinator.com', 1289673891, 1279635844, 'Kylan Stevenson', 1392914370, 'covi@mailinator.com', 'Laborum doloribus ut', 'active', '0'),
-(27, '2022-12-20 09:49:09', 10, NULL, NULL, 'Tallulah Nixon', 'Ipsum nobis dolor s', 'Dolores in distincti', 'Non doloremque delec', 'Vero', 1, 'lezon@mailinator.com', 1659405809, 1354287918, 'Lysandra Holmes', 1116988577, 'gicatowy@mailinator.com', 'Autem dignissimos et', 'active', '0'),
-(28, '2022-12-20 09:49:43', 10, NULL, NULL, 'Lacy Barnes', 'Dignissimos magna mo', 'Proident', 'Earum magnam maiores', 'Aliquid', 2, 'cydik@mailinator.com', 1321933879, 1775546547, 'Merritt Byrd', 1941223320, 'lecol@mailinator.com', 'Aliqua Iure sed occ', 'active', '0'),
-(29, '2022-12-20 09:51:09', 10, NULL, NULL, 'Seth Preston', 'Rerum est et pariatu', 'Reprehenderit', 'Ea non velit asperna', 'Adipisicing', 2, 'gojejytyp@mailinator.com', 1802327976, 1216214174, 'Russell French', 1664933930, 'winegon@mailinator.com', 'Iste ut labore deser', 'active', '0'),
-(30, '2022-12-20 09:52:25', 10, NULL, NULL, 'Ulric Wiley', 'Sint officia neque', 'Natus vel aute nesci', 'Officia duis iure vo', 'Fuga', 1, 'kyfydari@mailinator.com', 1813216289, 1786902872, 'Kristen Peters', 1741937621, 'gafaje@mailinator.com', 'Quia provident cupi', 'active', '0'),
-(31, '2022-12-20 09:53:25', 10, NULL, NULL, 'Cameron Thompson', 'Non aliqua Ducimus', 'Quia porro cum aut q', 'Est cum possimus i', 'Numquam', 1, 'nigu@mailinator.com', 1958844800, 1293241431, 'Zane Hicks', 1801718122, 'luligan@mailinator.com', 'Non voluptatum quae', 'active', '0'),
-(32, '2022-12-20 09:55:03', 10, NULL, NULL, 'Kennedy White', 'Lorem omnis sed et n', 'Ducimus aliquip atq', 'Et modi culpa qui a', 'Mollit', 1, 'hofyty@mailinator.com', 1537542211, 1822116956, 'Odessa Fields', 1706567531, 'mugogy@mailinator.com', 'Magni cupidatat eius', 'active', '0'),
-(33, '2022-12-20 09:59:55', 10, NULL, NULL, 'MacKensie Wagner', 'Doloribus qui conseq', 'Reiciendis consequat', 'Ratione repudiandae', 'Ipsum', 1, 'xudej@mailinator.com', 1801466201, 1549155358, 'Benjamin Tyson', 1874699695, 'syqupam@mailinator.com', 'Veritatis repellendu', 'active', '0'),
-(34, '2022-12-20 10:09:58', 10, NULL, NULL, 'Keane Robertson', 'Explicabo Pariatur', 'Impedit sapiente re', 'Excepteur officiis v', 'Eum', 2, 'qakisum@mailinator.com', 1189612824, 1801748264, 'Alea Aguirre', 1699444380, 'jile@mailinator.com', 'Voluptas corporis as', 'active', '0'),
-(35, '2022-12-20 12:00:11', 10, NULL, NULL, 'Mechelle Harrell', 'Aperiam nostrud et a', 'Sunt eos quia asper', 'Dignissimos molestia', 'Molestiae', 1, 'vinafyfehy@mailinator.com', 1769573569, 1231781236, 'Raja Rosario', 1956108812, 'nupymar@mailinator.com', 'Ad do consectetur re', 'active', '0'),
-(36, '2022-12-20 12:11:53', 10, NULL, NULL, 'Keith Moran', 'Fugit anim id enim', 'Qui omnis dolore dol', 'Fugiat dolorem ea r', 'Autsas', 1, 'bivydop@mailinator.com', 1234607419, 1321128745, 'Edan Beard', 1273833184, 'gelowy@mailinator.com', 'Atque alias irure al', 'active', '0'),
-(44, '2022-12-20 12:25:52', 10, NULL, NULL, 'Louis Vinson', 'Qui in aut rerum vol', 'Reiciendis tenetur n', 'Obcaecati est non r', 'Cumque', 1, 'cekywaciz@mailinator.com', 1766816977, 1913304265, 'Gareth Knowles', 1881768485, 'hifucet@mailinator.com', 'Odit itaque debitis', 'active', '0'),
-(45, '2022-12-20 12:26:42', 10, NULL, NULL, 'Shellie Jackson', 'Est vero ullamco sun', 'Magni a temporibus s', 'Sint architecto rer', 'Assumend', 2, 'sicyzoho@mailinator.com', 1463258183, 1934762496, 'Althea Valentine', 1588993121, 'golomu@mailinator.com', 'Sed harum sunt repel', 'active', '0'),
-(46, '2022-12-20 12:27:39', 10, '2022-12-20 12:33:29', 10, 'Mona Irwin', 'Itaque laudantium a', 'In incidunt', 'Beatae voluptas eius', 'Ipsam', 1, 'mumulom@mailinator.com', 1281504840, 1183865813, 'Zahir Morrow', 1801258356, 'tadisen@mailinator.com', 'Sapiente qui perfere', 'active', '0');
 
 -- --------------------------------------------------------
 
@@ -187,13 +142,6 @@ CREATE TABLE `tbl_projects` (
   `deleted` enum('1','0') DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_projects`
---
-
-INSERT INTO `tbl_projects` (`id`, `created`, `created_by`, `modified`, `modified_by`, `client`, `title`, `project_category`, `description`, `start_date`, `end_date`, `status`, `deleted`) VALUES
-(1, '2022-12-13 02:29:29', 10, '2022-12-13 16:29:29', NULL, 2, 'Test Project', 1, NULL, '2022-12-13', '2022-12-06', 'active', '0');
-
 -- --------------------------------------------------------
 
 --
@@ -232,12 +180,20 @@ CREATE TABLE `tbl_tasks` (
   `task_project` bigint(11) NOT NULL,
   `task_title` varchar(500) NOT NULL,
   `task_description` varchar(1000) NOT NULL,
-  `task_duration` datetime NOT NULL,
+  `task_duration` varchar(50) NOT NULL,
   `task_start_day` datetime NOT NULL,
   `task_end_day` datetime NOT NULL,
   `task_resources` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`task_resources`)),
   `task_status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_tasks`
+--
+
+INSERT INTO `tbl_tasks` (`task_id`, `task_created_by`, `task_created`, `task_modified`, `task_modified_by`, `task_project`, `task_title`, `task_description`, `task_duration`, `task_start_day`, `task_end_day`, `task_resources`, `task_status`) VALUES
+(1, 10, '2022-12-26 11:16:31', '2022-12-29 09:55:28', 10, 1, 'Illo archi', 'Quaerat doloremque a', '2022-12-26 11:16:31', '2022-12-21 00:00:00', '2022-12-31 15:22:00', '{\"res\":[\"uploads\\\\resources\\\\1672054813pd.jpg\",\"uploads\\\\resources\\\\1672054813productdev.jpg\"]}', 1),
+(2, 10, '2022-12-29 07:48:20', NULL, NULL, 1, 'Minim et nulla archi', 'Laborum aut deserunt', '0 days, 15 Hours', '2022-12-30 22:31:00', '2022-12-31 01:48:00', '[\"uploads\\\\resources\\\\1.jpeg\",\"uploads\\\\resources\\\\a.png\"]', 2);
 
 -- --------------------------------------------------------
 
@@ -353,7 +309,7 @@ ALTER TABLE `master_categories`
 -- AUTO_INCREMENT for table `master_clients`
 --
 ALTER TABLE `master_clients`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `master_client_types`
@@ -371,7 +327,7 @@ ALTER TABLE `master_status`
 -- AUTO_INCREMENT for table `tbl_projects`
 --
 ALTER TABLE `tbl_projects`
-  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_roles`
@@ -383,7 +339,7 @@ ALTER TABLE `tbl_roles`
 -- AUTO_INCREMENT for table `tbl_tasks`
 --
 ALTER TABLE `tbl_tasks`
-  MODIFY `task_id` bigint(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `task_id` bigint(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`

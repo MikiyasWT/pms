@@ -4,7 +4,7 @@ $this->load->view('shared/sidebar'); ?>
 <!-- ============================================================== -->
 <!-- Start Page Content here -->
 <!-- ============================================================== -->
-<?php $data['title'] = 'Clients'; ?>
+<?php $data['title'] = 'task'; ?>
 
 <div class="content-page">
     <div class="content">

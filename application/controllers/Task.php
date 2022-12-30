@@ -82,8 +82,8 @@ public function validate_date()
       if (!$res[0]) {
         goto end_s;
       }
-      var_dump($this->upload->get_files());
-      exit;
+      // var_dump($this->upload->get_files());
+      // exit;
       
       $data = array(
         "task_created" => date('Y-m-d h:i:s'),
@@ -105,15 +105,81 @@ public function validate_date()
         redirect('dashboard/tasks');
       } else {
         $this->session->set_flashdata('error', true);
-        $this->session->set_flashdata('error', 'Data not inserted');
+        $this->session->set_flashdata('message', 'Data not inserted');
         end_s:
         $str = '';
         foreach ($res[1] as $key) {
           $str .= $key . ',';
         }
         $this->session->set_flashdata('error', true);
-        $this->session->set_flashdata('error', 'Data not inserted ' . $str);
+        $this->session->set_flashdata('message', 'Data not inserted ' . $str);
         redirect('dashboard/tasks');
+      }
+    }
+  }
+  public function update($id)
+  {
+    # code...
+
+    $this->form_validation->set_rules('title', 'Task Title', 'required|trim|alpha_numeric_spaces|regex_match[/[a-zA-Z ][a-zA-Z ]+[a-zA-Z]$/]');
+    $this->form_validation->set_rules('project', 'project', 'required|trim');
+    $this->form_validation->set_rules('s_date', 'Start date', 'required|trim');
+    $this->form_validation->set_rules('e_date', 'End date', "trim|required");
+    $this->form_validation->set_rules('duration', 'duration', 'trim');
+    $this->form_validation->set_rules('description', 'description', 'trim|alpha_numeric_spaces');
+    $this->form_validation->set_rules('status', 'status', 'required|trim');
+    if ($this->form_validation->run() === FALSE) {
+      $this->session->set_flashdata('error',strip_tags(validation_errors()));
+      // echo json_encode(['error' => true, 'message' => validation_errors()]);
+      // redirect('dashboard/client_create');
+      $data['task'] = $this->Tasks_model->get_task($id);
+      $this->load->view('tasks/detail',$data);
+    } else {
+      $title = $this->input->post('title');
+      $project = $this->input->post('project');
+      $s_date = $this->input->post('s_date');
+      $e_date = $this->input->post('e_date');
+      $duration = $this->input->post('duration');
+      $status = $this->input->post('status');
+      $description = $this->input->post('description');
+      // $res = $this->upload->upload_files();
+      // if (!$res[0]) {
+      //   goto end_s;
+      // }
+      // var_dump($this->upload->get_files());
+      // exit;
+      
+      $data = array(
+        "task_modified" => date('Y-m-d h:i:s'),
+        "task_modified_by" => $this->session->userdata('user_id'),
+        "task_title" => $title,
+        "task_project" => $project,
+        "task_start_day" => $s_date,
+        "task_end_day" => $e_date,
+        "task_description" => $description,
+        "task_duration" =>$duration,
+        "task_status" => $status
+        // "task_resources" => $this->upload->get_files()|'N/A'
+      );
+      $result = $this->Tasks_model->update($data, $id);
+      // sleep(5);
+      // var_dump($result);
+      // exit;
+      if ($result) {
+        $this->session->set_flashdata('success', true);
+        $this->session->set_flashdata('message', 'Task Updated');
+        redirect('dashboard/tasks');
+      } else {
+        $this->session->set_flashdata('error', true);
+        $this->session->set_flashdata('message', 'Data not updated');
+        // end_s:
+        // $str = '';
+        // foreach ($res[1] as $key) {
+        //   $str .= $key . ',';
+        // }
+        // $this->session->set_flashdata('error', true);
+        // $this->session->set_flashdata('message', 'Resources not updated ' . $str);
+        // redirect('dashboard/tasks');
       }
     }
   }
