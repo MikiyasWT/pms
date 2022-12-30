@@ -49,7 +49,17 @@ class Dashboard extends CI_Controller
     // echo '<pre>';
     // print_r($data);
   }
+  public function projects(){
+    $this->load->view('projects/view');
+  }
 
+  public function create_project(){
+    $this->load->view('projects/create');
+  }
+
+  public function add_Category(){
+    $this->load->view('projects/add_categories');
+  }
   public function project_detail($id){
 
     $data['project'] = $this->Projects_model->get_project($id);
