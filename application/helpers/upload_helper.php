@@ -14,7 +14,7 @@ class Upload
         // Define maxsize for files i.e 5MB
         $this->maxsize = 5 * 1024 * 1024;
         $this->post_name = $post_name;
-        $this->allowed_types = array('jpg', 'png', 'jpeg', 'gif', 'php', 'zip', 'rar', 'txt');
+        $this->allowed_types = array('jpg', 'png', 'jpeg', 'gif', 'php', 'zip', 'rar', 'txt', 'webi');
     }
     private function check_file()
     {

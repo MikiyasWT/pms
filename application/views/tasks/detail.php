@@ -137,7 +137,7 @@ $this->load->view('shared/sidebar'); ?>
         })
         $.ajax({
             type: "get",
-            url: "<?= base_url('projects') ?>",
+            url: "<?= base_url('project') ?>",
             data: "data",
             dataType: "json",
             success: function(response) {

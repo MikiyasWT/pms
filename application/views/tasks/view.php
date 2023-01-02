@@ -21,7 +21,7 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                    <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
+                                <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
                                 </h4>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
