@@ -24,13 +24,8 @@ $this->load->view('shared/sidebar'); ?>
                                     <i class="mdi mdi-account-multiple"></i> Users
                                 </h4>
                             </div>
-                            <div class="container-fluid">
-                            <?php $data['error'] = $this->session->flashdata('error');
-                            $data['message'] = $this->session->flashdata('message');
-                            // (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                        </div>
                             <div class="col-6" style="text-align: right">
-                                <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="material-symbols-outlined">person_add</i></button>
+                                <button class="btn btn-info" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="mdi mdi-account-plus-outline mdi-18px"></i></button>
                             </div>
                         </div>
                     </div>
@@ -181,7 +176,7 @@ $this->load->view('shared/sidebar'); ?>
         });
 
 
-       
+
         $('#danger-alert-modal').on('show.bs.modal', function(e) { // when the delete modal opens
             var id = $(e.relatedTarget).data('id'); // get the id
             $(e.currentTarget).find('#role_del').attr('data-delete-id', id); // and put it in the delete button that calls the AJAX
@@ -216,7 +211,7 @@ $this->load->view('shared/sidebar'); ?>
                 loaderBg: "#1ea69a",
                 position: "top-right",
                 stack: 1,
-                text:"<?= $this->session->flashdata('message'); ?>"||'Form error'
+                text: "<?= $this->session->flashdata('message'); ?>" || 'Form error'
             });
         <?php endif; ?>
         <?php if ($this->session->flashdata('success')) : ?>
@@ -231,35 +226,35 @@ $this->load->view('shared/sidebar'); ?>
             });
         <?php endif; ?>
     });
-     //retriving user for ready to be edited
-     function offcanvas_edit(id) {
-            console.log(id)
-            // console.log('id')
-            // $("#offcanvasRight").modal('show');
-            bsOffcanvas.show()
-            $.ajax({
-                type: "get",
-                url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
-                dataType: "JSON",
-                success: function(response) {
-                    $("#offcanvasRightLabel").text("Update User");
-                    $(".btn-success").text("Update changes");
-                    $('#user_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
-                    $("#floatingPassword").val(response.full_name);
-                    $("#floatingInput").val(response.email);
-                    $("#floatingTextarea2").val(response.phone_num);
-                    $("#dob").val(response.dob);
-                    (response.gender == 'male') ? $('#customRadio1').prop('checked', true): $('#customRadio2').prop('checked', true)
-                    $("#floatingSelect").val(response.role).change();
-                    $("#user_sts").val(response.user_status).change();
-                    $('lable').hide();
-                    $(".user_sts").removeAttr("hidden");
-                    console.log(response)
-                },
-                error: function(error) {
-                    console.log(error)
-                }
-            });
-        }
+    //retriving user for ready to be edited
+    function offcanvas_edit(id) {
+        console.log(id)
+        // console.log('id')
+        // $("#offcanvasRight").modal('show');
+        bsOffcanvas.show()
+        $.ajax({
+            type: "get",
+            url: '<?= base_url("Usermanagment/update_user/"); ?>' + id,
+            dataType: "JSON",
+            success: function(response) {
+                $("#offcanvasRightLabel").text("Update User");
+                $(".btn-success").text("Update changes");
+                $('#user_edit').attr('action', "<?= base_url('Usermanagment/update_user/'); ?>" + id)
+                $("#floatingPassword").val(response.full_name);
+                $("#floatingInput").val(response.email);
+                $("#floatingTextarea2").val(response.phone_num);
+                $("#dob").val(response.dob);
+                (response.gender == 'male') ? $('#customRadio1').prop('checked', true): $('#customRadio2').prop('checked', true)
+                $("#floatingSelect").val(response.role).change();
+                $("#user_sts").val(response.user_status).change();
+                $('lable').hide();
+                $(".user_sts").removeAttr("hidden");
+                console.log(response)
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+    }
 </script>
 <!-- Script -->

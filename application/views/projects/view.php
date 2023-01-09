@@ -21,11 +21,11 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                    <i class="mdi mdi-briefcase-check-outline"></i> Projects
+                                    <i class="mdi mdi-briefcase-check mdi-24px"></i> Projects
                                 </h4>
                             </div>
                             <div class="col-6" style="text-align: right">
-                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_project'); ?>"><i class="mdi mdi-briefcase-check-outline">+</i></a>
+                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_project'); ?>"><i class="mdi mdi-briefcase-plus-outline mdi-18px"></i></a>
                             </div>
                         </div>
                     </div>

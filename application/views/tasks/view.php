@@ -21,22 +21,16 @@ $this->load->view('shared/sidebar'); ?>
                         <div class="row justify-content-between">
                             <div class="col-6">
                                 <h4>
-                                <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
+                                    <i class="mdi mdi-clipboard-multiple mdi-24px"></i> Tasks
                                 </h4>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
                             <div class="col-6" style="text-align: right">
-                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_tasks'); ?>"><i class="mdi mdi-book-plus-outline"></i></a>
+                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/create_tasks'); ?>"><i class="mdi mdi-book-plus-outline mdi-18px"></i></a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body p-2">
-                        <!-- <div class="container-fluid">
-                            <?php $data['error'] = $this->session->flashdata('error');
-                            $data['message'] = $this->session->flashdata('message');
-                            (empty($data['error'])) ? ((empty($data['message'])) ?:  $this->load->view('components/success_toster', $data)) : $this->load->view('components/error_toster', $data); ?>
-                        </div> -->
-
                         <table id="demo-foo-addrow" class="table table-dark table-striped dt-responsive nowrap w-100 ">
                             <thead class="table-dark">
                                 <tr>
@@ -120,8 +114,8 @@ $this->load->view('shared/sidebar'); ?>
                         var sanitized = '[' + data.replace(/}{/g, '},{') + ']';
                         var res = JSON.parse(sanitized);
                         var file = ''
-                        res[0].map((element,i) => {
-                            file += '<a href="<?= base_url() ?>/' + element + '" download class="btn btn-info btn-sm waves-effect waves-light">Resource '+(i+1)+'<span class="btn-label-right"><i class="mdi mdi-download"></i></span></a>&nbsp'
+                        res[0].map((element, i) => {
+                            file += '<a href="<?= base_url() ?>/' + element + '" download class="btn btn-info btn-sm waves-effect waves-light">Resource ' + (i + 1) + '<span class="btn-label-right"><i class="mdi mdi-download"></i></span></a>&nbsp'
                         })
                         return file;
                     }
@@ -131,10 +125,34 @@ $this->load->view('shared/sidebar'); ?>
                     render: function(data, type, row) {
                         // console.log(data)
                         color = '';
-                        if (data == 'active') {
-                            color = 'success'
-                        } else {
-                            color = 'danger';
+                        switch (data) {
+                            case 'Active':
+                                color = 'success';
+                                break;
+                            case 'Inactive':
+                                color = 'secondary';
+                                break;
+                            case 'Running':
+                                color = 'info';
+                                break;
+                            case 'Completed':
+                                color = 'success';
+                                break;
+                            case 'Pending':
+                                color = 'warning';
+                                break;
+                            case 'Rejected':
+                                color = 'danger';
+                                break;
+                            case 'Approved':
+                                color = 'success';
+                                break;
+                            case 'Confirmed':
+                                color = 'primary';
+                                break;
+                            default:
+                            color = 'primary';
+                                break;
                         }
                         return '<span class="float-center"><span class="badge bg-' + color + '">' + data + '</span></span>'
                     }

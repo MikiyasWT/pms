@@ -26,7 +26,7 @@ $this->load->view('shared/sidebar'); ?>
                             </div>
                             <!-- <button type="button" class="btn btn-success waves-effect waves-light btn-sm" id="toastr-five">Click me</button> -->
                             <div class="col-6" style="text-align: right">
-                                <a class="col-2 col-sm-auto btn btn-info py-1 m-0" href="<?= base_url('dashboard/client_create'); ?>"><i class="material-symbols-outlined">person_add</i></a>
+                                <a class="col-2 col-sm-auto btn btn-info" href="<?= base_url('dashboard/client_create'); ?>"><i class="mdi mdi-account-multiple-plus-outline mdi-18px"></i></a>
                             </div>
                         </div>
                     </div>
