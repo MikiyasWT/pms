@@ -91,6 +91,7 @@
                                 <li>
                                     <a href="<?= base_url('dashboard/projects'); ?>">View</a>
                                 </li>
+                                
                                 <li>
                                     <a href="<?= base_url('dashboard/add_Category'); ?>">Add Categories</a>
                                 </li>

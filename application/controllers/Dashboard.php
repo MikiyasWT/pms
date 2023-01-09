@@ -57,6 +57,13 @@ class Dashboard extends CI_Controller
     $this->load->view('projects/create');
   }
 
+  public function project_view($id)
+  {
+    $data['project_view'] = $this->Projects_model->get_project($id);
+    ($data['project_view'] === false) ? $this->load->view('errors/pages404') : $this->load->view('projects/view_detail', $data);
+    // echo '<pre>';
+    // print_r($data);
+  }
   public function add_Category(){
     $this->load->view('projects/add_categories');
   }

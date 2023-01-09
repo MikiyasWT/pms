@@ -19,7 +19,7 @@ $this->load->view('shared/sidebar'); ?>
                 <div class="card">
                     <h4 class=" card-header"><i class="mdi mdi-briefcase-check-outline"></i> &nbsp; Project</h4>
                     <div class="card-body">
-                        <form action="<?= base_url('Project/create_project') ?>" class="needs-validation <?= $retVal = (set_value('name') != null) ?  'was-validated' : null; ?> " novalidate method="POST">
+                        <form action="<?= base_url('Project/create_project') ?>" class="needs-validation <?= $retVal = (set_value('title') != null) ?  'was-validated' : null; ?> " novalidate method="POST">
 
                             <div class="row">
 

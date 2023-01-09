@@ -162,11 +162,12 @@ $this->load->view('shared/sidebar'); ?>
                         return '<span class="float-center"><span class="badge bg-' + color + '">' + data + '</span></span>'
                     }
                 },
+                
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="<?= base_url("dashboard/project_detail"); ?>/' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a>'
-                    }
+                        return '<a href="<?= base_url("dashboard/project_detail"); ?>/' + row.id + '" class="btn btn-warning btn-xs waves-effect waves-light"><span class="btn-label"><i class="mdi mdi-alert" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i></span>Edit</a> <a href="<?= base_url("dashboard/project_view"); ?>/' + row.id + '" class="btn btn-blue btn-xs waves-effect waves-light"><span class="btn-label"></span>View</a>'
+                    },
                 }
             ]
         });
