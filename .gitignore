@@ -30,6 +30,6 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
-uploads/resources/*
+uploads/*
 !uploads/readme.md
 !uploads/resources/readme.md

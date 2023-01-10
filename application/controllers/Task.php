@@ -112,7 +112,7 @@ public function validate_date()
           $str .= $key . ',';
         }
         $this->session->set_flashdata('error', true);
-        $this->session->set_flashdata('message', 'Data not inserted ' . $str);
+        $this->session->set_flashdata('message', 'Resources not updated ' . $str);
         redirect('dashboard/tasks');
       }
     }
@@ -142,10 +142,10 @@ public function validate_date()
       $duration = $this->input->post('duration');
       $status = $this->input->post('status');
       $description = $this->input->post('description');
-      // $res = $this->upload->upload_files();
-      // if (!$res[0]) {
-      //   goto end_s;
-      // }
+      $res = $this->upload->upload_files();
+      if (!$res[0]) {
+        goto end_s;
+      }
       // var_dump($this->upload->get_files());
       // exit;
       
@@ -158,8 +158,8 @@ public function validate_date()
         "task_end_day" => $e_date,
         "task_description" => $description,
         "task_duration" =>$duration,
-        "task_status" => $status
-        // "task_resources" => $this->upload->get_files()|'N/A'
+        "task_status" => $status,
+        "task_resources" => $this->upload->get_files()
       );
       $result = $this->Tasks_model->update($data, $id);
       // sleep(5);
@@ -172,14 +172,14 @@ public function validate_date()
       } else {
         $this->session->set_flashdata('error', true);
         $this->session->set_flashdata('message', 'Data not updated');
-        // end_s:
-        // $str = '';
-        // foreach ($res[1] as $key) {
-        //   $str .= $key . ',';
-        // }
-        // $this->session->set_flashdata('error', true);
-        // $this->session->set_flashdata('message', 'Resources not updated ' . $str);
-        // redirect('dashboard/tasks');
+        end_s:
+        $str = '';
+        foreach ($res[1] as $key) {
+          $str .= $key . ',';
+        }
+        $this->session->set_flashdata('error', true);
+        $this->session->set_flashdata('message', 'Resources not updated ' . $str);
+        redirect('dashboard/tasks');
       }
     }
   }

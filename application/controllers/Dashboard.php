@@ -89,6 +89,11 @@ class Dashboard extends CI_Controller
   {
     $this->load->view('tasks/view');
   }
+  public function tasks_detail($id)
+  {
+    $data['task'] = $this->Tasks_model->get_task($id);
+    ($data['task'] === false) ? $this->load->view('errors/pages404') : $this->load->view('tasks/detail', $data);
+  }
 }
 
 
